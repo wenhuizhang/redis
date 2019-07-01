@@ -401,11 +401,12 @@ int checkType(client *c, robj *o, int type) {
     return 0;
 }
 
-int isSdsRepresentableAsLongLong(sds s, long long *llval) {
+
+bool isSdsRepresentableAsLongLong(sds s, long long *llval) {
     return string2ll(s,sdslen(s),llval) ? C_OK : C_ERR;
 }
 
-int isObjectRepresentableAsLongLong(robj *o, long long *llval) {
+bool isObjectRepresentableAsLongLong(robj *o, long long *llval) {
     serverAssertWithInfo(NULL,o,o->type == OBJ_STRING);
     if (o->encoding == OBJ_ENCODING_INT) {
         if (llval) *llval = (long) o->ptr;
@@ -599,7 +600,7 @@ size_t stringObjectLen(robj *o) {
     }
 }
 
-int getDoubleFromObject(const robj *o, double *target) {
+bool getDoubleFromObject(const robj *o, double *target) {
     double value;
     char *eptr;
 
@@ -627,7 +628,7 @@ int getDoubleFromObject(const robj *o, double *target) {
     return C_OK;
 }
 
-int getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg) {
+bool getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg) {
     double value;
     if (getDoubleFromObject(o, &value) != C_OK) {
         if (msg != NULL) {
@@ -641,7 +642,7 @@ int getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *m
     return C_OK;
 }
 
-int getLongDoubleFromObject(robj *o, long double *target) {
+bool getLongDoubleFromObject(robj *o, long double *target) {
     long double value;
     char *eptr;
 
@@ -669,7 +670,7 @@ int getLongDoubleFromObject(robj *o, long double *target) {
     return C_OK;
 }
 
-int getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg) {
+bool getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg) {
     long double value;
     if (getLongDoubleFromObject(o, &value) != C_OK) {
         if (msg != NULL) {
@@ -683,7 +684,7 @@ int getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, cons
     return C_OK;
 }
 
-int getLongLongFromObject(robj *o, long long *target) {
+bool getLongLongFromObject(robj *o, long long *target) {
     long long value;
 
     if (o == NULL) {
@@ -702,7 +703,7 @@ int getLongLongFromObject(robj *o, long long *target) {
     return C_OK;
 }
 
-int getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg) {
+bool getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg) {
     long long value;
     if (getLongLongFromObject(o, &value) != C_OK) {
         if (msg != NULL) {
@@ -716,7 +717,7 @@ int getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const ch
     return C_OK;
 }
 
-int getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg) {
+bool getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg) {
     long long value;
 
     if (getLongLongFromObjectOrReply(c, o, &value, msg) != C_OK) return C_ERR;

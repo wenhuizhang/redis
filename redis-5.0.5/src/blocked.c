@@ -75,7 +75,7 @@ int serveClientBlockedOnList(client *receiver, robj *key, robj *dstkey, redisDb 
  * Note that if the timeout is zero (usually from the point of view of
  * commands API this means no timeout) the value stored into 'timeout'
  * is zero. */
-int getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit) {
+bool getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit) {
     long long tval;
 
     if (getLongLongFromObjectOrReply(c,object,&tval,

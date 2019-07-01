@@ -2289,7 +2289,7 @@ void ldbMaxlen(sds *argv, int argc) {
 /* Read debugging commands from client.
  * Return C_OK if the debugging session is continuing, otherwise
  * C_ERR if the client closed the connection or is timing out. */
-int ldbRepl(lua_State *lua) {
+bool ldbRepl(lua_State *lua) {
     sds *argv;
     int argc;
 

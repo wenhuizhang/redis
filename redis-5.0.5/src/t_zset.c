@@ -517,7 +517,7 @@ zskiplistNode* zslGetElementByRank(zskiplist *zsl, unsigned long rank) {
 }
 
 /* Populate the rangespec according to the objects min and max. */
-static int zslParseRange(robj *min, robj *max, zrangespec *spec) {
+static bool zslParseRange(robj *min, robj *max, zrangespec *spec) {
     char *eptr;
     spec->minex = spec->maxex = 0;
 
@@ -568,7 +568,7 @@ static int zslParseRange(robj *min, robj *max, zrangespec *spec) {
   *
   * If the string is not a valid range C_ERR is returned, and the value
   * of *dest and *ex is undefined. */
-int zslParseLexRangeItem(robj *item, sds *dest, int *ex) {
+bool zslParseLexRangeItem(robj *item, sds *dest, int *ex) {
     char *c = item->ptr;
 
     switch(c[0]) {
@@ -609,7 +609,7 @@ void zslFreeLexRange(zlexrangespec *spec) {
  * Return C_OK on success. On error C_ERR is returned.
  * When OK is returned the structure must be freed with zslFreeLexRange(),
  * otherwise no release is needed. */
-int zslParseLexRange(robj *min, robj *max, zlexrangespec *spec) {
+bool zslParseLexRange(robj *min, robj *max, zlexrangespec *spec) {
     /* The range can't be valid if objects are integer encoded.
      * Every item must start with ( or [. */
     if (min->encoding == OBJ_ENCODING_INT ||
@@ -1252,7 +1252,7 @@ void zsetConvertToZiplistIfNeeded(robj *zobj, size_t maxelelen) {
  * storing it into *score. If the element does not exist C_ERR is returned
  * otherwise C_OK is returned and *score is correctly populated.
  * If 'zobj' or 'member' is NULL, C_ERR is returned. */
-int zsetScore(robj *zobj, sds member, double *score) {
+bool zsetScore(robj *zobj, sds member, double *score) {
     if (!zobj || !member) return C_ERR;
 
     if (zobj->encoding == OBJ_ENCODING_ZIPLIST) {

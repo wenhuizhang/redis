@@ -376,7 +376,7 @@ long long emptyDb(int dbnum, int flags, void(callback)(void*)) {
     return removed;
 }
 
-int selectDb(client *c, int id) {
+bool selectDb(client *c, int id) {
     if (id < 0 || id >= server.dbnum)
         return C_ERR;
     c->db = &server.db[id];
@@ -412,7 +412,7 @@ void signalFlushedDb(int dbid) {
  *
  * On success C_OK is returned and the flags are stored in *flags, otherwise
  * C_ERR is returned and the function sends an error to the client. */
-int getFlushCommandFlags(client *c, int *flags) {
+bool getFlushCommandFlags(client *c, int *flags) {
     /* Parse the optional ASYNC option. */
     if (c->argc > 1) {
         if (c->argc > 2 || strcasecmp(c->argv[1]->ptr,"async")) {
@@ -595,7 +595,7 @@ void scanCallback(void *privdata, const dictEntry *de) {
  * if the cursor is valid, store it as unsigned integer into *cursor and
  * returns C_OK. Otherwise return C_ERR and send an error to the
  * client. */
-int parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor) {
+bool parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor) {
     char *eptr;
 
     /* Use strtoul() because we need an *unsigned* long, so
@@ -997,7 +997,7 @@ void scanDatabaseForReadyLists(redisDb *db) {
  *
  * Returns C_ERR if at least one of the DB ids are out of range, otherwise
  * C_OK is returned. */
-int dbSwapDatabases(int id1, int id2) {
+bool dbSwapDatabases(int id1, int id2) {
     if (id1 < 0 || id1 >= server.dbnum ||
         id2 < 0 || id2 >= server.dbnum) return C_ERR;
     if (id1 == id2) return C_OK;

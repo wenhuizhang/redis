@@ -408,7 +408,7 @@ void printBits(unsigned char *p, unsigned long count) {
  * If the 'hash' argument is true, and 'bits is positive, then the command
  * will also parse bit offsets prefixed by "#". In such a case the offset
  * is multiplied by 'bits'. This is useful for the BITFIELD command. */
-int getBitOffsetFromArgument(client *c, robj *o, size_t *offset, int hash, int bits) {
+bool getBitOffsetFromArgument(client *c, robj *o, size_t *offset, int hash, int bits) {
     long long loffset;
     char *err = "bit offset is not an integer or out of range";
     char *p = o->ptr;
@@ -444,7 +444,7 @@ int getBitOffsetFromArgument(client *c, robj *o, size_t *offset, int hash, int b
  * to return unsigned integer values greater than INT64_MAX.
  *
  * On error C_ERR is returned and an error is sent to the client. */
-int getBitfieldTypeFromArgument(client *c, robj *o, int *sign, int *bits) {
+bool getBitfieldTypeFromArgument(client *c, robj *o, int *sign, int *bits) {
     char *p = o->ptr;
     char *err = "Invalid bitfield type. Use something like i16 u8. Note that u64 is not supported but i64 is.";
     long long llbits;

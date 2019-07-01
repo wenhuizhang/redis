@@ -393,7 +393,7 @@ size_t freeMemoryGetNotCountedMemory(void) {
  *              limit.
  *              (Populated both for C_ERR and C_OK)
  */
-int getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level) {
+bool getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level) {
     size_t mem_reported, mem_used, mem_tofree;
 
     /* Check if we are over the memory usage limit. If we are not, no need
@@ -443,7 +443,7 @@ int getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *lev
  * were over the limit, but the attempt to free memory was successful.
  * Otehrwise if we are over the memory limit, but not enough memory
  * was freed to return back under the limit, the function returns C_ERR. */
-int freeMemoryIfNeeded(void) {
+bool freeMemoryIfNeeded(void) {
     /* By default replicas should ignore maxmemory
      * and just be masters exact copies. */
     if (server.masterhost && server.repl_slave_ignore_maxmemory) return C_OK;
@@ -629,7 +629,7 @@ cant_free:
  * - Nor we are loading data right now.
  *
  */
-int freeMemoryIfNeededAndSafe(void) {
+bool freeMemoryIfNeededAndSafe(void) {
     if (server.lua_timedout || server.loading) return C_OK;
     return freeMemoryIfNeeded();
 }

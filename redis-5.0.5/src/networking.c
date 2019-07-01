@@ -302,7 +302,7 @@ void _addReplyStringToList(client *c, const char *s, size_t len) {
 void addReply(client *c, robj *obj) {
     if (prepareClientToWrite(c) != C_OK) 
     {		
-	    printf("pubsub: prepareClientToWrite\n");
+	   // printf("pubsub: prepareClientToWrite\n");
 	    return;
     }
 
@@ -314,7 +314,7 @@ void addReply(client *c, robj *obj) {
 	    printf("pubsub: add reply string to list\n");
 	}
     } else if (obj->encoding == OBJ_ENCODING_INT) {
-	 printf("pubsub: obj->encoding is INT\n");
+	 // printf("pubsub: obj->encoding is INT\n");
         /* For integer encoded strings we just convert it into a string
          * using our optimized function, and attach the resulting string
          * to the output buffer. */

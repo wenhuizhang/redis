@@ -75,7 +75,7 @@ typedef long long mstime_t; /* millisecond time type. */
 
 /* Error codes */
 #define C_OK                    0
-#define C_ERR                   -1
+#define C_ERR                   1
 
 /* Static server configuration */
 #define CONFIG_DEFAULT_DYNAMIC_HZ 1             /* Adapt hz to # of clients.*/
@@ -1076,11 +1076,11 @@ struct redisServer {
     time_t aof_last_fsync;            /* UNIX time of last fsync() */
     time_t aof_rewrite_time_last;   /* Time used by last AOF rewrite run. */
     time_t aof_rewrite_time_start;  /* Current AOF rewrite start time. */
-    int aof_lastbgrewrite_status;   /* C_OK or C_ERR */
+    bool aof_lastbgrewrite_status;   /* C_OK or C_ERR */
     unsigned long aof_delayed_fsync;  /* delayed AOF fsync() counter */
     int aof_rewrite_incremental_fsync;/* fsync incrementally while aof rewriting? */
     int rdb_save_incremental_fsync;   /* fsync incrementally while rdb saving? */
-    int aof_last_write_status;      /* C_OK or C_ERR */
+    bool aof_last_write_status;      /* C_OK or C_ERR */
     int aof_last_write_errno;       /* Valid if aof_last_write_status is ERR */
     int aof_load_truncated;         /* Don't stop on unexpected AOF EOF. */
     int aof_use_rdb_preamble;       /* Use RDB preamble on AOF rewrites. */
@@ -1109,7 +1109,7 @@ struct redisServer {
     time_t rdb_save_time_start;     /* Current RDB save start time. */
     int rdb_bgsave_scheduled;       /* BGSAVE when possible if true. */
     int rdb_child_type;             /* Type of save by active child. */
-    int lastbgsave_status;          /* C_OK or C_ERR */
+    bool lastbgsave_status;          /* C_OK or C_ERR */
     int stop_writes_on_bgsave_err;  /* Don't allow writes if can't BGSAVE */
     int rdb_pipe_write_result_to_parent; /* RDB pipes used to return the state */
     int rdb_pipe_read_result_from_child; /* of each slave in diskless SYNC. */
@@ -1396,7 +1396,7 @@ extern dictType modulesDictType;
 
 /* Modules */
 void moduleInitModulesSystem(void);
-int moduleLoad(const char *path, void **argv, int argc);
+bool moduleLoad(const char *path, void **argv, int argc);
 void moduleLoadFromQueue(void);
 int *moduleGetCommandKeysViaAPI(struct redisCommand *cmd, robj **argv, int argc, int *numkeys);
 moduleType *moduleTypeLookupModuleByID(uint64_t id);
@@ -1475,7 +1475,7 @@ int getClientTypeByName(char *name);
 char *getClientTypeName(int class);
 void flushSlavesOutputBuffers(void);
 void disconnectSlaves(void);
-int listenToPort(int port, int *fds, int *count);
+bool listenToPort(int port, int *fds, int *count);
 void pauseClients(mstime_t duration);
 int clientsArePaused(void);
 int processEventsWhileBlocked(void);
@@ -1540,8 +1540,8 @@ robj *createStringObject(const char *ptr, size_t len);
 robj *createRawStringObject(const char *ptr, size_t len);
 robj *createEmbeddedStringObject(const char *ptr, size_t len);
 robj *dupStringObject(const robj *o);
-int isSdsRepresentableAsLongLong(sds s, long long *llval);
-int isObjectRepresentableAsLongLong(robj *o, long long *llongval);
+bool isSdsRepresentableAsLongLong(sds s, long long *llval);
+bool isObjectRepresentableAsLongLong(robj *o, long long *llongval);
 robj *tryObjectEncoding(robj *o);
 robj *getDecodedObject(robj *o);
 size_t stringObjectLen(robj *o);
@@ -1557,14 +1557,14 @@ robj *createZsetObject(void);
 robj *createZsetZiplistObject(void);
 robj *createStreamObject(void);
 robj *createModuleObject(moduleType *mt, void *value);
-int getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg);
+bool getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg);
 int checkType(client *c, robj *o, int type);
-int getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg);
-int getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg);
-int getDoubleFromObject(const robj *o, double *target);
-int getLongLongFromObject(robj *o, long long *target);
-int getLongDoubleFromObject(robj *o, long double *target);
-int getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg);
+bool getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg);
+bool getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg);
+bool getDoubleFromObject(const robj *o, double *target);
+bool getLongLongFromObject(robj *o, long long *target);
+bool getLongDoubleFromObject(robj *o, long double *target);
+bool getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg);
 char *strEncoding(int encoding);
 int compareStringObjects(robj *a, robj *b);
 int collateStringObjects(robj *a, robj *b);
@@ -1601,7 +1601,7 @@ void replicationSendNewlineToMaster(void);
 long long replicationGetSlaveOffset(void);
 char *replicationGetSlaveName(client *c);
 long long getPsyncInitialOffset(void);
-int replicationSetupSlaveForFullResync(client *slave, long long offset);
+bool replicationSetupSlaveForFullResync(client *slave, long long offset);
 void changeReplicationId(void);
 void clearReplicationId2(void);
 void chopReplicationBacklog(void);
@@ -1626,10 +1626,10 @@ int rdbSaveRio(rio *rdb, int *error, int flags, rdbSaveInfo *rsi);
 void flushAppendOnlyFile(int force);
 void feedAppendOnlyFile(struct redisCommand *cmd, int dictid, robj **argv, int argc);
 void aofRemoveTempFile(pid_t childpid);
-int rewriteAppendOnlyFileBackground(void);
-int loadAppendOnlyFile(char *filename);
+bool rewriteAppendOnlyFileBackground(void);
+bool loadAppendOnlyFile(char *filename);
 void stopAppendOnly(void);
-int startAppendOnly(void);
+bool startAppendOnly(void);
 void backgroundRewriteDoneHandler(int exitcode, int bysignal);
 void aofRewriteBufferReset(void);
 unsigned long aofRewriteBufferSize(void);
@@ -1685,7 +1685,7 @@ unsigned char *zzlLastInRange(unsigned char *zl, zrangespec *range);
 unsigned long zsetLength(const robj *zobj);
 void zsetConvert(robj *zobj, int encoding);
 void zsetConvertToZiplistIfNeeded(robj *zobj, size_t maxelelen);
-int zsetScore(robj *zobj, sds member, double *score);
+bool zsetScore(robj *zobj, sds member, double *score);
 unsigned long zslGetRank(zskiplist *zsl, double score, sds o);
 int zsetAdd(robj *zobj, double score, sds ele, int *flags, double *newscore);
 long zsetRank(robj *zobj, sds ele, int reverse);
@@ -1695,7 +1695,7 @@ sds ziplistGetObject(unsigned char *sptr);
 int zslValueGteMin(double value, zrangespec *spec);
 int zslValueLteMax(double value, zrangespec *spec);
 void zslFreeLexRange(zlexrangespec *spec);
-int zslParseLexRange(robj *min, robj *max, zlexrangespec *spec);
+bool zslParseLexRange(robj *min, robj *max, zlexrangespec *spec);
 unsigned char *zzlFirstInLexRange(unsigned char *zl, zlexrangespec *range);
 unsigned char *zzlLastInLexRange(unsigned char *zl, zlexrangespec *range);
 zskiplistNode *zslFirstInLexRange(zskiplist *zsl, zlexrangespec *range);
@@ -1706,11 +1706,11 @@ int zslLexValueGteMin(sds value, zlexrangespec *spec);
 int zslLexValueLteMax(sds value, zlexrangespec *spec);
 
 /* Core functions */
-int getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level);
+bool getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level);
 size_t freeMemoryGetNotCountedMemory();
-int freeMemoryIfNeeded(void);
-int freeMemoryIfNeededAndSafe(void);
-int processCommand(client *c);
+bool freeMemoryIfNeeded(void);
+bool freeMemoryIfNeededAndSafe(void);
+bool processCommand(client *c);
 void setupSignalHandlers(void);
 struct redisCommand *lookupCommand(sds name);
 struct redisCommand *lookupCommandByCString(char *s);
@@ -1750,7 +1750,7 @@ void freeMemoryOverheadData(struct redisMemOverhead *mh);
 #define RESTART_SERVER_NONE 0
 #define RESTART_SERVER_GRACEFULLY (1<<0)     /* Do proper shutdown. */
 #define RESTART_SERVER_CONFIG_REWRITE (1<<1) /* CONFIG REWRITE before restart.*/
-int restartServer(int flags, mstime_t delay);
+bool restartServer(int flags, mstime_t delay);
 
 /* Set data type */
 robj *setTypeCreate(sds value);
@@ -1775,11 +1775,11 @@ void hashTypeConvert(robj *o, int enc);
 void hashTypeTryConversion(robj *subject, robj **argv, int start, int end);
 void hashTypeTryObjectEncoding(robj *subject, robj **o1, robj **o2);
 int hashTypeExists(robj *o, sds key);
-int hashTypeDelete(robj *o, sds key);
+bool hashTypeDelete(robj *o, sds key);
 unsigned long hashTypeLength(const robj *o);
 hashTypeIterator *hashTypeInitIterator(robj *subject);
 void hashTypeReleaseIterator(hashTypeIterator *hi);
-int hashTypeNext(hashTypeIterator *hi);
+bool hashTypeNext(hashTypeIterator *hi);
 void hashTypeCurrentFromZiplist(hashTypeIterator *hi, int what,
                                 unsigned char **vstr,
                                 unsigned int *vlen,
@@ -1842,15 +1842,15 @@ robj *dbUnshareStringValue(redisDb *db, robj *key, robj *o);
 #define EMPTYDB_ASYNC (1<<0)    /* Reclaim memory in another thread. */
 long long emptyDb(int dbnum, int flags, void(callback)(void*));
 
-int selectDb(client *c, int id);
+bool selectDb(client *c, int id);
 void signalModifiedKey(redisDb *db, robj *key);
 void signalFlushedDb(int dbid);
 unsigned int getKeysInSlot(unsigned int hashslot, robj **keys, unsigned int count);
 unsigned int countKeysInSlot(unsigned int hashslot);
 unsigned int delKeysInSlot(unsigned int hashslot);
-int verifyClusterConfigWithData(void);
+bool verifyClusterConfigWithData(void);
 void scanGenericCommand(client *c, robj *o, unsigned long cursor);
-int parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor);
+bool parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor);
 void slotToKeyAdd(robj *key);
 void slotToKeyDel(robj *key);
 void slotToKeyFlush(void);
@@ -1878,7 +1878,7 @@ void clusterCron(void);
 void clusterPropagatePublish(robj *channel, robj *message);
 void migrateCloseTimedoutSockets(void);
 void clusterBeforeSleep(void);
-int clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len);
+bool clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len);
 
 /* Sentinel */
 void initSentinelConfig(void);
@@ -1889,7 +1889,7 @@ void sentinelIsRunning(void);
 
 /* redis-check-rdb & aof */
 int redis_check_rdb(char *rdbfilename, FILE *fp);
-int redis_check_rdb_main(int argc, char **argv, FILE *fp);
+bool redis_check_rdb_main(int argc, char **argv, FILE *fp);
 int redis_check_aof_main(int argc, char **argv);
 
 /* Scripting */
@@ -1905,7 +1905,7 @@ void blockClient(client *c, int btype);
 void unblockClient(client *c);
 void queueClientForReprocessing(client *c);
 void replyToBlockedClientTimedOut(client *c);
-int getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit);
+bool getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit);
 void disconnectAllBlockedClients(void);
 void handleClientsBlockedOnKeys(void);
 void signalKeyAsReady(redisDb *db, robj *key);

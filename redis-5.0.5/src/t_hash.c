@@ -106,7 +106,7 @@ sds hashTypeGetFromHashTable(robj *o, sds field) {
  * If *vll is populated *vstr is set to NULL, so the caller
  * can always check the function return by checking the return value
  * for C_OK and checking if vll (or vstr) is NULL. */
-int hashTypeGetValue(robj *o, sds field, unsigned char **vstr, unsigned int *vlen, long long *vll) {
+bool hashTypeGetValue(robj *o, sds field, unsigned char **vstr, unsigned int *vlen, long long *vll) {
     if (o->encoding == OBJ_ENCODING_ZIPLIST) {
         *vstr = NULL;
         if (hashTypeGetFromZiplist(o, field, vstr, vlen, vll) == 0)
@@ -276,8 +276,8 @@ int hashTypeSet(robj *o, sds field, sds value, int flags) {
 
 /* Delete an element from a hash.
  * Return 1 on deleted and 0 on not found. */
-int hashTypeDelete(robj *o, sds field) {
-    int deleted = 0;
+bool hashTypeDelete(robj *o, sds field) {
+    bool deleted = 0;
 
     if (o->encoding == OBJ_ENCODING_ZIPLIST) {
         unsigned char *zl, *fptr;
@@ -345,7 +345,7 @@ void hashTypeReleaseIterator(hashTypeIterator *hi) {
 
 /* Move to the next entry in the hash. Return C_OK when the next entry
  * could be found and C_ERR when the iterator reaches the end. */
-int hashTypeNext(hashTypeIterator *hi) {
+bool hashTypeNext(hashTypeIterator *hi) {
     if (hi->encoding == OBJ_ENCODING_ZIPLIST) {
         unsigned char *zl;
         unsigned char *fptr, *vptr;

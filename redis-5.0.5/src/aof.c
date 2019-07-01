@@ -245,7 +245,7 @@ void stopAppendOnly(void) {
 
 /* Called when the user switches from "appendonly no" to "appendonly yes"
  * at runtime using the CONFIG command. */
-int startAppendOnly(void) {
+bool startAppendOnly(void) {
     char cwd[MAXPATHLEN]; /* Current working dir path for error messages. */
     int newfd;
 
@@ -695,7 +695,7 @@ void freeFakeClient(struct client *c) {
 /* Replay the append log file. On success C_OK is returned. On non fatal
  * error (the append only file is zero-length) C_ERR is returned. On
  * fatal error an error message is logged and the program exists. */
-int loadAppendOnlyFile(char *filename) {
+bool loadAppendOnlyFile(char *filename) {
     struct client *fakeClient;
     FILE *fp = fopen(filename,"r");
     struct redis_stat sb;
@@ -1286,7 +1286,7 @@ ssize_t aofReadDiffFromParent(void) {
     return total;
 }
 
-int rewriteAppendOnlyFileRio(rio *aof) {
+bool rewriteAppendOnlyFileRio(rio *aof) {
     dictIterator *di = NULL;
     dictEntry *de;
     size_t processed = 0;
@@ -1368,7 +1368,7 @@ werr:
  * log Redis uses variadic commands when possible, such as RPUSH, SADD
  * and ZADD. However at max AOF_REWRITE_ITEMS_PER_CMD items per time
  * are inserted using a single command. */
-int rewriteAppendOnlyFile(char *filename) {
+bool rewriteAppendOnlyFile(char *filename) {
     rio aof;
     FILE *fp;
     char tmpfile[256];
@@ -1501,7 +1501,7 @@ void aofChildPipeReadable(aeEventLoop *el, int fd, void *privdata, int mask) {
  * and two other pipes used by the children to signal it finished with
  * the rewrite so no more data should be written, and another for the
  * parent to acknowledge it understood this new condition. */
-int aofCreatePipes(void) {
+bool aofCreatePipes(void) {
     int fds[6] = {-1, -1, -1, -1, -1, -1};
     int j;
 
@@ -1556,7 +1556,7 @@ void aofClosePipes(void) {
  *    finally will rename(2) the temp file in the actual file name.
  *    The the new file is reopened as the new append only file. Profit!
  */
-int rewriteAppendOnlyFileBackground(void) {
+bool rewriteAppendOnlyFileBackground(void) {
     pid_t childpid;
     long long start;
 

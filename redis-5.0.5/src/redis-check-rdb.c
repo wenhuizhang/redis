@@ -339,7 +339,7 @@ err:
  * status code according to success (RDB is sane) or error (RDB is corrupted).
  * Otherwise if called with a non NULL fp, the function returns C_OK or
  * C_ERR depending on the success or failure. */
-int redis_check_rdb_main(int argc, char **argv, FILE *fp) {
+bool redis_check_rdb_main(int argc, char **argv, FILE *fp) {
     if (argc != 2 && fp == NULL) {
         fprintf(stderr, "Usage: %s <rdb-file-name>\n", argv[0]);
         exit(1);

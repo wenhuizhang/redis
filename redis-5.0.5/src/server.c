@@ -1745,7 +1745,7 @@ extern char **environ;
  *
  * On success the function does not return, because the process turns into
  * a different process. On error C_ERR is returned. */
-int restartServer(int flags, mstime_t delay) {
+bool restartServer(int flags, mstime_t delay) {
     int j;
 
     /* Check if we still have accesses to the executable that started this
@@ -1912,7 +1912,7 @@ void checkTcpBacklogSettings(void) {
  * impossible to bind, or no bind addresses were specified in the server
  * configuration but the function is not able to bind * for at least
  * one of the IPv4 or IPv6 protocols. */
-int listenToPort(int port, int *fds, int *count) {
+bool listenToPort(int port, int *fds, int *count) {
     int j;
 
     /* Force binding of 0.0.0.0 if no bind address is specified, always
@@ -2542,7 +2542,7 @@ void call(client *c, int flags) {
  * If C_OK is returned the client is still alive and valid and
  * other operations can be performed by the caller. Otherwise
  * if C_ERR is returned the client was destroyed (i.e. after QUIT). */
-int processCommand(client *c) {
+bool processCommand(client *c) {
     moduleCallCommandFilters(c);
 
     /* The QUIT command is handled separately. Normal command procs will

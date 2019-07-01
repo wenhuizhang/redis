@@ -332,7 +332,7 @@ static void redisAeCleanup(void *privdata) {
     zfree(e);
 }
 
-static int redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {
+static bool redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {
     redisContext *c = &(ac->c);
     redisAeEvents *e;
 
@@ -375,12 +375,12 @@ sentinelRedisInstance *sentinelSelectSlave(sentinelRedisInstance *master);
 void sentinelScheduleScriptExecution(char *path, ...);
 void sentinelStartFailover(sentinelRedisInstance *master);
 void sentinelDiscardReplyCallback(redisAsyncContext *c, void *reply, void *privdata);
-int sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port);
+bool sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port);
 char *sentinelVoteLeader(sentinelRedisInstance *master, uint64_t req_epoch, char *req_runid, uint64_t *leader_epoch);
 void sentinelFlushConfig(void);
 void sentinelGenerateInitialMonitorEvents(void);
-int sentinelSendPing(sentinelRedisInstance *ri);
-int sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master);
+bool sentinelSendPing(sentinelRedisInstance *ri);
+bool sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master);
 sentinelRedisInstance *getSentinelRedisInstanceByAddrAndRunID(dict *instances, char *ip, int port, char *runid);
 void sentinelSimFailureCrash(void);
 
@@ -1037,7 +1037,7 @@ instanceLink *releaseInstanceLink(instanceLink *link, sentinelRedisInstance *ri)
  * Return C_OK if a matching Sentinel was found in the context of a
  * different master and sharing was performed. Otherwise C_ERR
  * is returned. */
-int sentinelTryConnectionSharing(sentinelRedisInstance *ri) {
+bool sentinelTryConnectionSharing(sentinelRedisInstance *ri) {
     serverAssert(ri->flags & SRI_SENTINEL);
     dictIterator *di;
     dictEntry *de;
@@ -1481,7 +1481,7 @@ int sentinelResetMastersByPattern(char *pattern, int flags) {
  *
  * The function returns C_ERR if the address can't be resolved for some
  * reason. Otherwise C_OK is returned.  */
-int sentinelResetMasterAndChangeAddress(sentinelRedisInstance *master, char *ip, int port) {
+bool sentinelResetMasterAndChangeAddress(sentinelRedisInstance *master, char *ip, int port) {
     sentinelAddr *oldaddr, *newaddr;
     sentinelAddr **slaves = NULL;
     int numslaves = 0, j;
@@ -1540,7 +1540,7 @@ int sentinelResetMasterAndChangeAddress(sentinelRedisInstance *master, char *ip,
 
 /* Return non-zero if there was no SDOWN or ODOWN error associated to this
  * instance in the latest 'ms' milliseconds. */
-int sentinelRedisInstanceNoDownFor(sentinelRedisInstance *ri, mstime_t ms) {
+bool sentinelRedisInstanceNoDownFor(sentinelRedisInstance *ri, mstime_t ms) {
     mstime_t most_recent;
 
     most_recent = ri->s_down_since_time;
@@ -2558,7 +2558,7 @@ void sentinelReceiveHelloMessages(redisAsyncContext *c, void *reply, void *privd
  *
  * Returns C_OK if the PUBLISH was queued correctly, otherwise
  * C_ERR is returned. */
-int sentinelSendHello(sentinelRedisInstance *ri) {
+bool sentinelSendHello(sentinelRedisInstance *ri) {
     char ip[NET_IP_STR_LEN];
     char payload[NET_IP_STR_LEN+1024];
     int retval;
@@ -2622,7 +2622,7 @@ void sentinelForceHelloUpdateDictOfRedisInstances(dict *instances) {
  * with a period of SENTINEL_PUBLISH_PERIOD milliseconds, however when a
  * Sentinel upgrades a configuration it is a good idea to deliever an update
  * to the other Sentinels ASAP. */
-int sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master) {
+bool sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master) {
     if (!(master->flags & SRI_MASTER)) return C_ERR;
     if (master->last_pub_time >= (SENTINEL_PUBLISH_PERIOD+1))
         master->last_pub_time -= (SENTINEL_PUBLISH_PERIOD+1);
@@ -2636,7 +2636,7 @@ int sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master) {
  *
  * On error zero is returned, and we can't consider the PING command
  * queued in the connection. */
-int sentinelSendPing(sentinelRedisInstance *ri) {
+bool sentinelSendPing(sentinelRedisInstance *ri) {
     int retval = redisAsyncCommand(ri->link->cc,
         sentinelPingReplyCallback, ri, "%s",
         sentinelInstanceMapCommand(ri,"PING"));
@@ -3911,7 +3911,7 @@ char *sentinelGetLeader(sentinelRedisInstance *master, uint64_t epoch) {
  * The command returns C_OK if the SLAVEOF command was accepted for
  * (later) delivery otherwise C_ERR. The command replies are just
  * discarded. */
-int sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port) {
+bool sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port) {
     char portstr[32];
     int retval;
 

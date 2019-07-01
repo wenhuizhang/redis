@@ -416,7 +416,7 @@ long long getPsyncInitialOffset(void) {
  * Normally this function should be called immediately after a successful
  * BGSAVE for replication was started, or when there is one already in
  * progress that we attached our slave to. */
-int replicationSetupSlaveForFullResync(client *slave, long long offset) {
+bool replicationSetupSlaveForFullResync(client *slave, long long offset) {
     char buf[128];
     int buflen;
 
@@ -445,7 +445,7 @@ int replicationSetupSlaveForFullResync(client *slave, long long offset) {
  *
  * On success return C_OK, otherwise C_ERR is returned and we proceed
  * with the usual full resync. */
-int masterTryPartialResynchronization(client *c) {
+bool masterTryPartialResynchronization(client *c) {
     long long psync_offset, psync_len;
     char *master_replid = c->argv[1]->ptr;
     char buf[128];
@@ -561,8 +561,8 @@ need_full_resync:
  *    started.
  *
  * Returns C_OK on success or C_ERR otherwise. */
-int startBgsaveForReplication(int mincapa) {
-    int retval;
+bool startBgsaveForReplication(int mincapa) {
+    bool retval;
     int socket_target = server.repl_diskless_sync && (mincapa & SLAVE_CAPA_EOF);
     listIter li;
     listNode *ln;
@@ -1883,7 +1883,7 @@ write_error: /* Handle sendSynchronousCommand(SYNC_CMD_WRITE) errors. */
     goto error;
 }
 
-int connectWithMaster(void) {
+bool connectWithMaster(void) {
     int fd;
 
     fd = anetTcpNonBlockBestEffortBindConnect(NULL,

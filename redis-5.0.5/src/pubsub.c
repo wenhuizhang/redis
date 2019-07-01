@@ -269,7 +269,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
         listRewind(list,&li);
         while ((ln = listNext(&li)) != NULL) {
             client *c = ln->value;
-            hexDump(message->ptr, 10);
+            hexDump(message->ptr, sizeof(message->ptr));
             addReply(c,shared.mbulkhdr[3]);
             addReply(c,shared.messagebulk);
             addReplyBulk(c,channel);

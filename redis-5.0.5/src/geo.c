@@ -90,7 +90,7 @@ int decodeGeohash(double bits, double *xy) {
 /* Input Argument Helper */
 /* Take a pointer to the latitude arg then use the next arg for longitude.
  * On parse error C_ERR is returned, otherwise C_OK. */
-int extractLongLatOrReply(client *c, robj **argv, double *xy) {
+bool extractLongLatOrReply(client *c, robj **argv, double *xy) {
     int i;
     for (i = 0; i < 2; i++) {
         if (getDoubleFromObjectOrReply(c, argv[i], xy + i, NULL) !=
@@ -110,7 +110,7 @@ int extractLongLatOrReply(client *c, robj **argv, double *xy) {
 /* Input Argument Helper */
 /* Decode lat/long from a zset member's score.
  * Returns C_OK on successful decoding, otherwise C_ERR is returned. */
-int longLatFromMember(robj *zobj, robj *member, double *xy) {
+bool longLatFromMember(robj *zobj, robj *member, double *xy) {
     double score = 0;
 
     if (zsetScore(zobj, member->ptr, &score) == C_ERR) return C_ERR;
@@ -188,7 +188,7 @@ void addReplyDoubleDistance(client *c, double d) {
  * only if the point is within the search area.
  *
  * returns C_OK if the point is included, or REIDS_ERR if it is outside. */
-int geoAppendIfWithinRadius(geoArray *ga, double lon, double lat, double radius, double score, sds member) {
+bool geoAppendIfWithinRadius(geoArray *ga, double lon, double lat, double radius, double score, sds member) {
     double distance, xy[2];
 
     if (!decodeGeohash(score,xy)) return C_ERR; /* Can't decode. */

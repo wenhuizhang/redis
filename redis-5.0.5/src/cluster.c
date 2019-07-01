@@ -47,7 +47,7 @@
 clusterNode *myself = NULL;
 
 clusterNode *createClusterNode(char *nodename, int flags);
-int clusterAddNode(clusterNode *node);
+bool clusterAddNode(clusterNode *node);
 void clusterAcceptHandler(aeEventLoop *el, int fd, void *privdata, int mask);
 void clusterReadHandler(aeEventLoop *el, int fd, void *privdata, int mask);
 void clusterSendPing(clusterLink *link, int type);
@@ -57,9 +57,9 @@ void clusterUpdateState(void);
 int clusterNodeGetSlotBit(clusterNode *n, int slot);
 sds clusterGenNodesDescription(int filter);
 clusterNode *clusterLookupNode(const char *name);
-int clusterNodeAddSlave(clusterNode *master, clusterNode *slave);
-int clusterAddSlot(clusterNode *n, int slot);
-int clusterDelSlot(int slot);
+bool clusterNodeAddSlave(clusterNode *master, clusterNode *slave);
+bool clusterAddSlot(clusterNode *n, int slot);
+bool clusterDelSlot(int slot);
 int clusterDelNodeSlots(clusterNode *node);
 int clusterNodeSetSlotBit(clusterNode *n, int slot);
 void clusterSetMaster(clusterNode *n);
@@ -74,7 +74,7 @@ void clusterSetNodeAsMaster(clusterNode *n);
 void clusterDelNode(clusterNode *delnode);
 sds representClusterNodeFlags(sds ci, uint16_t flags);
 uint64_t clusterGetMaxEpoch(void);
-int clusterBumpConfigEpochWithoutConsensus(void);
+bool clusterBumpConfigEpochWithoutConsensus(void);
 void moduleCallClusterReceivers(const char *sender_id, uint64_t module_id, uint8_t type, const unsigned char *payload, uint32_t len);
 
 /* -----------------------------------------------------------------------------
@@ -87,7 +87,7 @@ void moduleCallClusterReceivers(const char *sender_id, uint64_t module_id, uint8
  * when we lock the nodes.conf file, we create a zero-length one for the
  * sake of locking if it does not already exist), C_ERR is returned.
  * If the configuration was loaded from the file, C_OK is returned. */
-int clusterLoadConfig(char *filename) {
+bool clusterLoadConfig(char *filename) {
     FILE *fp = fopen(filename,"r");
     struct stat sb;
     char *line;
@@ -372,7 +372,7 @@ void clusterSaveConfigOrDie(int do_fsync) {
  *
  * On success C_OK is returned, otherwise an error is logged and
  * the function returns C_ERR to signal a lock was not acquired. */
-int clusterLockConfig(char *filename) {
+bool clusterLockConfig(char *filename) {
 /* flock() does not exist on Solaris
  * and a fcntl-based solution won't help, as we constantly re-open that file,
  * which will release _all_ locks anyway
@@ -816,7 +816,7 @@ int clusterNodeFailureReportsCount(clusterNode *node) {
     return listLength(node->fail_reports);
 }
 
-int clusterNodeRemoveSlave(clusterNode *master, clusterNode *slave) {
+bool clusterNodeRemoveSlave(clusterNode *master, clusterNode *slave) {
     int j;
 
     for (j = 0; j < master->numslaves; j++) {
@@ -835,7 +835,7 @@ int clusterNodeRemoveSlave(clusterNode *master, clusterNode *slave) {
     return C_ERR;
 }
 
-int clusterNodeAddSlave(clusterNode *master, clusterNode *slave) {
+bool clusterNodeAddSlave(clusterNode *master, clusterNode *slave) {
     int j;
 
     /* If it's already a slave, don't add it again. */
@@ -883,7 +883,7 @@ void freeClusterNode(clusterNode *n) {
 }
 
 /* Add a node to the nodes hash table */
-int clusterAddNode(clusterNode *node) {
+bool clusterAddNode(clusterNode *node) {
     int retval;
 
     retval = dictAdd(server.cluster->nodes,
@@ -1009,7 +1009,7 @@ uint64_t clusterGetMaxEpoch(void) {
  * resolution algorithm will eventually move colliding nodes to different
  * config epochs. However using this function may violate the "last failover
  * wins" rule, so should only be used with care. */
-int clusterBumpConfigEpochWithoutConsensus(void) {
+bool clusterBumpConfigEpochWithoutConsensus(void) {
     uint64_t maxEpoch = clusterGetMaxEpoch();
 
     if (myself->configEpoch == 0 ||
@@ -2627,7 +2627,7 @@ void clusterSendModule(clusterLink *link, uint64_t module_id, uint8_t type,
  *
  * The function returns C_OK if the target is valid, otherwise C_ERR is
  * returned. */
-int clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len) {
+bool clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len) {
     clusterNode *node = NULL;
 
     if (target != NULL) {
@@ -3702,7 +3702,7 @@ int clusterNodeGetSlotBit(clusterNode *n, int slot) {
  * serve. Return C_OK if the operation ended with success.
  * If the slot is already assigned to another instance this is considered
  * an error and C_ERR is returned. */
-int clusterAddSlot(clusterNode *n, int slot) {
+bool clusterAddSlot(clusterNode *n, int slot) {
     if (server.cluster->slots[slot]) return C_ERR;
     clusterNodeSetSlotBit(n,slot);
     server.cluster->slots[slot] = n;
@@ -3712,7 +3712,7 @@ int clusterAddSlot(clusterNode *n, int slot) {
 /* Delete the specified slot marking it as unassigned.
  * Returns C_OK if the slot was assigned, otherwise if the slot was
  * already unassigned C_ERR is returned. */
-int clusterDelSlot(int slot) {
+bool clusterDelSlot(int slot) {
     clusterNode *n = server.cluster->slots[slot];
 
     if (!n) return C_ERR;
@@ -3874,7 +3874,7 @@ void clusterUpdateState(void) {
  * The function also uses the logging facility in order to warn the user
  * about desynchronizations between the data we have in memory and the
  * cluster configuration. */
-int verifyClusterConfigWithData(void) {
+bool verifyClusterConfigWithData(void) {
     int j;
     int update_config = 0;
 

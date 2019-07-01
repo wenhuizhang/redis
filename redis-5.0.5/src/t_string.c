@@ -34,7 +34,7 @@
  * String Commands
  *----------------------------------------------------------------------------*/
 
-static int checkStringLength(client *c, long long size) {
+static bool checkStringLength(client *c, long long size) {
     if (size > 512*1024*1024) {
         addReplyError(c,"string exceeds maximum allowed size (512MB)");
         return C_ERR;
@@ -154,7 +154,7 @@ void psetexCommand(client *c) {
     setGenericCommand(c,OBJ_SET_NO_FLAGS,c->argv[1],c->argv[3],c->argv[2],UNIT_MILLISECONDS,NULL,NULL);
 }
 
-int getGenericCommand(client *c) {
+bool getGenericCommand(client *c) {
     robj *o;
 
     if ((o = lookupKeyReadOrReply(c,c->argv[1],shared.nullbulk)) == NULL)

@@ -581,7 +581,7 @@ void hllDenseRegHisto(uint8_t *registers, int* reghisto) {
  *
  * The function returns C_OK if the sparse representation was valid,
  * otherwise C_ERR is returned if the representation was corrupted. */
-int hllSparseToDense(robj *o) {
+bool hllSparseToDense(robj *o) {
     sds sparse = o->ptr, dense;
     struct hllhdr *hdr, *oldhdr = (struct hllhdr*)sparse;
     int idx = 0, runlen, regval;
@@ -1065,7 +1065,7 @@ int hllAdd(robj *o, unsigned char *ele, size_t elesize) {
  *
  * If the HyperLogLog is sparse and is found to be invalid, C_ERR
  * is returned, otherwise the function always succeeds. */
-int hllMerge(uint8_t *max, robj *hll) {
+bool hllMerge(uint8_t *max, robj *hll) {
     struct hllhdr *hdr = hll->ptr;
     int i;
 
@@ -1146,7 +1146,7 @@ robj *createHLLObject(void) {
 /* Check if the object is a String with a valid HLL representation.
  * Return C_OK if this is true, otherwise reply to the client
  * with an error and return C_ERR. */
-int isHLLObjectOrReply(client *c, robj *o) {
+bool isHLLObjectOrReply(client *c, robj *o) {
     struct hllhdr *hdr;
 
     /* Key exists, check type */
