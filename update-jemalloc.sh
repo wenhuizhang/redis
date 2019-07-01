@@ -15,5 +15,4 @@ make dist
 make
 sudo make install
 
-
-
+cp ../../Makefile-deps Makefile
