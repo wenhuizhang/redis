@@ -253,6 +253,10 @@ int _addReplyToBuffer(client *c, const char *s, size_t len) {
     return C_OK;
 }
 
+
+// wenhui: 
+// if buffer size if not enough for added obj, then add string to list
+
 void _addReplyStringToList(client *c, const char *s, size_t len) {
     if (c->flags & CLIENT_CLOSE_AFTER_REPLY) return;
 
@@ -296,12 +300,21 @@ void _addReplyStringToList(client *c, const char *s, size_t len) {
 
 /* Add the object 'obj' string representation to the client output buffer. */
 void addReply(client *c, robj *obj) {
-    if (prepareClientToWrite(c) != C_OK) return;
+    if (prepareClientToWrite(c) != C_OK) 
+    {		
+	    printf("pubsub: prepareClientToWrite\n");
+	    return;
+    }
 
     if (sdsEncodedObject(obj)) {
-        if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK)
+	 printf("pubsub: obj->encoding is SDS\n");
+        if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK){
+	    printf("pubsub: add reply to buffer\n");
             _addReplyStringToList(c,obj->ptr,sdslen(obj->ptr));
+	    printf("pubsub: add reply string to list\n");
+	}
     } else if (obj->encoding == OBJ_ENCODING_INT) {
+	 printf("pubsub: obj->encoding is INT\n");
         /* For integer encoded strings we just convert it into a string
          * using our optimized function, and attach the resulting string
          * to the output buffer. */
