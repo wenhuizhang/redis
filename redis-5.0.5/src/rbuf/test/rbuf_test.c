@@ -63,7 +63,7 @@ int main() {
 		get_data = ring_get(ring_buffer, con_1);
 
 		if(get_data == NULL){
-			printf("i = %d, get %d failed \n" , i, con_1->location);
+			printf("i = %d, get %d failed \n" , i, (con_1->location+1));
 		}
 		else{
 			printf("i = %d, get data %d = %p\n", i, con_1->location, get_data);
@@ -92,7 +92,7 @@ int main() {
 		printf("location is %d\n", con_2->location);
 
 		if(get_data == NULL){
-			printf("i = %d, get  %d failed \n" , i, con_2->location);
+			printf("i = %d, get  %d failed \n" , i, (con_2->location+1));
 		}
 		else{
 			printf("i = %d, get data %d = %p\n", i, con_2->location, get_data);
