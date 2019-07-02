@@ -27,11 +27,8 @@
 
 int main() {
     
-	// set buffer size as 5, first push 3 elements
-	// and then get 2 elements,
-	// then push 6 elements, at last get 12 elements
-	const int buffer_size = 5;
-	const int start_location = 1;
+	const int buffer_size = 6;
+	const int start_location = 0;
 
 	int push_size_1 = 8;
 	int get_size_1 = 2;
@@ -54,10 +51,10 @@ int main() {
 		int count = ring_push(ring_buffer, &data[i]);
 
 		if ( count != 0 ){
-			printf("push data %d = %p \n", count, &data[i]);
+			printf("i = %d, push data %d = %p \n", i, count, &data[i]);
 		}
 		else{
-			printf("push %d failed \n ", count);
+			printf("i = %d, push %d failed \n ", i, count);
 		}
 	}
 
@@ -68,10 +65,10 @@ int main() {
 		printf("location is %d\n", con_1->location);
 
 		if(get_data == NULL){
-			printf("get %d failed \n" , con_1->location);
+			printf("i = %d, get %d failed \n" , i, con_1->location);
 		}
 		else{
-			printf("get data %d = %p\n", con_1->location, get_data);
+			printf("i = %d, get data %d = %p\n", i, con_1->location, get_data);
 		}
 	}
 
@@ -98,10 +95,10 @@ int main() {
 		printf("location is %d\n", con_2->location);
 
 		if(get_data == NULL){
-			printf("get  %d failed \n" , con_2->location);
+			printf("i = %d, get  %d failed \n" , i, con_2->location);
 		}
 		else{
-			printf("get data %d = %p\n", con_2->location, get_data);
+			printf("i = %d, get data %d = %p\n", i, con_2->location, get_data);
 		}
 	}
 

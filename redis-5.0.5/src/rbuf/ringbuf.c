@@ -70,23 +70,28 @@ int ring_push(struct ring *rb, void* data)
 */
 void* ring_get(struct ring *rb, struct consumer *con)
 {
-	while((rb->count - con->location) > rb->size){
+	if((rb->count - con->location) > rb->size){
 		// printf("buffer size %d, too small\n", rb->size);
-		con->location = con->location + rb->size;
+		con->location = rb->count - rb->size;
 	}
 	
-	if ( rb->count <= 0 ){
+	if ( rb->count < 0 ){
 		return NULL;
 	}
 	
-	if( con->location >= rb->count){
+	if ( con->location < 0 ){
+		return NULL;
+	}
+	
+	if( con->location > rb->count){
 		printf("overread\n");
 		return NULL;
 	}
 	
 	void* temp;
-	int get_location = (con->location - 1)% rb->size;
+	int get_location = con->location % rb->size;
 	temp = rb->items[get_location];
+	con->location = con->location + 1;
 
 	return  temp;
 }
