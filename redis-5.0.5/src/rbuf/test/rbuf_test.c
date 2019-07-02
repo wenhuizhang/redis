@@ -31,8 +31,9 @@ int main() {
 	// and then get 2 elements,
 	// then push 6 elements, at last get 12 elements
 	const int buffer_size = 5;
+	const int start_location = 0;
 
-	int push_size_1 = 3;
+	int push_size_1 = 8;
 	int get_size_1 = 2;
 	int push_size_2 = 6;
 	int get_size_2 = 12;
@@ -41,6 +42,8 @@ int main() {
 	void* get_data;
 
 	struct ring* ring_buffer = init_ring( buffer_size );
+	struct consumer *con_1 = init_consumer( start_location );
+	struct consumer *con_2 = init_consumer( start_location );
 
 	int i;
 
@@ -51,7 +54,7 @@ int main() {
 		int count = ring_push(ring_buffer, &data[i]);
 
 		if ( count != 0 ){
-			printf("push data %d = %d \n", i, &data[i]);
+			printf("push data %d = %p \n", i, &data[i]);
 		}
 		else{
 			printf("push %d failed \n ", i);
@@ -59,15 +62,19 @@ int main() {
 	}
 
 	for( i = 0; i < get_size_1  ; i++){
-		get_data = ring_get(ring_buffer, i);
+		
+		con_1->location = i;
+		get_data = ring_get(ring_buffer, con_1);
 
 		if(get_data == NULL){
 			printf("get %d failed \n" , i);
 		}
 		else{
-			printf("get data %d = %d\n", i, get_data);
+			printf("get data %d = %p\n", i, get_data);
 		}
 	}
+
+/*
 
 	for( i = 0; i < push_size_2  ; i++){
 
@@ -76,21 +83,23 @@ int main() {
 		int count = ring_push(ring_buffer, &data[i]);
 
 		if ( count != 0 ){
-			printf("push data %d = %d \n", i, &data[i]);
+			printf("push data %d = %p \n", i, &data[i]);
 		}
 		else{
 			printf("push %d failed \n ", i);
 		}
 	}
-
+*/
 	for( i = 0; i < get_size_2  ; i++){
-		get_data = ring_get(ring_buffer, i);
+		
+		con_2->location = i;
+		get_data = ring_get(ring_buffer, con_2);
 
 		if(get_data == NULL){
 			printf("get  %d failed \n" , i);
 		}
 		else{
-			printf("get data %d = %d\n", i, get_data);
+			printf("get data %d = %p\n", i, get_data);
 		}
 	}
 

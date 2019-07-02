@@ -42,7 +42,12 @@ struct ring* init_ring(int size)
 	return rb;
 };
 
-
+struct consumer *init_consumer(int location)
+{
+	struct consumer *con = (struct consumer*)malloc(sizeof(struct consumer ));
+	con->location = location;
+	return con;
+}
 
 /* Add an entry to the ring.
  * Return producer pointer location
@@ -61,20 +66,26 @@ int ring_push(struct ring *rb, void* data)
 
 
 /* Gets an entry from the ring, from an entry location
-Return a pointer to the data, or NULL if empty
+ * Return a pointer to the data, or NULL if empty
 */
-void* ring_get(struct ring *rb, int location)
+void* ring_get(struct ring *rb, struct consumer *con)
 {
+	while((rb->count - con->location) > rb->size){
+		// printf("buffer size %d, too small\n", rb->size);
+		con->location = con->location + rb->size;
+	}
+	
 	if ( rb->count <= 0 ){
 		return NULL;
 	}
 	
-	if( location >= rb->count){
+	if( con->location >= rb->count){
+		printf("overread\n");
 		return NULL;
 	}
-		
+	
 	void* temp;
-	int get_location = location % rb->size;
+	int get_location = con->location % rb->size;
 	temp = rb->items[get_location];
 
 	return  temp;
