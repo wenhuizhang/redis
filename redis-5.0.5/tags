@@ -914,7 +914,7 @@ DICT_NOTUSED	./deps/hiredis/dict.h	43;"	d
 DICT_NOTUSED	./src/dict.h	45;"	d
 DICT_OK	./deps/hiredis/dict.h	39;"	d
 DICT_OK	./src/dict.h	41;"	d
-DICT_STATS_VECTLEN	./src/dict.c	1034;"	d	file:
+DICT_STATS_VECTLEN	./src/dict.c	1073;"	d	file:
 DIRTY_DECAY_MS_DEFAULT	./deps/jemalloc/include/jemalloc/internal/arena_types.h	11;"	d
 DISK_ERROR_TYPE_AOF	./src/server.h	1616;"	d
 DISK_ERROR_TYPE_NONE	./src/server.h	1618;"	d
@@ -2312,7 +2312,7 @@ MAXSZ	./deps/jemalloc/test/integration/smallocx.c	186;"	d	file:
 MAXSZ	./deps/jemalloc/test/integration/smallocx.c	227;"	d	file:
 MAXTAGLOOP	./deps/lua/src/lvm.c	32;"	d	file:
 MAX_ABS_ERR	./deps/jemalloc/test/unit/math.c	4;"	d	file:
-MAX_ACCEPTS_PER_CALL	./src/networking.c	663;"	d	file:
+MAX_ACCEPTS_PER_CALL	./src/networking.c	676;"	d	file:
 MAX_ALIGN	./deps/jemalloc/test/integration/rallocx.c	153;"	d	file:
 MAX_ALIGN	./deps/jemalloc/test/integration/rallocx.c	170;"	d	file:
 MAX_ALIGN	./deps/jemalloc/test/unit/hash.c	141;"	d	file:
@@ -2586,7 +2586,7 @@ O	./deps/jemalloc/include/jemalloc/internal/tsd.h	313;"	d
 O	./deps/jemalloc/include/jemalloc/internal/tsd.h	321;"	d
 O2S_BUFSIZE	./deps/jemalloc/src/malloc_io.c	62;"	d	file:
 OBJ	./deps/hiredis/Makefile	/^OBJ=net.o hiredis.o sds.o async.o read.o$/;"	m
-OBJ_COMPUTE_SIZE_DEF_SAMPLES	./src/object.c	779;"	d	file:
+OBJ_COMPUTE_SIZE_DEF_SAMPLES	./src/object.c	780;"	d	file:
 OBJ_ENCODING_EMBSTR	./src/server.h	596;"	d
 OBJ_ENCODING_EMBSTR_SIZE_LIMIT	./src/object.c	118;"	d	file:
 OBJ_ENCODING_HT	./src/server.h	590;"	d
@@ -2886,7 +2886,7 @@ PROGNAME	./deps/lua/src/luac.c	26;"	d	file:
 PROPAGATE_AOF	./src/server.h	423;"	d
 PROPAGATE_NONE	./src/server.h	422;"	d
 PROPAGATE_REPL	./src/server.h	424;"	d
-PROTO_DUMP_LEN	./src/networking.c	1246;"	d	file:
+PROTO_DUMP_LEN	./src/networking.c	1259;"	d	file:
 PROTO_INLINE_MAX_SIZE	./src/server.h	187;"	d
 PROTO_IOBUF_LEN	./src/server.h	185;"	d
 PROTO_MAX_QUERYBUF_LEN	./src/server.h	184;"	d
@@ -3179,8 +3179,8 @@ REDIS_CLI_NAME	./src/Makefile	/^REDIS_CLI_NAME=redis-cli$/;"	m
 REDIS_CLI_OBJ	./src/Makefile	/^REDIS_CLI_OBJ=anet.o adlist.o dict.o redis-cli.o zmalloc.o release.o anet.o ae.o crc64.o siphash.o crc16.o$/;"	m
 REDIS_CLI_RCFILE_DEFAULT	./src/redis-cli.c	69;"	d	file:
 REDIS_CLI_RCFILE_ENV	./src/redis-cli.c	68;"	d	file:
-REDIS_COMPARE_BINARY	./src/object.c	533;"	d	file:
-REDIS_COMPARE_COLL	./src/object.c	534;"	d	file:
+REDIS_COMPARE_BINARY	./src/object.c	534;"	d	file:
+REDIS_COMPARE_COLL	./src/object.c	535;"	d	file:
 REDIS_CONFIG_REWRITE_SIGNATURE	./src/config.c	1581;"	d	file:
 REDIS_CONNECTED	./deps/hiredis/hiredis.h	53;"	d
 REDIS_CONNECT_RETRIES	./deps/hiredis/hiredis.h	81;"	d
@@ -4996,7 +4996,7 @@ announce_port	./src/sentinel.c	/^    int announce_port;  \/* Port that is gossip
 aofChildPipeReadable	./src/aof.c	/^void aofChildPipeReadable(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f
 aofChildWriteDiffData	./src/aof.c	/^void aofChildWriteDiffData(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f
 aofClosePipes	./src/aof.c	/^void aofClosePipes(void) {$/;"	f
-aofCreatePipes	./src/aof.c	/^int aofCreatePipes(void) {$/;"	f
+aofCreatePipes	./src/aof.c	/^bool aofCreatePipes(void) {$/;"	f
 aofFsyncInProgress	./src/aof.c	/^int aofFsyncInProgress(void) {$/;"	f
 aofReadDiffFromParent	./src/aof.c	/^ssize_t aofReadDiffFromParent(void) {$/;"	f
 aofRemoveTempFile	./src/aof.c	/^void aofRemoveTempFile(pid_t childpid) {$/;"	f
@@ -5021,8 +5021,8 @@ aof_fsync_enum	./src/config.c	/^configEnum aof_fsync_enum[] = {$/;"	v
 aof_fsync_offset	./src/server.h	/^    off_t aof_fsync_offset;         \/* AOF offset which is already synced to disk. *\/$/;"	m	struct:redisServer
 aof_last_fsync	./src/server.h	/^    time_t aof_last_fsync;            \/* UNIX time of last fsync() *\/$/;"	m	struct:redisServer
 aof_last_write_errno	./src/server.h	/^    int aof_last_write_errno;       \/* Valid if aof_last_write_status is ERR *\/$/;"	m	struct:redisServer
-aof_last_write_status	./src/server.h	/^    int aof_last_write_status;      \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
-aof_lastbgrewrite_status	./src/server.h	/^    int aof_lastbgrewrite_status;   \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
+aof_last_write_status	./src/server.h	/^    bool aof_last_write_status;      \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
+aof_lastbgrewrite_status	./src/server.h	/^    bool aof_lastbgrewrite_status;   \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
 aof_load_truncated	./src/server.h	/^    int aof_load_truncated;         \/* Don't stop on unexpected AOF EOF. *\/$/;"	m	struct:redisServer
 aof_no_fsync_on_rewrite	./src/server.h	/^    int aof_no_fsync_on_rewrite;    \/* Don't fsync if a rewrite is in prog. *\/$/;"	m	struct:redisServer
 aof_pipe_read_ack_from_child	./src/server.h	/^    int aof_pipe_read_ack_from_child;$/;"	m	struct:redisServer
@@ -6191,7 +6191,7 @@ checkConsistency	./src/intset.c	/^static void checkConsistency(intset *is) {$/;"
 checkForSentinelMode	./src/server.c	/^int checkForSentinelMode(int argc, char **argv) {$/;"	f
 checkSignedBitfieldOverflow	./src/bitops.c	/^int checkSignedBitfieldOverflow(int64_t value, int64_t incr, uint64_t bits, int owtype, int64_t *limit) {$/;"	f
 checkSizes	./deps/lua/src/lgc.c	/^static void checkSizes (lua_State *L) {$/;"	f	file:
-checkStringLength	./src/t_string.c	/^static int checkStringLength(client *c, long long size) {$/;"	f	file:
+checkStringLength	./src/t_string.c	/^static bool checkStringLength(client *c, long long size) {$/;"	f	file:
 checkTcpBacklogSettings	./src/server.c	/^void checkTcpBacklogSettings(void) {$/;"	f
 checkType	./src/object.c	/^int checkType(client *c, robj *o, int type) {$/;"	f
 checkUnsignedBitfieldOverflow	./src/bitops.c	/^int checkUnsignedBitfieldOverflow(uint64_t value, int64_t incr, uint64_t bits, int owtype, uint64_t *limit) {$/;"	f
@@ -6354,8 +6354,8 @@ close_state	./deps/lua/src/lstate.c	/^static void close_state (lua_State *L) {$/
 closelistfield	./deps/lua/src/lparser.c	/^static void closelistfield (FuncState *fs, struct ConsControl *cc) {$/;"	f	file:
 cluster	./src/server.h	/^    struct clusterState *cluster;  \/* State of the cluster *\/$/;"	m	struct:redisServer	typeref:struct:redisServer::clusterState
 clusterAcceptHandler	./src/cluster.c	/^void clusterAcceptHandler(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f
-clusterAddNode	./src/cluster.c	/^int clusterAddNode(clusterNode *node) {$/;"	f
-clusterAddSlot	./src/cluster.c	/^int clusterAddSlot(clusterNode *n, int slot) {$/;"	f
+clusterAddNode	./src/cluster.c	/^bool clusterAddNode(clusterNode *node) {$/;"	f
+clusterAddSlot	./src/cluster.c	/^bool clusterAddSlot(clusterNode *n, int slot) {$/;"	f
 clusterBeforeSleep	./src/cluster.c	/^void clusterBeforeSleep(void) {$/;"	f
 clusterBlacklistAddNode	./src/cluster.c	/^void clusterBlacklistAddNode(clusterNode *node) {$/;"	f
 clusterBlacklistCleanup	./src/cluster.c	/^void clusterBlacklistCleanup(void) {$/;"	f
@@ -6363,14 +6363,14 @@ clusterBlacklistExists	./src/cluster.c	/^int clusterBlacklistExists(char *nodeid
 clusterBroadcastMessage	./src/cluster.c	/^void clusterBroadcastMessage(void *buf, size_t len) {$/;"	f
 clusterBroadcastPong	./src/cluster.c	/^void clusterBroadcastPong(int target) {$/;"	f
 clusterBuildMessageHdr	./src/cluster.c	/^void clusterBuildMessageHdr(clusterMsg *hdr, int type) {$/;"	f
-clusterBumpConfigEpochWithoutConsensus	./src/cluster.c	/^int clusterBumpConfigEpochWithoutConsensus(void) {$/;"	f
+clusterBumpConfigEpochWithoutConsensus	./src/cluster.c	/^bool clusterBumpConfigEpochWithoutConsensus(void) {$/;"	f
 clusterCloseAllSlots	./src/cluster.c	/^void clusterCloseAllSlots(void) {$/;"	f
 clusterCommand	./src/cluster.c	/^void clusterCommand(client *c) {$/;"	f
 clusterCountNonFailingSlaves	./src/cluster.c	/^int clusterCountNonFailingSlaves(clusterNode *n) {$/;"	f
 clusterCron	./src/cluster.c	/^void clusterCron(void) {$/;"	f
 clusterDelNode	./src/cluster.c	/^void clusterDelNode(clusterNode *delnode) {$/;"	f
 clusterDelNodeSlots	./src/cluster.c	/^int clusterDelNodeSlots(clusterNode *node) {$/;"	f
-clusterDelSlot	./src/cluster.c	/^int clusterDelSlot(int slot) {$/;"	f
+clusterDelSlot	./src/cluster.c	/^bool clusterDelSlot(int slot) {$/;"	f
 clusterDoBeforeSleep	./src/cluster.c	/^void clusterDoBeforeSleep(int flags) {$/;"	f
 clusterFailoverReplaceYourMaster	./src/cluster.c	/^void clusterFailoverReplaceYourMaster(void) {$/;"	f
 clusterGenNodeDescription	./src/cluster.c	/^sds clusterGenNodeDescription(clusterNode *node) {$/;"	f
@@ -6386,8 +6386,8 @@ clusterHandshakeInProgress	./src/cluster.c	/^int clusterHandshakeInProgress(char
 clusterInit	./src/cluster.c	/^void clusterInit(void) {$/;"	f
 clusterLink	./src/cluster.h	/^typedef struct clusterLink {$/;"	s
 clusterLink	./src/cluster.h	/^} clusterLink;$/;"	t	typeref:struct:clusterLink
-clusterLoadConfig	./src/cluster.c	/^int clusterLoadConfig(char *filename) {$/;"	f
-clusterLockConfig	./src/cluster.c	/^int clusterLockConfig(char *filename) {$/;"	f
+clusterLoadConfig	./src/cluster.c	/^bool clusterLoadConfig(char *filename) {$/;"	f
+clusterLockConfig	./src/cluster.c	/^bool clusterLockConfig(char *filename) {$/;"	f
 clusterLogCantFailover	./src/cluster.c	/^void clusterLogCantFailover(int reason) {$/;"	f
 clusterLookupNode	./src/cluster.c	/^clusterNode *clusterLookupNode(const char *name) {$/;"	f
 clusterManager	./src/redis-cli.c	/^static struct clusterManager {$/;"	s	file:
@@ -6495,7 +6495,7 @@ clusterMsgModule	./src/cluster.h	/^} clusterMsgModule;$/;"	t	typeref:struct:__an
 clusterNode	./src/cluster.h	/^typedef struct clusterNode {$/;"	s
 clusterNode	./src/cluster.h	/^} clusterNode;$/;"	t	typeref:struct:clusterNode
 clusterNodeAddFailureReport	./src/cluster.c	/^int clusterNodeAddFailureReport(clusterNode *failing, clusterNode *sender) {$/;"	f
-clusterNodeAddSlave	./src/cluster.c	/^int clusterNodeAddSlave(clusterNode *master, clusterNode *slave) {$/;"	f
+clusterNodeAddSlave	./src/cluster.c	/^bool clusterNodeAddSlave(clusterNode *master, clusterNode *slave) {$/;"	f
 clusterNodeCleanupFailureReports	./src/cluster.c	/^void clusterNodeCleanupFailureReports(clusterNode *node) {$/;"	f
 clusterNodeClearSlotBit	./src/cluster.c	/^int clusterNodeClearSlotBit(clusterNode *n, int slot) {$/;"	f
 clusterNodeDelFailureReport	./src/cluster.c	/^int clusterNodeDelFailureReport(clusterNode *node, clusterNode *sender) {$/;"	f
@@ -6505,7 +6505,7 @@ clusterNodeFailureReportsCount	./src/cluster.c	/^int clusterNodeFailureReportsCo
 clusterNodeForResharding	./src/redis-cli.c	/^static clusterManagerNode *clusterNodeForResharding(char *id,$/;"	f	file:
 clusterNodeGetSlotBit	./src/cluster.c	/^int clusterNodeGetSlotBit(clusterNode *n, int slot) {$/;"	f
 clusterNodeIsInGossipSection	./src/cluster.c	/^int clusterNodeIsInGossipSection(clusterMsg *hdr, int count, clusterNode *n) {$/;"	f
-clusterNodeRemoveSlave	./src/cluster.c	/^int clusterNodeRemoveSlave(clusterNode *master, clusterNode *slave) {$/;"	f
+clusterNodeRemoveSlave	./src/cluster.c	/^bool clusterNodeRemoveSlave(clusterNode *master, clusterNode *slave) {$/;"	f
 clusterNodeSetSlotBit	./src/cluster.c	/^int clusterNodeSetSlotBit(clusterNode *n, int slot) {$/;"	f
 clusterNodesBlackListDictType	./src/server.c	/^dictType clusterNodesBlackListDictType = {$/;"	v
 clusterNodesDictType	./src/server.c	/^dictType clusterNodesDictType = {$/;"	v
@@ -6528,7 +6528,7 @@ clusterSendFailoverAuthIfNeeded	./src/cluster.c	/^void clusterSendFailoverAuthIf
 clusterSendMFStart	./src/cluster.c	/^void clusterSendMFStart(clusterNode *node) {$/;"	f
 clusterSendMessage	./src/cluster.c	/^void clusterSendMessage(clusterLink *link, unsigned char *msg, size_t msglen) {$/;"	f
 clusterSendModule	./src/cluster.c	/^void clusterSendModule(clusterLink *link, uint64_t module_id, uint8_t type,$/;"	f
-clusterSendModuleMessageToTarget	./src/cluster.c	/^int clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len) {$/;"	f
+clusterSendModuleMessageToTarget	./src/cluster.c	/^bool clusterSendModuleMessageToTarget(const char *target, uint64_t module_id, uint8_t type, unsigned char *payload, uint32_t len) {$/;"	f
 clusterSendPing	./src/cluster.c	/^void clusterSendPing(clusterLink *link, int type) {$/;"	f
 clusterSendPublish	./src/cluster.c	/^void clusterSendPublish(clusterLink *link, robj *channel, robj *message) {$/;"	f
 clusterSendUpdate	./src/cluster.c	/^void clusterSendUpdate(clusterLink *link, clusterNode *node) {$/;"	f
@@ -6697,7 +6697,7 @@ connectCallback	./deps/hiredis/examples/example-libev.c	/^void connectCallback(c
 connectCallback	./deps/hiredis/examples/example-libevent.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
 connectCallback	./deps/hiredis/examples/example-libuv.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
 connectCallback	./deps/hiredis/examples/example-macosx.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
-connectWithMaster	./src/replication.c	/^int connectWithMaster(void) {$/;"	f
+connectWithMaster	./src/replication.c	/^bool connectWithMaster(void) {$/;"	f
 connect_cb	./deps/hiredis/examples/example-glib.c	/^connect_cb (const redisAsyncContext *ac G_GNUC_UNUSED,$/;"	f	file:
 connection_type	./deps/hiredis/hiredis.h	/^    enum redisConnectionType connection_type;$/;"	m	struct:redisContext	typeref:enum:redisContext::redisConnectionType
 connection_type	./deps/hiredis/test.c	/^enum connection_type {$/;"	g	file:
@@ -6955,7 +6955,7 @@ dbDictType	./src/server.c	/^dictType dbDictType = {$/;"	v
 dbExists	./src/db.c	/^int dbExists(redisDb *db, robj *key) {$/;"	f
 dbOverwrite	./src/db.c	/^void dbOverwrite(redisDb *db, robj *key, robj *val) {$/;"	f
 dbRandomKey	./src/db.c	/^robj *dbRandomKey(redisDb *db) {$/;"	f
-dbSwapDatabases	./src/db.c	/^int dbSwapDatabases(int id1, int id2) {$/;"	f
+dbSwapDatabases	./src/db.c	/^bool dbSwapDatabases(int id1, int id2) {$/;"	f
 dbSyncDelete	./src/db.c	/^int dbSyncDelete(redisDb *db, robj *key) {$/;"	f
 dbUnshareStringValue	./src/db.c	/^robj *dbUnshareStringValue(redisDb *db, robj *key, robj *o) {$/;"	f
 db_debug	./deps/lua/src/ldblib.c	/^static int db_debug (lua_State *L) {$/;"	f	file:
@@ -7435,7 +7435,7 @@ encoding	./src/server.h	/^    unsigned encoding:4;$/;"	m	struct:redisObject
 encoding	./src/t_zset.c	/^    int encoding;$/;"	m	struct:__anon3	file:
 encoding	./src/ziplist.c	/^    unsigned char encoding;      \/* Set to ZIP_STR_* or ZIP_INT_* depending on$/;"	m	struct:zlentry	file:
 end	./src/setproctitle.c	/^	char *base, *end;$/;"	m	struct:__anon1	file:
-end_benchmark	./src/dict.c	1147;"	d	file:
+end_benchmark	./src/dict.c	1186;"	d	file:
 end_capture	./deps/lua/src/lstrlib.c	/^static const char *end_capture (MatchState *ms, const char *s,$/;"	f	file:
 end_ci	./deps/lua/src/lstate.h	/^  CallInfo *end_ci;  \/* points after end of ci array*\/$/;"	m	struct:lua_State
 end_key	./src/stream.h	/^    uint64_t end_key[2];    \/* End key as 128 bit big endian. *\/$/;"	m	struct:streamIterator
@@ -7903,7 +7903,7 @@ extents_t	./deps/jemalloc/include/jemalloc/internal/extent_types.h	/^typedef str
 extra	./deps/jemalloc/include/jemalloc/internal/hook.h	/^	void *extra;$/;"	m	struct:hooks_s
 extra	./src/quicklist.h	/^    unsigned int extra : 10; \/* more bits to steal for future usage *\/$/;"	m	struct:quicklistNode
 extractDistanceOrReply	./src/geo.c	/^double extractDistanceOrReply(client *c, robj **argv,$/;"	f
-extractLongLatOrReply	./src/geo.c	/^int extractLongLatOrReply(client *c, robj **argv, double *xy) {$/;"	f
+extractLongLatOrReply	./src/geo.c	/^bool extractLongLatOrReply(client *c, robj **argv, double *xy) {$/;"	f
 extractUnitOrReply	./src/geo.c	/^double extractUnitOrReply(client *c, robj *unit) {$/;"	f
 extraline	./deps/lua/src/lauxlib.c	/^  int extraline;$/;"	m	struct:LoadF	file:
 f	./deps/jemalloc/configure	/^    f()$/;"	f
@@ -8115,8 +8115,8 @@ freeHintsCallback	./src/redis-cli.c	/^static void freeHintsCallback(void *ptr) {
 freeHistory	./deps/linenoise/linenoise.c	/^static void freeHistory(void) {$/;"	f	file:
 freeListObject	./src/object.c	/^void freeListObject(robj *o) {$/;"	f
 freeMemoryGetNotCountedMemory	./src/evict.c	/^size_t freeMemoryGetNotCountedMemory(void) {$/;"	f
-freeMemoryIfNeeded	./src/evict.c	/^int freeMemoryIfNeeded(void) {$/;"	f
-freeMemoryIfNeededAndSafe	./src/evict.c	/^int freeMemoryIfNeededAndSafe(void) {$/;"	f
+freeMemoryIfNeeded	./src/evict.c	/^bool freeMemoryIfNeeded(void) {$/;"	f
+freeMemoryIfNeededAndSafe	./src/evict.c	/^bool freeMemoryIfNeededAndSafe(void) {$/;"	f
 freeMemoryOverheadData	./src/object.c	/^void freeMemoryOverheadData(struct redisMemOverhead *mh) {$/;"	f
 freeModuleObject	./src/object.c	/^void freeModuleObject(robj *o) {$/;"	f
 freeObjAsync	./src/lazyfree.c	/^void freeObjAsync(robj *o) {$/;"	f
@@ -8225,7 +8225,7 @@ genrand_real3	./deps/jemalloc/test/include/test/SFMT.h	/^static inline double ge
 genrand_res53	./deps/jemalloc/test/include/test/SFMT.h	/^static inline double genrand_res53(sfmt_t *ctx) {$/;"	f
 genrand_res53_mix	./deps/jemalloc/test/include/test/SFMT.h	/^static inline double genrand_res53_mix(sfmt_t *ctx) {$/;"	f
 genstr	./src/quicklist.c	/^static char *genstr(char *prefix, int i) {$/;"	f	file:
-geoAppendIfWithinRadius	./src/geo.c	/^int geoAppendIfWithinRadius(geoArray *ga, double lon, double lat, double radius, double score, sds member) {$/;"	f
+geoAppendIfWithinRadius	./src/geo.c	/^bool geoAppendIfWithinRadius(geoArray *ga, double lon, double lat, double radius, double score, sds member) {$/;"	f
 geoArray	./src/geo.h	/^typedef struct geoArray {$/;"	s
 geoArray	./src/geo.h	/^} geoArray;$/;"	t	typeref:struct:geoArray
 geoArrayAppend	./src/geo.c	/^geoPoint *geoArrayAppend(geoArray *ga) {$/;"	f
@@ -8274,8 +8274,8 @@ getAbsolutePath	./src/util.c	/^sds getAbsolutePath(char *filename) {$/;"	f
 getAllClientsInfoString	./src/networking.c	/^sds getAllClientsInfoString(int type) {$/;"	f
 getAllocatorFragmentation	./src/defrag.c	/^float getAllocatorFragmentation(size_t *out_frag_bytes) {$/;"	f
 getBMode	./deps/lua/src/lopcodes.h	255;"	d
-getBitOffsetFromArgument	./src/bitops.c	/^int getBitOffsetFromArgument(client *c, robj *o, size_t *offset, int hash, int bits) {$/;"	f
-getBitfieldTypeFromArgument	./src/bitops.c	/^int getBitfieldTypeFromArgument(client *c, robj *o, int *sign, int *bits) {$/;"	f
+getBitOffsetFromArgument	./src/bitops.c	/^bool getBitOffsetFromArgument(client *c, robj *o, size_t *offset, int hash, int bits) {$/;"	f
+getBitfieldTypeFromArgument	./src/bitops.c	/^bool getBitfieldTypeFromArgument(client *c, robj *o, int *sign, int *bits) {$/;"	f
 getCMode	./deps/lua/src/lopcodes.h	256;"	d
 getCallback	./deps/hiredis/examples/example-ae.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
 getCallback	./deps/hiredis/examples/example-ivykis.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
@@ -8297,13 +8297,13 @@ getCursorPosition	./deps/linenoise/linenoise.c	/^static int getCursorPosition(in
 getDbSize	./src/redis-cli.c	/^static int getDbSize(void) {$/;"	f	file:
 getDecodedObject	./src/object.c	/^robj *getDecodedObject(robj *o) {$/;"	f
 getDotfilePath	./src/redis-cli.c	/^static sds getDotfilePath(char *envoverride, char *dotfilename) {$/;"	f	file:
-getDoubleFromObject	./src/object.c	/^int getDoubleFromObject(const robj *o, double *target) {$/;"	f
-getDoubleFromObjectOrReply	./src/object.c	/^int getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg) {$/;"	f
+getDoubleFromObject	./src/object.c	/^bool getDoubleFromObject(const robj *o, double *target) {$/;"	f
+getDoubleFromObjectOrReply	./src/object.c	/^bool getDoubleFromObjectOrReply(client *c, robj *o, double *target, const char *msg) {$/;"	f
 getExpansiveClientsInfo	./src/server.c	/^void getExpansiveClientsInfo(size_t *in_usage, size_t *out_usage) {$/;"	f
 getExpire	./src/db.c	/^long long getExpire(redisDb *db, robj *key) {$/;"	f
 getF	./deps/lua/src/lauxlib.c	/^static const char *getF (lua_State *L, void *ud, size_t *size) {$/;"	f	file:
-getFlushCommandFlags	./src/db.c	/^int getFlushCommandFlags(client *c, int *flags) {$/;"	f
-getGenericCommand	./src/t_string.c	/^int getGenericCommand(client *c) {$/;"	f
+getFlushCommandFlags	./src/db.c	/^bool getFlushCommandFlags(client *c, int *flags) {$/;"	f
+getGenericCommand	./src/t_string.c	/^bool getGenericCommand(client *c) {$/;"	f
 getInfoField	./src/redis-cli.c	/^static char *getInfoField(char *info, char *field) {$/;"	f	file:
 getInstantaneousMetric	./src/server.c	/^long long getInstantaneousMetric(int metric) {$/;"	f
 getKeyFreqs	./src/redis-cli.c	/^static void getKeyFreqs(redisReply *keys, unsigned long long *freqs) {$/;"	f	file:
@@ -8314,13 +8314,13 @@ getKeysFromCommand	./src/db.c	/^int *getKeysFromCommand(struct redisCommand *cmd
 getKeysInSlot	./src/db.c	/^unsigned int getKeysInSlot(unsigned int hashslot, robj **keys, unsigned int count) {$/;"	f
 getKeysUsingCommandTable	./src/db.c	/^int *getKeysUsingCommandTable(struct redisCommand *cmd,robj **argv, int argc, int *numkeys) {$/;"	f
 getLRUClock	./src/evict.c	/^unsigned int getLRUClock(void) {$/;"	f
-getLongDoubleFromObject	./src/object.c	/^int getLongDoubleFromObject(robj *o, long double *target) {$/;"	f
-getLongDoubleFromObjectOrReply	./src/object.c	/^int getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg) {$/;"	f
-getLongFromObjectOrReply	./src/object.c	/^int getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg) {$/;"	f
+getLongDoubleFromObject	./src/object.c	/^bool getLongDoubleFromObject(robj *o, long double *target) {$/;"	f
+getLongDoubleFromObjectOrReply	./src/object.c	/^bool getLongDoubleFromObjectOrReply(client *c, robj *o, long double *target, const char *msg) {$/;"	f
+getLongFromObjectOrReply	./src/object.c	/^bool getLongFromObjectOrReply(client *c, robj *o, long *target, const char *msg) {$/;"	f
 getLongInfoField	./src/redis-cli.c	/^static long getLongInfoField(char *info, char *field) {$/;"	f	file:
-getLongLongFromObject	./src/object.c	/^int getLongLongFromObject(robj *o, long long *target) {$/;"	f
-getLongLongFromObjectOrReply	./src/object.c	/^int getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg) {$/;"	f
-getMaxmemoryState	./src/evict.c	/^int getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level) {$/;"	f
+getLongLongFromObject	./src/object.c	/^bool getLongLongFromObject(robj *o, long long *target) {$/;"	f
+getLongLongFromObjectOrReply	./src/object.c	/^bool getLongLongFromObjectOrReply(client *c, robj *o, long long *target, const char *msg) {$/;"	f
+getMaxmemoryState	./src/evict.c	/^bool getMaxmemoryState(size_t *total, size_t *logical, size_t *tofree, float *level) {$/;"	f
 getMcontextEip	./src/debug.c	/^static void *getMcontextEip(ucontext_t *uc) {$/;"	f	file:
 getMemoryDoctorReport	./src/object.c	/^sds getMemoryDoctorReport(void) {$/;"	f
 getMemoryOverheadData	./src/object.c	/^struct redisMemOverhead *getMemoryOverheadData(void) {$/;"	f
@@ -8338,7 +8338,7 @@ getSlaveKeyWithExpireCount	./src/expire.c	/^size_t getSlaveKeyWithExpireCount(vo
 getSlotOrReply	./src/cluster.c	/^int getSlotOrReply(client *c, robj *o) {$/;"	f
 getStringObjectSdsUsedMemory	./src/networking.c	/^size_t getStringObjectSdsUsedMemory(robj *o) {$/;"	f
 getTimeZone	./src/util.c	/^unsigned long getTimeZone(void) {$/;"	f
-getTimeoutFromObjectOrReply	./src/blocked.c	/^int getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit) {$/;"	f
+getTimeoutFromObjectOrReply	./src/blocked.c	/^bool getTimeoutFromObjectOrReply(client *c, robj *object, mstime_t *timeout, int unit) {$/;"	f
 getUnsignedBitfield	./src/bitops.c	/^uint64_t getUnsignedBitfield(unsigned char *p, uint64_t offset, uint64_t bits) {$/;"	f
 get_ack_from_slaves	./src/server.h	/^    int get_ack_from_slaves;            \/* If true we send REPLCONF GETACK. *\/$/;"	m	struct:redisServer
 get_arena_dirty_npurge	./deps/jemalloc/test/unit/decay.c	/^get_arena_dirty_npurge(unsigned arena_ind) {$/;"	f	file:
@@ -8479,18 +8479,18 @@ hashTypeCurrentFromHashTable	./src/t_hash.c	/^sds hashTypeCurrentFromHashTable(h
 hashTypeCurrentFromZiplist	./src/t_hash.c	/^void hashTypeCurrentFromZiplist(hashTypeIterator *hi, int what,$/;"	f
 hashTypeCurrentObject	./src/t_hash.c	/^void hashTypeCurrentObject(hashTypeIterator *hi, int what, unsigned char **vstr, unsigned int *vlen, long long *vll) {$/;"	f
 hashTypeCurrentObjectNewSds	./src/t_hash.c	/^sds hashTypeCurrentObjectNewSds(hashTypeIterator *hi, int what) {$/;"	f
-hashTypeDelete	./src/t_hash.c	/^int hashTypeDelete(robj *o, sds field) {$/;"	f
+hashTypeDelete	./src/t_hash.c	/^bool hashTypeDelete(robj *o, sds field) {$/;"	f
 hashTypeExists	./src/t_hash.c	/^int hashTypeExists(robj *o, sds field) {$/;"	f
 hashTypeGetFromHashTable	./src/t_hash.c	/^sds hashTypeGetFromHashTable(robj *o, sds field) {$/;"	f
 hashTypeGetFromZiplist	./src/t_hash.c	/^int hashTypeGetFromZiplist(robj *o, sds field,$/;"	f
-hashTypeGetValue	./src/t_hash.c	/^int hashTypeGetValue(robj *o, sds field, unsigned char **vstr, unsigned int *vlen, long long *vll) {$/;"	f
+hashTypeGetValue	./src/t_hash.c	/^bool hashTypeGetValue(robj *o, sds field, unsigned char **vstr, unsigned int *vlen, long long *vll) {$/;"	f
 hashTypeGetValueLength	./src/t_hash.c	/^size_t hashTypeGetValueLength(robj *o, sds field) {$/;"	f
 hashTypeGetValueObject	./src/t_hash.c	/^robj *hashTypeGetValueObject(robj *o, sds field) {$/;"	f
 hashTypeInitIterator	./src/t_hash.c	/^hashTypeIterator *hashTypeInitIterator(robj *subject) {$/;"	f
 hashTypeIterator	./src/server.h	/^} hashTypeIterator;$/;"	t	typeref:struct:__anon37
 hashTypeLength	./src/t_hash.c	/^unsigned long hashTypeLength(const robj *o) {$/;"	f
 hashTypeLookupWriteOrCreate	./src/t_hash.c	/^robj *hashTypeLookupWriteOrCreate(client *c, robj *key) {$/;"	f
-hashTypeNext	./src/t_hash.c	/^int hashTypeNext(hashTypeIterator *hi) {$/;"	f
+hashTypeNext	./src/t_hash.c	/^bool hashTypeNext(hashTypeIterator *hi) {$/;"	f
 hashTypeReleaseIterator	./src/t_hash.c	/^void hashTypeReleaseIterator(hashTypeIterator *hi) {$/;"	f
 hashTypeSet	./src/t_hash.c	/^int hashTypeSet(robj *o, sds field, sds value, int flags) {$/;"	f
 hashTypeTryConversion	./src/t_hash.c	/^void hashTypeTryConversion(robj *o, robj **argv, int start, int end) {$/;"	f
@@ -8542,6 +8542,8 @@ height	./src/lolwut5.c	/^    int height;$/;"	m	struct:lwCanvas	file:
 helpEntries	./src/redis-cli.c	/^static helpEntry *helpEntries;$/;"	v	file:
 helpEntriesLen	./src/redis-cli.c	/^static int helpEntriesLen;$/;"	v	file:
 helpEntry	./src/redis-cli.c	/^} helpEntry;$/;"	t	typeref:struct:__anon28	file:
+hexDump	./src/dict.c	/^static void hexDump(const void* data, size_t size) {$/;"	f	file:
+hexDump	./src/pubsub.c	/^static void hexDump(const void* data, size_t size) {$/;"	f	file:
 hex_digit_to_int	./deps/hiredis/sds.c	/^int hex_digit_to_int(char c) {$/;"	f
 hex_digit_to_int	./src/sds.c	/^int hex_digit_to_int(char c) {$/;"	f
 hexdigit2int	./deps/lua/src/lua_cjson.c	/^static int hexdigit2int(char hex)$/;"	f	file:
@@ -8567,14 +8569,14 @@ hllCount	./src/hyperloglog.c	/^uint64_t hllCount(struct hllhdr *hdr, int *invali
 hllDenseAdd	./src/hyperloglog.c	/^int hllDenseAdd(uint8_t *registers, unsigned char *ele, size_t elesize) {$/;"	f
 hllDenseRegHisto	./src/hyperloglog.c	/^void hllDenseRegHisto(uint8_t *registers, int* reghisto) {$/;"	f
 hllDenseSet	./src/hyperloglog.c	/^int hllDenseSet(uint8_t *registers, long index, uint8_t count) {$/;"	f
-hllMerge	./src/hyperloglog.c	/^int hllMerge(uint8_t *max, robj *hll) {$/;"	f
+hllMerge	./src/hyperloglog.c	/^bool hllMerge(uint8_t *max, robj *hll) {$/;"	f
 hllPatLen	./src/hyperloglog.c	/^int hllPatLen(unsigned char *ele, size_t elesize, long *regp) {$/;"	f
 hllRawRegHisto	./src/hyperloglog.c	/^void hllRawRegHisto(uint8_t *registers, int* reghisto) {$/;"	f
 hllSigma	./src/hyperloglog.c	/^double hllSigma(double x) {$/;"	f
 hllSparseAdd	./src/hyperloglog.c	/^int hllSparseAdd(robj *o, unsigned char *ele, size_t elesize) {$/;"	f
 hllSparseRegHisto	./src/hyperloglog.c	/^void hllSparseRegHisto(uint8_t *sparse, int sparselen, int *invalid, int* reghisto) {$/;"	f
 hllSparseSet	./src/hyperloglog.c	/^int hllSparseSet(robj *o, long index, uint8_t count) {$/;"	f
-hllSparseToDense	./src/hyperloglog.c	/^int hllSparseToDense(robj *o) {$/;"	f
+hllSparseToDense	./src/hyperloglog.c	/^bool hllSparseToDense(robj *o) {$/;"	f
 hllTau	./src/hyperloglog.c	/^double hllTau(double x) {$/;"	f
 hll_sparse_max_bytes	./src/server.h	/^    size_t hll_sparse_max_bytes;$/;"	m	struct:redisServer
 hllhdr	./src/hyperloglog.c	/^struct hllhdr {$/;"	s	file:
@@ -8902,12 +8904,12 @@ irealloc_prof_sample	./deps/jemalloc/src/jemalloc.c	/^irealloc_prof_sample(tsd_t
 is	./src/t_zset.c	/^                intset *is;$/;"	m	struct:__anon3::__anon4::_iterset::__anon5	file:
 is	./src/t_zset.c	/^            } is;$/;"	m	union:__anon3::__anon4::_iterset	typeref:struct:__anon3::__anon4::_iterset::__anon5	file:
 isColorTerm	./src/redis-cli.c	/^int isColorTerm(void) {$/;"	f
-isHLLObjectOrReply	./src/hyperloglog.c	/^int isHLLObjectOrReply(client *c, robj *o) {$/;"	f
+isHLLObjectOrReply	./src/hyperloglog.c	/^bool isHLLObjectOrReply(client *c, robj *o) {$/;"	f
 isHexChar	./src/redis-cli.c	322;"	d	file:
 isLfunction	./deps/lua/src/lobject.h	316;"	d
 isLua	./deps/lua/src/lstate.h	62;"	d
-isObjectRepresentableAsLongLong	./src/object.c	/^int isObjectRepresentableAsLongLong(robj *o, long long *llval) {$/;"	f
-isSdsRepresentableAsLongLong	./src/object.c	/^int isSdsRepresentableAsLongLong(sds s, long long *llval) {$/;"	f
+isObjectRepresentableAsLongLong	./src/object.c	/^bool isObjectRepresentableAsLongLong(robj *o, long long *llval) {$/;"	f
+isSdsRepresentableAsLongLong	./src/object.c	/^bool isSdsRepresentableAsLongLong(sds s, long long *llval) {$/;"	f
 isUnsupportedTerm	./deps/linenoise/linenoise.c	/^static int isUnsupportedTerm(void) {$/;"	f	file:
 is_a_slow_computer	./tests/test_helper.tcl	/^proc is_a_slow_computer {} {$/;"	p
 is_alive	./tests/support/server.tcl	/^proc is_alive config {$/;"	p
@@ -9102,12 +9104,12 @@ je_sdallocx	./deps/jemalloc/include/jemalloc/jemalloc.h	78;"	d
 je_sdallocx	./deps/jemalloc/include/jemalloc/jemalloc_mangle.h	64;"	d
 je_sdallocx	./deps/jemalloc/include/jemalloc/jemalloc_rename.h	26;"	d
 je_sdallocx	./deps/jemalloc/src/jemalloc.c	/^je_sdallocx(void *ptr, size_t size, int flags) {$/;"	f
-je_smallocx_0	./deps/jemalloc/include/jemalloc/internal/public_namespace.h	14;"	d
-je_smallocx_0	./deps/jemalloc/include/jemalloc/internal/public_unnamespace.h	14;"	d
-je_smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc.h	410;"	d
-je_smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc.h	72;"	d
-je_smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc_mangle.h	58;"	d
-je_smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc_rename.h	20;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/internal/public_namespace.h	14;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/internal/public_unnamespace.h	14;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc.h	410;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc.h	72;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc_mangle.h	58;"	d
+je_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc_rename.h	20;"	d
 je_valloc	./deps/jemalloc/include/jemalloc/internal/public_namespace.h	23;"	d
 je_valloc	./deps/jemalloc/include/jemalloc/internal/public_unnamespace.h	23;"	d
 je_valloc	./deps/jemalloc/include/jemalloc/jemalloc.h	419;"	d
@@ -9155,7 +9157,7 @@ jet_rallocx	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	61;"	d
 jet_realloc	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	62;"	d
 jet_sallocx	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	63;"	d
 jet_sdallocx	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	64;"	d
-jet_smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	58;"	d
+jet_smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	58;"	d
 jet_valloc	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	67;"	d
 jet_xallocx	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	65;"	d
 jitter_state	./deps/jemalloc/include/jemalloc/internal/arena_structs_b.h	/^	uint64_t		jitter_state;$/;"	m	struct:arena_decay_s
@@ -9359,7 +9361,7 @@ last_sample_count	./src/server.h	/^        long long last_sample_count;\/* Count
 last_sample_time	./src/server.h	/^        long long last_sample_time; \/* Timestamp of last sample in ms *\/$/;"	m	struct:redisServer::__anon31
 last_thd	./deps/jemalloc/include/jemalloc/internal/arena_structs_b.h	/^	tsdn_t		*last_thd;$/;"	m	struct:arena_s
 last_use_time	./src/cluster.c	/^    time_t last_use_time;$/;"	m	struct:migrateCachedSocket	file:
-lastbgsave_status	./src/server.h	/^    int lastbgsave_status;          \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
+lastbgsave_status	./src/server.h	/^    bool lastbgsave_status;          \/* C_OK or C_ERR *\/$/;"	m	struct:redisServer
 lastbgsave_try	./src/server.h	/^    time_t lastbgsave_try;          \/* Unix time of last attempted bgsave *\/$/;"	m	struct:redisServer
 lastcmd	./src/server.h	/^    struct redisCommand *cmd, *lastcmd;  \/* Last command executed. *\/$/;"	m	struct:client	typeref:struct:client::
 lastfree	./deps/lua/src/lobject.h	/^  Node *lastfree;  \/* any free position is before this position *\/$/;"	m	struct:Table
@@ -9449,7 +9451,7 @@ ldbRedisProtocolToHuman_Int	./src/scripting.c	/^char *ldbRedisProtocolToHuman_In
 ldbRedisProtocolToHuman_MultiBulk	./src/scripting.c	/^char *ldbRedisProtocolToHuman_MultiBulk(sds *o, char *reply) {$/;"	f
 ldbRedisProtocolToHuman_Status	./src/scripting.c	/^char *ldbRedisProtocolToHuman_Status(sds *o, char *reply) {$/;"	f
 ldbRemoveChild	./src/scripting.c	/^int ldbRemoveChild(pid_t pid) {$/;"	f
-ldbRepl	./src/scripting.c	/^int ldbRepl(lua_State *lua) {$/;"	f
+ldbRepl	./src/scripting.c	/^bool ldbRepl(lua_State *lua) {$/;"	f
 ldbReplParseCommand	./src/scripting.c	/^sds *ldbReplParseCommand(int *argcp) {$/;"	f
 ldbSendLogs	./src/scripting.c	/^void ldbSendLogs(void) {$/;"	f
 ldbStartSession	./src/scripting.c	/^int ldbStartSession(client *c) {$/;"	f
@@ -9655,7 +9657,7 @@ list_head_t	./deps/jemalloc/test/unit/ql.c	/^typedef ql_head(list_t) list_head_t
 list_max_ziplist_size	./src/server.h	/^    int list_max_ziplist_size;$/;"	m	struct:redisServer
 list_s	./deps/jemalloc/test/unit/ql.c	/^struct list_s {$/;"	s	file:
 list_t	./deps/jemalloc/test/unit/ql.c	/^typedef struct list_s list_t;$/;"	t	typeref:struct:list_s	file:
-listenToPort	./src/server.c	/^int listenToPort(int port, int *fds, int *count) {$/;"	f
+listenToPort	./src/server.c	/^bool listenToPort(int port, int *fds, int *count) {$/;"	f
 listfield	./deps/lua/src/lparser.c	/^static void listfield (LexState *ls, struct ConsControl *cc) {$/;"	f	file:
 listing	./deps/lua/src/luac.c	/^static int listing=0;			\/* list bytecodes? *\/$/;"	v	file:
 liveclients	./src/redis-benchmark.c	/^    int liveclients;$/;"	m	struct:config	file:
@@ -9684,7 +9686,7 @@ lmod	./deps/lua/src/lobject.h	355;"	d
 ln_gamma	./deps/jemalloc/test/include/test/math.h	/^ln_gamma(double x) {$/;"	f
 ln_gamma_misc_expected	./deps/jemalloc/test/unit/math.c	/^static const double ln_gamma_misc_expected[] = {$/;"	v	file:
 lndebug	./deps/linenoise/linenoise.c	195;"	d	file:
-loadAppendOnlyFile	./src/aof.c	/^int loadAppendOnlyFile(char *filename) {$/;"	f
+loadAppendOnlyFile	./src/aof.c	/^bool loadAppendOnlyFile(char *filename) {$/;"	f
 loadDataFromDisk	./src/server.c	/^void loadDataFromDisk(void) {$/;"	f
 loadServerConfig	./src/config.c	/^void loadServerConfig(char *filename, char *options) {$/;"	f
 loadServerConfigFromString	./src/config.c	/^void loadServerConfigFromString(char *config) {$/;"	f
@@ -9779,7 +9781,7 @@ logs	./src/scripting.c	/^    list *logs; \/* List of messages to send to the cli
 lolwut5Command	./src/lolwut5.c	/^void lolwut5Command(client *c) {$/;"	f
 lolwutCommand	./src/lolwut.c	/^void lolwutCommand(client *c) {$/;"	f
 lolwutUnstableCommand	./src/lolwut.c	/^void lolwutUnstableCommand(client *c) {$/;"	f
-longLatFromMember	./src/geo.c	/^int longLatFromMember(robj *zobj, robj *member, double *xy) {$/;"	f
+longLatFromMember	./src/geo.c	/^bool longLatFromMember(robj *zobj, robj *member, double *xy) {$/;"	f
 longitude	./src/geo.h	/^    double longitude;$/;"	m	struct:geoPoint
 longitude	./src/geohash.h	/^    GeoHashRange longitude;$/;"	m	struct:__anon44
 longval	./src/quicklist.h	/^    long long longval;$/;"	m	struct:quicklistEntry
@@ -10888,7 +10890,7 @@ mask	./src/ae.h	/^    int mask;$/;"	m	struct:aeFiredEvent
 maskmarks	./deps/lua/src/lgc.c	32;"	d	file:
 master	./src/sentinel.c	/^    struct sentinelRedisInstance *master; \/* Master instance if it's slave. *\/$/;"	m	struct:sentinelRedisInstance	typeref:struct:sentinelRedisInstance::sentinelRedisInstance	file:
 master	./src/server.h	/^    client *master;     \/* Client that is master for this slave *\/$/;"	m	struct:redisServer
-masterTryPartialResynchronization	./src/replication.c	/^int masterTryPartialResynchronization(client *c) {$/;"	f
+masterTryPartialResynchronization	./src/replication.c	/^bool masterTryPartialResynchronization(client *c) {$/;"	f
 master_detected	./tests/cluster/tests/05-slave-selection.tcl	/^proc master_detected {instances} {$/;"	p
 master_fields_count	./src/stream.h	/^    uint64_t master_fields_count;       \/* Master entries # of fields. *\/$/;"	m	struct:streamIterator
 master_fields_ptr	./src/stream.h	/^    unsigned char *master_fields_ptr;   \/* Master field to emit next. *\/$/;"	m	struct:streamIterator
@@ -11119,7 +11121,7 @@ moduleInitDigestContext	./src/server.h	580;"	d
 moduleInitIOContext	./src/server.h	559;"	d
 moduleInitModulesSystem	./src/module.c	/^void moduleInitModulesSystem(void) {$/;"	f
 moduleKeyspaceSubscribers	./src/module.c	/^static list *moduleKeyspaceSubscribers;$/;"	v	file:
-moduleLoad	./src/module.c	/^int moduleLoad(const char *path, void **module_argv, int module_argc) {$/;"	f
+moduleLoad	./src/module.c	/^bool moduleLoad(const char *path, void **module_argv, int module_argc) {$/;"	f
 moduleLoadFromQueue	./src/module.c	/^void moduleLoadFromQueue(void) {$/;"	f
 moduleLoadQueueEntry	./src/server.h	/^struct moduleLoadQueueEntry {$/;"	s
 moduleLoadString	./src/module.c	/^void *moduleLoadString(RedisModuleIO *io, int plain, size_t *lenptr) {$/;"	f
@@ -11887,7 +11889,7 @@ parseEnv	./src/redis-cli.c	/^static void parseEnv() {$/;"	f	file:
 parseOptions	./src/redis-benchmark.c	/^int parseOptions(int argc, const char **argv) {$/;"	f
 parseOptions	./src/redis-cli.c	/^static int parseOptions(int argc, char **argv) {$/;"	f	file:
 parseRedisUri	./src/redis-cli.c	/^static void parseRedisUri(const char *uri) {$/;"	f	file:
-parseScanCursorOrReply	./src/db.c	/^int parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor) {$/;"	f
+parseScanCursorOrReply	./src/db.c	/^bool parseScanCursorOrReply(client *c, robj *o, unsigned long *cursor) {$/;"	f
 parse_options	./src/redis-trib.rb	/^def parse_options(cmd)$/;"	f
 parse_options	./tests/instances.tcl	/^proc parse_options {} {$/;"	p
 parser	./deps/jemalloc/test/unit/stats_print.c	/^	parser_t	*parser;$/;"	m	struct:__anon84	file:
@@ -12294,7 +12296,7 @@ proc	./src/server.h	/^    redisCommandProc *proc;$/;"	m	struct:redisCommand
 process	./src/redis-check-aof.c	/^off_t process(FILE *fp) {$/;"	f
 processBulkItem	./deps/hiredis/read.c	/^static int processBulkItem(redisReader *r) {$/;"	f	file:
 processClientsWaitingReplicas	./src/replication.c	/^void processClientsWaitingReplicas(void) {$/;"	f
-processCommand	./src/server.c	/^int processCommand(client *c) {$/;"	f
+processCommand	./src/server.c	/^bool processCommand(client *c) {$/;"	f
 processEventsWhileBlocked	./src/networking.c	/^int processEventsWhileBlocked(void) {$/;"	f
 processInlineBuffer	./src/networking.c	/^int processInlineBuffer(client *c) {$/;"	f
 processInputBuffer	./src/networking.c	/^void processInputBuffer(client *c) {$/;"	f
@@ -13049,7 +13051,7 @@ redisAeAddRead	./src/sentinel.c	/^static void redisAeAddRead(void *privdata) {$/
 redisAeAddWrite	./deps/hiredis/adapters/ae.h	/^static void redisAeAddWrite(void *privdata) {$/;"	f
 redisAeAddWrite	./src/sentinel.c	/^static void redisAeAddWrite(void *privdata) {$/;"	f	file:
 redisAeAttach	./deps/hiredis/adapters/ae.h	/^static int redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {$/;"	f
-redisAeAttach	./src/sentinel.c	/^static int redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {$/;"	f	file:
+redisAeAttach	./src/sentinel.c	/^static bool redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {$/;"	f	file:
 redisAeCleanup	./deps/hiredis/adapters/ae.h	/^static void redisAeCleanup(void *privdata) {$/;"	f
 redisAeCleanup	./src/sentinel.c	/^static void redisAeCleanup(void *privdata) {$/;"	f	file:
 redisAeDelRead	./deps/hiredis/adapters/ae.h	/^static void redisAeDelRead(void *privdata) {$/;"	f
@@ -13241,7 +13243,7 @@ redisSupervisedSystemd	./src/server.c	/^int redisSupervisedSystemd(void) {$/;"	f
 redisSupervisedUpstart	./src/server.c	/^int redisSupervisedUpstart(void) {$/;"	f
 redis_check_aof_main	./src/redis-check-aof.c	/^int redis_check_aof_main(int argc, char **argv) {$/;"	f
 redis_check_rdb	./src/redis-check-rdb.c	/^int redis_check_rdb(char *rdbfilename, FILE *fp) {$/;"	f
-redis_check_rdb_main	./src/redis-check-rdb.c	/^int redis_check_rdb_main(int argc, char **argv, FILE *fp) {$/;"	f
+redis_check_rdb_main	./src/redis-check-rdb.c	/^bool redis_check_rdb_main(int argc, char **argv, FILE *fp) {$/;"	f
 redis_cluster	./tests/support/cluster.tcl	/^proc redis_cluster {nodes} {$/;"	p
 redis_deferring_client	./tests/test_helper.tcl	/^proc redis_deferring_client {args} {$/;"	p
 redis_fstat	./src/config.h	44;"	d
@@ -13386,7 +13388,7 @@ replicationScriptCacheInit	./src/replication.c	/^void replicationScriptCacheInit
 replicationSendAck	./src/replication.c	/^void replicationSendAck(void) {$/;"	f
 replicationSendNewlineToMaster	./src/replication.c	/^void replicationSendNewlineToMaster(void) {$/;"	f
 replicationSetMaster	./src/replication.c	/^void replicationSetMaster(char *ip, int port) {$/;"	f
-replicationSetupSlaveForFullResync	./src/replication.c	/^int replicationSetupSlaveForFullResync(client *slave, long long offset) {$/;"	f
+replicationSetupSlaveForFullResync	./src/replication.c	/^bool replicationSetupSlaveForFullResync(client *slave, long long offset) {$/;"	f
 replicationUnsetMaster	./src/replication.c	/^void replicationUnsetMaster(void) {$/;"	f
 replid	./src/server.h	/^    char replid[CONFIG_RUN_ID_SIZE+1];  \/* My current replication ID. *\/$/;"	m	struct:redisServer
 replid	./src/server.h	/^    char replid[CONFIG_RUN_ID_SIZE+1]; \/* Master replication ID (if master). *\/$/;"	m	struct:client
@@ -13435,7 +13437,7 @@ resize	./deps/lua/src/ltable.c	/^static void resize (lua_State *L, Table *t, int
 resizeReplicationBacklog	./src/replication.c	/^void resizeReplicationBacklog(long long newsize) {$/;"	f
 reslabs	./deps/jemalloc/include/jemalloc/internal/bin_stats.h	/^	uint64_t	reslabs;$/;"	m	struct:bin_stats_s
 restartAOFAfterSYNC	./src/replication.c	/^void restartAOFAfterSYNC() {$/;"	f
-restartServer	./src/server.c	/^int restartServer(int flags, mstime_t delay) {$/;"	f
+restartServer	./src/server.c	/^bool restartServer(int flags, mstime_t delay) {$/;"	f
 restart_instance	./tests/instances.tcl	/^proc restart_instance {type id} {$/;"	p
 restoreCommand	./src/cluster.c	/^void restoreCommand(client *c) {$/;"	f
 restore_stack_limit	./deps/lua/src/ldo.c	/^static void restore_stack_limit (lua_State *L) {$/;"	f	file:
@@ -13457,9 +13459,9 @@ rev	./deps/hiredis/adapters/libev.h	/^    ev_io rev, wev;$/;"	m	struct:redisLibe
 rev	./deps/hiredis/adapters/libevent.h	/^    struct event *rev, *wev;$/;"	m	struct:redisLibeventEvents	typeref:struct:redisLibeventEvents::event
 rev	./src/dict.c	/^static unsigned long rev(unsigned long v) {$/;"	f	file:
 rev	./src/stream.h	/^    int rev;                \/* True if iterating end to start (reverse). *\/$/;"	m	struct:streamIterator
-rewriteAppendOnlyFile	./src/aof.c	/^int rewriteAppendOnlyFile(char *filename) {$/;"	f
-rewriteAppendOnlyFileBackground	./src/aof.c	/^int rewriteAppendOnlyFileBackground(void) {$/;"	f
-rewriteAppendOnlyFileRio	./src/aof.c	/^int rewriteAppendOnlyFileRio(rio *aof) {$/;"	f
+rewriteAppendOnlyFile	./src/aof.c	/^bool rewriteAppendOnlyFile(char *filename) {$/;"	f
+rewriteAppendOnlyFileBackground	./src/aof.c	/^bool rewriteAppendOnlyFileBackground(void) {$/;"	f
+rewriteAppendOnlyFileRio	./src/aof.c	/^bool rewriteAppendOnlyFileRio(rio *aof) {$/;"	f
 rewriteClientCommandArgument	./src/networking.c	/^void rewriteClientCommandArgument(client *c, int i, robj *newval) {$/;"	f
 rewriteClientCommandVector	./src/networking.c	/^void rewriteClientCommandVector(client *c, int argc, ...) {$/;"	f
 rewriteConfig	./src/config.c	/^int rewriteConfig(char *path) {$/;"	f
@@ -13881,7 +13883,7 @@ seekNewline	./deps/hiredis/read.c	/^static char *seekNewline(char *s, size_t len
 seen_time	./src/stream.h	/^    mstime_t seen_time;         \/* Last time this consumer was active. *\/$/;"	m	struct:streamConsumer
 select	./src/server.h	/^    *select[PROTO_SHARED_SELECT_CMDS],$/;"	m	struct:sharedObjectsStruct
 selectCommand	./src/db.c	/^void selectCommand(client *c) {$/;"	f
-selectDb	./src/db.c	/^int selectDb(client *c, int id) {$/;"	f
+selectDb	./src/db.c	/^bool selectDb(client *c, int id) {$/;"	f
 select_database	./deps/hiredis/test.c	/^static redisContext *select_database(redisContext *c) {$/;"	f	file:
 selectionsort	./deps/lua/test/sort.lua	/^function selectionsort(x,n,f)$/;"	f
 seminfo	./deps/lua/src/llex.h	/^  SemInfo seminfo;$/;"	m	struct:Token
@@ -13922,7 +13924,7 @@ sentinelFailoverWaitPromotion	./src/sentinel.c	/^void sentinelFailoverWaitPromot
 sentinelFailoverWaitStart	./src/sentinel.c	/^void sentinelFailoverWaitStart(sentinelRedisInstance *ri) {$/;"	f
 sentinelFlushConfig	./src/sentinel.c	/^void sentinelFlushConfig(void) {$/;"	f
 sentinelForceHelloUpdateDictOfRedisInstances	./src/sentinel.c	/^void sentinelForceHelloUpdateDictOfRedisInstances(dict *instances) {$/;"	f
-sentinelForceHelloUpdateForMaster	./src/sentinel.c	/^int sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master) {$/;"	f
+sentinelForceHelloUpdateForMaster	./src/sentinel.c	/^bool sentinelForceHelloUpdateForMaster(sentinelRedisInstance *master) {$/;"	f
 sentinelGenerateInitialMonitorEvents	./src/sentinel.c	/^void sentinelGenerateInitialMonitorEvents(void) {$/;"	f
 sentinelGetCurrentMasterAddress	./src/sentinel.c	/^sentinelAddr *sentinelGetCurrentMasterAddress(sentinelRedisInstance *master) {$/;"	f
 sentinelGetInstanceTypeString	./src/sentinel.c	/^char *sentinelGetInstanceTypeString(sentinelRedisInstance *ri) {$/;"	f
@@ -13955,12 +13957,12 @@ sentinelReconnectInstance	./src/sentinel.c	/^void sentinelReconnectInstance(sent
 sentinelRedisInstance	./src/sentinel.c	/^typedef struct sentinelRedisInstance {$/;"	s	file:
 sentinelRedisInstance	./src/sentinel.c	/^} sentinelRedisInstance;$/;"	t	typeref:struct:sentinelRedisInstance	file:
 sentinelRedisInstanceLookupSlave	./src/sentinel.c	/^sentinelRedisInstance *sentinelRedisInstanceLookupSlave($/;"	f
-sentinelRedisInstanceNoDownFor	./src/sentinel.c	/^int sentinelRedisInstanceNoDownFor(sentinelRedisInstance *ri, mstime_t ms) {$/;"	f
+sentinelRedisInstanceNoDownFor	./src/sentinel.c	/^bool sentinelRedisInstanceNoDownFor(sentinelRedisInstance *ri, mstime_t ms) {$/;"	f
 sentinelRedisInstanceTypeStr	./src/sentinel.c	/^const char *sentinelRedisInstanceTypeStr(sentinelRedisInstance *ri) {$/;"	f
 sentinelRefreshInstanceInfo	./src/sentinel.c	/^void sentinelRefreshInstanceInfo(sentinelRedisInstance *ri, const char *info) {$/;"	f
 sentinelReleaseScriptJob	./src/sentinel.c	/^void sentinelReleaseScriptJob(sentinelScriptJob *sj) {$/;"	f
 sentinelResetMaster	./src/sentinel.c	/^void sentinelResetMaster(sentinelRedisInstance *ri, int flags) {$/;"	f
-sentinelResetMasterAndChangeAddress	./src/sentinel.c	/^int sentinelResetMasterAndChangeAddress(sentinelRedisInstance *master, char *ip, int port) {$/;"	f
+sentinelResetMasterAndChangeAddress	./src/sentinel.c	/^bool sentinelResetMasterAndChangeAddress(sentinelRedisInstance *master, char *ip, int port) {$/;"	f
 sentinelResetMastersByPattern	./src/sentinel.c	/^int sentinelResetMastersByPattern(char *pattern, int flags) {$/;"	f
 sentinelRoleCommand	./src/sentinel.c	/^void sentinelRoleCommand(client *c) {$/;"	f
 sentinelRunPendingScripts	./src/sentinel.c	/^void sentinelRunPendingScripts(void) {$/;"	f
@@ -13970,10 +13972,10 @@ sentinelScriptJob	./src/sentinel.c	/^} sentinelScriptJob;$/;"	t	typeref:struct:s
 sentinelScriptRetryDelay	./src/sentinel.c	/^mstime_t sentinelScriptRetryDelay(int retry_num) {$/;"	f
 sentinelSelectSlave	./src/sentinel.c	/^sentinelRedisInstance *sentinelSelectSlave(sentinelRedisInstance *master) {$/;"	f
 sentinelSendAuthIfNeeded	./src/sentinel.c	/^void sentinelSendAuthIfNeeded(sentinelRedisInstance *ri, redisAsyncContext *c) {$/;"	f
-sentinelSendHello	./src/sentinel.c	/^int sentinelSendHello(sentinelRedisInstance *ri) {$/;"	f
+sentinelSendHello	./src/sentinel.c	/^bool sentinelSendHello(sentinelRedisInstance *ri) {$/;"	f
 sentinelSendPeriodicCommands	./src/sentinel.c	/^void sentinelSendPeriodicCommands(sentinelRedisInstance *ri) {$/;"	f
-sentinelSendPing	./src/sentinel.c	/^int sentinelSendPing(sentinelRedisInstance *ri) {$/;"	f
-sentinelSendSlaveOf	./src/sentinel.c	/^int sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port) {$/;"	f
+sentinelSendPing	./src/sentinel.c	/^bool sentinelSendPing(sentinelRedisInstance *ri) {$/;"	f
+sentinelSendSlaveOf	./src/sentinel.c	/^bool sentinelSendSlaveOf(sentinelRedisInstance *ri, char *host, int port) {$/;"	f
 sentinelSetClientName	./src/sentinel.c	/^void sentinelSetClientName(sentinelRedisInstance *ri, redisAsyncContext *c, char *type) {$/;"	f
 sentinelSetCommand	./src/sentinel.c	/^void sentinelSetCommand(client *c) {$/;"	f
 sentinelSimFailureCrash	./src/sentinel.c	/^void sentinelSimFailureCrash(void) {$/;"	f
@@ -13981,7 +13983,7 @@ sentinelStartFailover	./src/sentinel.c	/^void sentinelStartFailover(sentinelRedi
 sentinelStartFailoverIfNeeded	./src/sentinel.c	/^int sentinelStartFailoverIfNeeded(sentinelRedisInstance *master) {$/;"	f
 sentinelState	./src/sentinel.c	/^struct sentinelState {$/;"	s	file:
 sentinelTimer	./src/sentinel.c	/^void sentinelTimer(void) {$/;"	f
-sentinelTryConnectionSharing	./src/sentinel.c	/^int sentinelTryConnectionSharing(sentinelRedisInstance *ri) {$/;"	f
+sentinelTryConnectionSharing	./src/sentinel.c	/^bool sentinelTryConnectionSharing(sentinelRedisInstance *ri) {$/;"	f
 sentinelUpdateSentinelAddressInAllMasters	./src/sentinel.c	/^int sentinelUpdateSentinelAddressInAllMasters(sentinelRedisInstance *ri) {$/;"	f
 sentinelVoteLeader	./src/sentinel.c	/^char *sentinelVoteLeader(sentinelRedisInstance *master, uint64_t req_epoch, char *req_runid, uint64_t *leader_epoch) {$/;"	f
 sentinel_	./deps/lua/src/loadlib.c	/^static const int sentinel_ = 0;$/;"	v	file:
@@ -14235,9 +14237,9 @@ slowlog_max_len	./src/server.h	/^    unsigned long slowlog_max_len;     \/* SLOW
 slowscripterr	./src/server.h	/^    *outofrangeerr, *noscripterr, *loadingerr, *slowscripterr, *bgsaveerr,$/;"	m	struct:sharedObjectsStruct
 small_maxclass	./deps/jemalloc/include/jemalloc/internal/sc.h	/^	size_t small_maxclass;$/;"	m	struct:sc_data_s
 smallocx	./deps/jemalloc/test/integration/smallocx.c	13;"	d	file:
-smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc.h	377;"	d
-smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc_mangle.h	25;"	d
-smallocx_0	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	25;"	d
+smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc.h	377;"	d
+smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc_mangle.h	25;"	d
+smallocx_b0b3e49a54ec29e32636f4577d9d5a896d67fd20	./deps/jemalloc/include/jemalloc/jemalloc_mangle_jet.h	25;"	d
 smallocx_return_t	./deps/jemalloc/src/jemalloc.c	/^} smallocx_return_t;$/;"	t	typeref:struct:__anon78	file:
 smallocx_return_t	./deps/jemalloc/test/integration/smallocx.c	/^} smallocx_return_t;$/;"	t	typeref:struct:__anon79	file:
 smooth	./deps/jemalloc/include/jemalloc/internal/smoothstep.sh	/^smooth() {$/;"	f
@@ -14321,10 +14323,10 @@ stack_nelms	./deps/jemalloc/src/tcache.c	/^static unsigned		stack_nelms; \/* Tot
 stacksize	./deps/lua/src/lstate.h	/^  int stacksize;$/;"	m	struct:lua_State
 start	./src/redis-benchmark.c	/^    long long start;        \/* Start time of a request *\/$/;"	m	struct:_client	file:
 start	./src/redis-benchmark.c	/^    long long start;$/;"	m	struct:config	file:
-startAppendOnly	./src/aof.c	/^int startAppendOnly(void) {$/;"	f
-startBgsaveForReplication	./src/replication.c	/^int startBgsaveForReplication(int mincapa) {$/;"	f
+startAppendOnly	./src/aof.c	/^bool startAppendOnly(void) {$/;"	f
+startBgsaveForReplication	./src/replication.c	/^bool startBgsaveForReplication(int mincapa) {$/;"	f
 startLoading	./src/rdb.c	/^void startLoading(FILE *fp) {$/;"	f
-start_benchmark	./src/dict.c	1146;"	d	file:
+start_benchmark	./src/dict.c	1185;"	d	file:
 start_bg_block_op	./tests/integration/block-repl.tcl	/^proc start_bg_block_op {host port db ops} {$/;"	p
 start_bg_complex_data	./tests/integration/replication-4.tcl	/^proc start_bg_complex_data {host port db ops} {$/;"	p
 start_bg_complex_data	./tests/integration/replication-psync.tcl	/^proc start_bg_complex_data {host port db ops} {$/;"	p
@@ -14482,7 +14484,7 @@ strbuf_t	./deps/lua/src/strbuf.h	/^} strbuf_t;$/;"	t	typeref:struct:__anon50
 stream	./src/stream.h	/^    stream *stream;         \/* The stream we are iterating. *\/$/;"	m	struct:streamIterator
 stream	./src/stream.h	/^typedef struct stream {$/;"	s
 stream	./src/stream.h	/^} stream;$/;"	t	typeref:struct:stream
-streamAppendItem	./src/t_stream.c	/^int streamAppendItem(stream *s, robj **argv, int64_t numfields, streamID *added_id, streamID *use_id) {$/;"	f
+streamAppendItem	./src/t_stream.c	/^bool streamAppendItem(stream *s, robj **argv, int64_t numfields, streamID *added_id, streamID *use_id) {$/;"	f
 streamCG	./src/stream.h	/^typedef struct streamCG {$/;"	s
 streamCG	./src/stream.h	/^} streamCG;$/;"	t	typeref:struct:streamCG
 streamCompareID	./src/t_stream.c	/^int streamCompareID(streamID *a, streamID *b) {$/;"	f
@@ -14498,7 +14500,7 @@ streamEncodeID	./src/t_stream.c	/^void streamEncodeID(void *buf, streamID *id) {
 streamFreeCG	./src/t_stream.c	/^void streamFreeCG(streamCG *cg) {$/;"	f
 streamFreeConsumer	./src/t_stream.c	/^void streamFreeConsumer(streamConsumer *sc) {$/;"	f
 streamFreeNACK	./src/t_stream.c	/^void streamFreeNACK(streamNACK *na) {$/;"	f
-streamGenericParseIDOrReply	./src/t_stream.c	/^int streamGenericParseIDOrReply(client *c, robj *o, streamID *id, uint64_t missing_seq, int strict) {$/;"	f
+streamGenericParseIDOrReply	./src/t_stream.c	/^bool streamGenericParseIDOrReply(client *c, robj *o, streamID *id, uint64_t missing_seq, int strict) {$/;"	f
 streamID	./src/stream.h	/^typedef struct streamID {$/;"	s
 streamID	./src/stream.h	/^} streamID;$/;"	t	typeref:struct:streamID
 streamIterator	./src/stream.h	/^typedef struct streamIterator {$/;"	s
@@ -15415,7 +15417,7 @@ verbose	./deps/jemalloc/test/unit/stats_print.c	/^	bool verbose;$/;"	m	struct:pa
 verbose	./src/redis-cli.c	/^    int verbose;$/;"	m	struct:config	file:
 verbosity	./src/server.h	/^    int verbosity;                  \/* Loglevel in redis.conf *\/$/;"	m	struct:redisServer
 verify	./src/ziplist.c	/^static void verify(unsigned char *zl, zlentry *e) {$/;"	f	file:
-verifyClusterConfigWithData	./src/cluster.c	/^int verifyClusterConfigWithData(void) {$/;"	f
+verifyClusterConfigWithData	./src/cluster.c	/^bool verifyClusterConfigWithData(void) {$/;"	f
 verifyDumpPayload	./src/cluster.c	/^int verifyDumpPayload(unsigned char *p, size_t len) {$/;"	f
 version	./deps/jemalloc/src/zone.c	/^	unsigned version;$/;"	m	struct:_malloc_zone_t	file:
 version	./src/redismodule.h	/^    uint64_t version;$/;"	m	struct:RedisModuleTypeMethods
@@ -15760,7 +15762,7 @@ zsetInitScoreRange	./src/module.c	/^int zsetInitScoreRange(RedisModuleKey *key, 
 zsetKeyReset	./src/module.c	/^void zsetKeyReset(RedisModuleKey *key) {$/;"	f
 zsetLength	./src/t_zset.c	/^unsigned long zsetLength(const robj *zobj) {$/;"	f
 zsetRank	./src/t_zset.c	/^long zsetRank(robj *zobj, sds ele, int reverse) {$/;"	f
-zsetScore	./src/t_zset.c	/^int zsetScore(robj *zobj, sds member, double *score) {$/;"	f
+zsetScore	./src/t_zset.c	/^bool zsetScore(robj *zobj, sds member, double *score) {$/;"	f
 zset_max_ziplist_entries	./src/server.h	/^    size_t zset_max_ziplist_entries;$/;"	m	struct:redisServer
 zset_max_ziplist_value	./src/server.h	/^    size_t zset_max_ziplist_value;$/;"	m	struct:redisServer
 zsetopsrc	./src/t_zset.c	/^} zsetopsrc;$/;"	t	typeref:struct:__anon3	file:
@@ -15793,9 +15795,9 @@ zslLastInLexRange	./src/t_zset.c	/^zskiplistNode *zslLastInLexRange(zskiplist *z
 zslLastInRange	./src/t_zset.c	/^zskiplistNode *zslLastInRange(zskiplist *zsl, zrangespec *range) {$/;"	f
 zslLexValueGteMin	./src/t_zset.c	/^int zslLexValueGteMin(sds value, zlexrangespec *spec) {$/;"	f
 zslLexValueLteMax	./src/t_zset.c	/^int zslLexValueLteMax(sds value, zlexrangespec *spec) {$/;"	f
-zslParseLexRange	./src/t_zset.c	/^int zslParseLexRange(robj *min, robj *max, zlexrangespec *spec) {$/;"	f
-zslParseLexRangeItem	./src/t_zset.c	/^int zslParseLexRangeItem(robj *item, sds *dest, int *ex) {$/;"	f
-zslParseRange	./src/t_zset.c	/^static int zslParseRange(robj *min, robj *max, zrangespec *spec) {$/;"	f	file:
+zslParseLexRange	./src/t_zset.c	/^bool zslParseLexRange(robj *min, robj *max, zlexrangespec *spec) {$/;"	f
+zslParseLexRangeItem	./src/t_zset.c	/^bool zslParseLexRangeItem(robj *item, sds *dest, int *ex) {$/;"	f
+zslParseRange	./src/t_zset.c	/^static bool zslParseRange(robj *min, robj *max, zrangespec *spec) {$/;"	f	file:
 zslRandomLevel	./src/t_zset.c	/^int zslRandomLevel(void) {$/;"	f
 zslUpdateNode	./src/defrag.c	/^void zslUpdateNode(zskiplist *zsl, zskiplistNode *oldnode, zskiplistNode *newnode, zskiplistNode **update) {$/;"	f
 zslUpdateScore	./src/t_zset.c	/^zskiplistNode *zslUpdateScore(zskiplist *zsl, double curscore, sds ele, double newscore) {$/;"	f
