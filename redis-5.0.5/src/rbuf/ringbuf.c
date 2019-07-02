@@ -92,7 +92,6 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	int get_location = con->location % rb->size;
 	temp = rb->items[get_location];
 	con->location = con->location + 1;
-	// printf("hello, con->location is %d\n", (con->location-1));
 	return  temp;
 }
 

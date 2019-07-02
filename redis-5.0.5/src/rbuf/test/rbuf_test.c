@@ -61,7 +61,6 @@ int main() {
 	for( i = 0; i < get_size_1 ; i++){
 		
 		get_data = ring_get(ring_buffer, con_1);
-		printf("location is %d\n", con_1->location);
 
 		if(get_data == NULL){
 			printf("i = %d, get %d failed \n" , i, con_1->location);
