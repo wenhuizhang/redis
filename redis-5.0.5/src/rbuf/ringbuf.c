@@ -42,10 +42,10 @@ struct ring* init_ring(int size)
 	return rb;
 };
 
-struct consumer *init_consumer(int location)
+struct consumer *init_consumer(int loc)
 {
 	struct consumer *con = (struct consumer*)malloc(sizeof(struct consumer ));
-	con->location = location;
+	con->location = loc;
 	return con;
 }
 
@@ -85,7 +85,7 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	}
 	
 	void* temp;
-	int get_location = con->location % rb->size;
+	int get_location = (con->location - 1)% rb->size;
 	temp = rb->items[get_location];
 
 	return  temp;
@@ -125,6 +125,12 @@ void destroy_ring(struct ring *rb)
     free(tmp);
     free(rb->items);
     free(rb);
+}
+
+
+void destroy_consumer(struct consumer *con)
+{
+    free(con);
 }
 
 

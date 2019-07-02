@@ -62,5 +62,7 @@ void* ring_pop(struct ring *rb);
 
 
 void destroy_ring(struct ring *rb);
+void destroy_consumer(struct consumer *con);
+
 
 #endif 

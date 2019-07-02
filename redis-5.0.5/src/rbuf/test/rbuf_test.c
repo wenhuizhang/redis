@@ -31,11 +31,11 @@ int main() {
 	// and then get 2 elements,
 	// then push 6 elements, at last get 12 elements
 	const int buffer_size = 5;
-	const int start_location = 0;
+	const int start_location = 1;
 
 	int push_size_1 = 8;
 	int get_size_1 = 2;
-	int push_size_2 = 6;
+	// int push_size_2 = 6;
 	int get_size_2 = 12;
 
 	void* data[buffer_size];
@@ -47,30 +47,31 @@ int main() {
 
 	int i;
 
-	for( i = 0; i < push_size_1  ; i++){
+	for( i = 0; i < push_size_1 ; i++){
 
 		data[i] = malloc(sizeof(int));
 
 		int count = ring_push(ring_buffer, &data[i]);
 
 		if ( count != 0 ){
-			printf("push data %d = %p \n", i, &data[i]);
+			printf("push data %d = %p \n", count, &data[i]);
 		}
 		else{
-			printf("push %d failed \n ", i);
+			printf("push %d failed \n ", count);
 		}
 	}
 
-	for( i = 0; i < get_size_1  ; i++){
+	for( i = 0; i < get_size_1 ; i++){
 		
 		con_1->location = i;
 		get_data = ring_get(ring_buffer, con_1);
+		printf("location is %d\n", con_1->location);
 
 		if(get_data == NULL){
-			printf("get %d failed \n" , i);
+			printf("get %d failed \n" , con_1->location);
 		}
 		else{
-			printf("get data %d = %p\n", i, get_data);
+			printf("get data %d = %p\n", con_1->location, get_data);
 		}
 	}
 
@@ -94,14 +95,19 @@ int main() {
 		
 		con_2->location = i;
 		get_data = ring_get(ring_buffer, con_2);
+		printf("location is %d\n", con_2->location);
 
 		if(get_data == NULL){
-			printf("get  %d failed \n" , i);
+			printf("get  %d failed \n" , con_2->location);
 		}
 		else{
-			printf("get data %d = %p\n", i, get_data);
+			printf("get data %d = %p\n", con_2->location, get_data);
 		}
 	}
+
+	destroy_ring(ring_buffer);
+	destroy_consumer(con_1);
+	destroy_consumer(con_2);
 
 	return 0;
 
