@@ -27,7 +27,7 @@
 
 int main() {
     
-	const int buffer_size = 6;
+	const int buffer_size = 5;
 	const int start_location = 0;
 
 	int push_size_1 = 8;
@@ -35,7 +35,7 @@ int main() {
 	// int push_size_2 = 6;
 	int get_size_2 = 12;
 
-	void* data[buffer_size];
+	void* data[push_size_1];
 	void* get_data;
 
 	struct ring* ring_buffer = init_ring( buffer_size );
@@ -60,7 +60,6 @@ int main() {
 
 	for( i = 0; i < get_size_1 ; i++){
 		
-		con_1->location = i;
 		get_data = ring_get(ring_buffer, con_1);
 		printf("location is %d\n", con_1->location);
 
@@ -90,7 +89,6 @@ int main() {
 */
 	for( i = 0; i < get_size_2  ; i++){
 		
-		con_2->location = i;
 		get_data = ring_get(ring_buffer, con_2);
 		printf("location is %d\n", con_2->location);
 

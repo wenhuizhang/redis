@@ -83,8 +83,8 @@ void* ring_get(struct ring *rb, struct consumer *con)
 		return NULL;
 	}
 	
-	if( con->location > rb->count){
-		printf("overread\n");
+	if( con->location >= rb->count){
+		// printf("overread\n");
 		return NULL;
 	}
 	
@@ -92,7 +92,7 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	int get_location = con->location % rb->size;
 	temp = rb->items[get_location];
 	con->location = con->location + 1;
-
+	// printf("hello, con->location is %d\n", (con->location-1));
 	return  temp;
 }
 
