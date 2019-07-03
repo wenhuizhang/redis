@@ -61,7 +61,7 @@ int ring_push(struct ring *rb, void* data)
 	rb->items[ rb->push ] = data;
 	rb->push = (rb->push + 1) % rb->size;
 
-	return rb->count;
+	return rb->push;
 }
 
 

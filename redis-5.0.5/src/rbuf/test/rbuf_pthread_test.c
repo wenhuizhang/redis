@@ -26,43 +26,46 @@
 #include "../ringbuf.h"
 
 
-#define	MAXLEN	100
+#define	MAXBUF	10000000
 #define	NUM_THREADS (2*get_nprocs())
 
 
 
-struct pthread_args{
+struct consumer_args{
 	struct ring* ring_buffer;
 	int start_location;
 	int get_size;
 };
 
 
+struct producer_args{
+	struct ring* ring_buffer;
+};
 
 
-int producer(struct ring* ring_buffer, int push_size)
+
+
+void *producer(void *arg)
 {
-	void* data[push_size];
-	for( int i = 0; i < push_size ; i++){
-
-		data[i] = malloc(sizeof(int));
-
-		int count = ring_push(ring_buffer, &data[i]);
-
-		if ( count != 0 ){
-			printf("i = %d, push data %d = %p \n", i, count, &data[i]);
-		}
-		else{
-			printf("i = %d, push %d failed \n ", i, count);
-		}
+	struct producer_args* args = (struct producer_args*) arg;
+	int data_size = 8;
+	void* data[data_size];
+	for(int j = 0; j < data_size; j++){
+		data[j] = malloc(sizeof(int));
 	}
+	int i = 0;
+	while(1){
 
-	return 0;	
+		int count = ring_push(args->ring_buffer, &data[i%data_size]);
+		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
+		i++;
+	}
+	return NULL;	
 }
 
 void *consumer(void *arg)
 {
-	struct pthread_args* args = (struct pthread_args*)arg;
+	struct consumer_args* args = (struct consumer_args*)arg;
 	struct consumer *cons = init_consumer( args->start_location );
 	void* get_data;
 	get_data = ring_get(args->ring_buffer, cons);
@@ -82,28 +85,27 @@ int main() {
     
 	pthread_t tid[NUM_THREADS];
 
-	const int buffer_size = 5;
+	const int buffer_size = 100000;
 	const int start_location = 0;
 
-	int push_size = 8;
 	int get_size_1 = 2;
-	// int push_size_2 = 6;
 	int get_size_2 = 12;
 	
-	struct ring* ring_buffer = init_ring( buffer_size );
+	struct producer_args args_p;
+	args_p.ring_buffer = init_ring( buffer_size );
 
 	// printf("Configured processor %d\n", get_nprocs_conf());
 	// printf("Available processor %d\n", get_nprocs());
 		
-	int err = producer(ring_buffer, push_size);
+	int err = pthread_create(&(tid[NUM_THREADS-1]), NULL, &producer, (void*)&args_p);
 
-	struct pthread_args args_1;
-	args_1.ring_buffer = ring_buffer;
-	args_1.start_location = start_location;
-	args_1.get_size = get_size_1;
+	struct consumer_args args_c;
+	args_c.ring_buffer = args_p.ring_buffer;
+	args_c.start_location = start_location;
+	args_c.get_size = get_size_1;
 
-	for(int i = 0; i < NUM_THREADS; i++){
-		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)&args_1);
+	for(int i = 0; i < NUM_THREADS-1; i++){
+		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)&args_c);
 	}
 
 
@@ -111,7 +113,7 @@ int main() {
 		pthread_join(tid[i], NULL);
 	}
 
-	destroy_ring(ring_buffer);
+	destroy_ring(args_p.ring_buffer);
 	return 0;
 
 }
