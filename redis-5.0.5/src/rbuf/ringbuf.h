@@ -17,7 +17,7 @@
 #include <sys/sysinfo.h>
 
 #define MAXBUF  10000000
-#define NUM_THREADS (2*get_nprocs())
+#define MAX_THREADS (2*get_nprocs())
 
 
 
