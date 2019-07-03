@@ -35,11 +35,15 @@ struct consumer_args{
 	struct ring* ring_buffer;
 	int start_location;
 	int get_size;
+	int consumer_id;
+	int channel_id;
 };
 
 
 struct producer_args{
 	struct ring* ring_buffer;
+	int producer_id;
+	int channel_id;
 };
 
 
@@ -85,29 +89,25 @@ int main() {
     
 	pthread_t tid[NUM_THREADS];
 
-	const int buffer_size = 100000;
+	const int buffer_size = 1000000;
 	const int start_location = 0;
 
-	int get_size_1 = 2;
-	int get_size_2 = 12;
+	int get_size = 12000;
+	int err;
 	
 	struct producer_args args_p;
 	args_p.ring_buffer = init_ring( buffer_size );
 
-	// printf("Configured processor %d\n", get_nprocs_conf());
-	// printf("Available processor %d\n", get_nprocs());
-		
-	int err = pthread_create(&(tid[NUM_THREADS-1]), NULL, &producer, (void*)&args_p);
-
 	struct consumer_args args_c;
 	args_c.ring_buffer = args_p.ring_buffer;
 	args_c.start_location = start_location;
-	args_c.get_size = get_size_1;
+	args_c.get_size = get_size;
+
+	err = pthread_create(&(tid[NUM_THREADS-1]), NULL, &producer, (void*)&args_p);
 
 	for(int i = 0; i < NUM_THREADS-1; i++){
 		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)&args_c);
 	}
-
 
 	for(int i = 0; i<NUM_THREADS; i++){
 		pthread_join(tid[i], NULL);
