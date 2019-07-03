@@ -10,7 +10,7 @@ ringbuf_test:
 	$(CC) $(DEPS1) -o test ../rbuf.o
 
 thread_test:
-	$(CC) $(DEPS2) -o thread ../rbuf.o
+	$(CC) $(DEPS2) -o thread ../rbuf.o -lpthread
 
 clean:
 	rm -f test thread
