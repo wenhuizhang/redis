@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS =
+CFLAGS = -lpthread
 DEPS = ringbuf.c
 OBJ = ringbuf
 
@@ -8,7 +8,7 @@ all: ringbuf tests
 rebuild: clean all
 
 ringbuf:
-	$(CC) -c $(DEPS) -o rbuf.o
+	$(CC) -c $(DEPS) -o rbuf.o $(CFLAGS)
 tests:
 	cd test && make
 clean:

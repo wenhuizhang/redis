@@ -13,6 +13,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <pthread.h>
+#include <sys/sysinfo.h>
+
 #include "ringbuf.h"
 
 
@@ -138,78 +141,36 @@ void destroy_consumer(struct consumer *con)
 }
 
 
-/*
+void *producer(void *arg)
+{
+        struct producer_args* args = (struct producer_args*) arg;
+        int data_size = 8;
+        void* data[data_size];
+        for(int j = 0; j < data_size; j++){
+                data[j] = malloc(sizeof(int));
+        }
+        int i = 0;
+        while(1){
 
-int main() {
-    
-	// set buffer size as 5, first push 3 elements
-	// and then get 2 elements,
-	// then push 6 elements, at last get 12 elements
-	const int buffer_size = 5;
-
-	int push_size_1 = 3;
-	int get_size_1 = 2;
-	int push_size_2 = 6;
-	int get_size_2 = 12;
-
-	void* data[buffer_size];
-	void* get_data;
-
-	struct ring* ring_buffer = init_ring( buffer_size );
-
-	int i;
-
-	for( i = 0; i < push_size_1  ; i++){
-
-		data[i] = malloc(sizeof(int));
-
-		int count = ring_push(ring_buffer, &data[i]);
-
-		if ( count != 0 ){
-			printf("push data %d = %d \n", i, &data[i]);
-		}
-		else{
-			printf("push %d failed \n ", i);
-		}
-	}
-
-	for( i = 0; i < get_size_1  ; i++){
-		get_data = ring_get(ring_buffer, i);
-
-		if(get_data == NULL){
-			printf("get %d failed \n" , i);
-		}
-		else{
-			printf("get data %d = %d\n", i, get_data);
-		}
-	}
-
-	for( i = 0; i < push_size_2  ; i++){
-
-		data[i] = malloc(sizeof(int));
-
-		int count = ring_push(ring_buffer, &data[i]);
-
-		if ( count != 0 ){
-			printf("push data %d = %d \n", i, &data[i]);
-		}
-		else{
-			printf("push %d failed \n ", i);
-		}
-	}
-
-	for( i = 0; i < get_size_2  ; i++){
-		get_data = ring_get(ring_buffer, i);
-
-		if(get_data == NULL){
-			printf("get  %d failed \n" , i);
-		}
-		else{
-			printf("get data %d = %d\n", i, get_data);
-		}
-	}
-
-	return 0;
-
+                int count = ring_push(args->ring_buffer, &data[i%data_size]);
+                printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
+                i++;
+        }
+        return NULL;
 }
-*/
+
+void *consumer(void *arg)
+{
+        struct consumer_args* args = (struct consumer_args*)arg;
+        struct consumer *cons = init_consumer( args->start_location );
+        void* get_data;
+        get_data = ring_get(args->ring_buffer, cons);
+        printf("get data %d = %p\n", cons->location, get_data);
+        while(get_data != NULL){
+                get_data = ring_get(args->ring_buffer, cons);
+                printf("get data %d = %p\n", cons->location, get_data);
+        }
+        destroy_consumer(cons);
+        return NULL;
+}
+

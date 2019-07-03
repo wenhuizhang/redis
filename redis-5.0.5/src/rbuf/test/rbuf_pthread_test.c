@@ -26,65 +26,6 @@
 #include "../ringbuf.h"
 
 
-#define	MAXBUF	10000000
-#define	NUM_THREADS (2*get_nprocs())
-
-
-
-struct consumer_args{
-	struct ring* ring_buffer;
-	int start_location;
-	int get_size;
-	int consumer_id;
-	int channel_id;
-};
-
-
-struct producer_args{
-	struct ring* ring_buffer;
-	int producer_id;
-	int channel_id;
-};
-
-
-
-
-void *producer(void *arg)
-{
-	struct producer_args* args = (struct producer_args*) arg;
-	int data_size = 8;
-	void* data[data_size];
-	for(int j = 0; j < data_size; j++){
-		data[j] = malloc(sizeof(int));
-	}
-	int i = 0;
-	while(1){
-
-		int count = ring_push(args->ring_buffer, &data[i%data_size]);
-		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
-		i++;
-	}
-	return NULL;	
-}
-
-void *consumer(void *arg)
-{
-	struct consumer_args* args = (struct consumer_args*)arg;
-	struct consumer *cons = init_consumer( args->start_location );
-	void* get_data;
-	get_data = ring_get(args->ring_buffer, cons);
-	printf("get data %d = %p\n", cons->location, get_data);
-	while(get_data != NULL){
-		get_data = ring_get(args->ring_buffer, cons);
-		printf("get data %d = %p\n", cons->location, get_data);
-	}
-	destroy_consumer(cons);
-	return NULL;
-}
-
-
-
-
 int main() {
     
 	pthread_t tid[NUM_THREADS];

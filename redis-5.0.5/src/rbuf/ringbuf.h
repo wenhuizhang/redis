@@ -13,9 +13,29 @@
 #ifndef RING_H
 #define RING_H
 
+#include <pthread.h>
+#include <sys/sysinfo.h>
+
+#define MAXBUF  10000000
+#define NUM_THREADS (2*get_nprocs())
 
 
-// #define     MAXLEN      100
+
+struct consumer_args{
+        struct ring* ring_buffer;
+        int start_location;
+        int get_size;
+        int consumer_id;
+        int channel_id;
+};
+
+
+struct producer_args{
+        struct ring* ring_buffer;
+        int producer_id;
+        int channel_id;
+};
+
 
 
 struct ring
@@ -64,5 +84,7 @@ void* ring_pop(struct ring *rb);
 void destroy_ring(struct ring *rb);
 void destroy_consumer(struct consumer *con);
 
+void *producer(void *arg);
+void *consumer(void *arg);
 
 #endif 
