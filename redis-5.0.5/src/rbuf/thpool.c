@@ -25,10 +25,6 @@ static volatile int threads_keepalive;
 static volatile int threads_on_hold;
 
 
-
-/* ========================== STRUCTURES ============================ */
-
-
 /* Binary semaphore */
 typedef struct bsem {
 	pthread_mutex_t mutex;
@@ -76,10 +72,6 @@ typedef struct thpool_{
 
 
 
-
-/* ========================== PROTOTYPES ============================ */
-
-
 static int  thread_init(thpool_* thpool_p, struct thread** thread_p, int id);
 static void* thread_do(struct thread* thread_p);
 static void  thread_hold(int sig_id);
@@ -97,11 +89,6 @@ static void  bsem_post(struct bsem *bsem_p);
 static void  bsem_post_all(struct bsem *bsem_p);
 static void  bsem_wait(struct bsem *bsem_p);
 
-
-
-
-
-/* ========================== THREADPOOL ============================ */
 
 
 /* Initialise thread pool */
@@ -144,6 +131,7 @@ struct thpool_* thpool_init(int num_threads){
 	int n;
 	for (n=0; n<num_threads; n++){
 		thread_init(thpool_p, &thpool_p->threads[n], n);
+		printf("THPOOL_DEBUG: Created thread %d in pool \n", n);
 	}
 
 	/* Wait for threads to initialize */
@@ -159,6 +147,7 @@ int thpool_add_work(thpool_* thpool_p, void (*function_p)(void*), void* arg_p){
 
 	newjob=(struct job*)malloc(sizeof(struct job));
 	if (newjob==NULL){
+		printf("thpool_add_work(): Could not allocate memory for new job\n");
 		return -1;
 	}
 

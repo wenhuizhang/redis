@@ -1,8 +1,9 @@
 CC = gcc
 DEPS1 = rbuf_test.c 
 DEPS2 = rbuf_pthread_test.c
+DEPS3 = rbuf_threadpool_test.c
 
-all: ringbuf_test thread_test
+all: ringbuf_test thread_test thpool_test
 
 rebuild: clean all
 
@@ -12,5 +13,8 @@ ringbuf_test:
 thread_test:
 	$(CC) $(DEPS2) -o thread ../ringbuf.o ../thpool.o -lpthread
 
+thpool_test:
+	$(CC) $(DEPS3) -o thpool ../ringbuf.o ../thpool.o -lpthread
+
 clean:
-	rm -f test thread
+	rm -f test thread thpool
