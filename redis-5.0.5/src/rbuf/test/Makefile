@@ -7,10 +7,10 @@ all: ringbuf_test thread_test
 rebuild: clean all
 
 ringbuf_test:
-	$(CC) $(DEPS1) -o test ../rbuf.o
+	$(CC) $(DEPS1) -o test ../ringbuf.o ../thpool.o -lpthread
 
 thread_test:
-	$(CC) $(DEPS2) -o thread ../rbuf.o -lpthread
+	$(CC) $(DEPS2) -o thread ../ringbuf.o ../thpool.o -lpthread
 
 clean:
 	rm -f test thread
