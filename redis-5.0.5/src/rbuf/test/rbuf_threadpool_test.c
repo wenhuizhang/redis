@@ -19,20 +19,20 @@
 
 #include "../ringbuf.h"
 
-#define NUM_CONSUMER 3
 #define NUM_THREAD 4
 
-int main() {
+int main(void) {
 
 	/* Thread Pool handling*/
 
 	// threadpool thpool = thpool_init(MAX_THREADS);
 	threadpool thpool = thpool_init(NUM_THREAD);
 
-	const int buffer_size = 1000000;
-	const int start_location = 0;
+	int buffer_size = 1000000;
+	int start_location = 0;
+	int numConsumer = 4;
 
-	int get_size = 1000000;
+	int get_size = buffer_size;
 	
 	struct producer_args args_p;
 	args_p.ring_buffer = init_ring( buffer_size );
@@ -45,7 +45,7 @@ int main() {
 	thpool_add_work(thpool, (void*)producer, &args_p);
 	
 	int i;
-	for(i = 0; i < NUM_CONSUMER; i++){
+	for(i = 0; i < numConsumer; i++){
 		thpool_add_work(thpool, (void*)consumer, &args_c);
 	}
 
@@ -55,6 +55,8 @@ int main() {
 	}
 	
 	thpool_destroy(thpool);
+	destroy_ring(args_p.ring_buffer);
+
 
 	return 0;
 

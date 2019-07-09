@@ -47,10 +47,10 @@ int main() {
 
 	pthread_t tid[numThreads+1];
 
-	const int buffer_size = 1000000;
-	const int start_location = 0;
+	int buffer_size = 1000000;
+	int start_location = 0;
 
-	int get_size = 12000;
+	int get_size = buffer_size;
 	int err;
 	
 	struct producer_args args_p;
