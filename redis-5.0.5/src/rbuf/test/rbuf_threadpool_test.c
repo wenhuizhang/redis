@@ -20,13 +20,14 @@
 #include "../ringbuf.h"
 
 #define NUM_CONSUMER 3
+#define NUM_THREAD 4
 
 int main() {
 
 	/* Thread Pool handling*/
 
 	// threadpool thpool = thpool_init(MAX_THREADS);
-	threadpool thpool = thpool_init(4);
+	threadpool thpool = thpool_init(NUM_THREAD);
 
 	const int buffer_size = 1000000;
 	const int start_location = 0;
@@ -43,15 +44,17 @@ int main() {
 
 	thpool_add_work(thpool, (void*)producer, &args_p);
 	
-	for(int i = 0; i < NUM_CONSUMER; i++){
+	int i;
+	for(i = 0; i < NUM_CONSUMER; i++){
 		thpool_add_work(thpool, (void*)consumer, &args_c);
 	}
 
-	//thpool_destroy(thpool);
-	int n;
-	for (n=0; n < 4; n++){
-		pthread_join(thpool->threads[n]->pthread, NULL);
+	int j;
+	for (j=0; j < NUM_THREAD; j++){
+		pthread_join(thpool->threads[j]->pthread, NULL);
 	}
+	
+	thpool_destroy(thpool);
 
 	return 0;
 
