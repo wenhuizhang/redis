@@ -47,7 +47,11 @@ int main() {
 		thpool_add_work(thpool, (void*)consumer, &args_c);
 	}
 
-	thpool_destroy(thpool);
+	//thpool_destroy(thpool);
+	int n;
+	for (n=0; n < 4; n++){
+		pthread_join(thpool->threads[n]->pthread, NULL);
+	}
 
 	return 0;
 
