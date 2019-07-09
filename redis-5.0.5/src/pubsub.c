@@ -269,11 +269,33 @@ int pubsubPublishMessage(robj *channel, robj *message) {
         listRewind(list,&li);
         while ((ln = listNext(&li)) != NULL) {
             client *c = ln->value;
+	    printf("client id is: %d\n", ln->value);
+	
+	    printf("message->ptr is:\n");
             hexDump(message->ptr, sizeof(message->ptr));
-            addReply(c,shared.mbulkhdr[3]);
+            
+	    addReply(c,shared.mbulkhdr[3]);
+	    printf("shared.mbulkhdr[0] is:\n");
+            hexDump(shared.mbulkhdr[0]->ptr, sizeof(shared.mbulkhdr[0]->ptr));
+	    printf("shared.mbulkhdr[1] is:\n");
+            hexDump(shared.mbulkhdr[1]->ptr, sizeof(shared.mbulkhdr[1]->ptr));
+	    printf("shared.mbulkhdr[2] is:\n");
+            hexDump(shared.mbulkhdr[2]->ptr, sizeof(shared.mbulkhdr[2]->ptr));
+	    printf("shared.mbulkhdr[3] is:\n");
+            hexDump(shared.mbulkhdr[3]->ptr, sizeof(shared.mbulkhdr[3]->ptr));
+            
             addReply(c,shared.messagebulk);
+	    printf("shared.messagebulk is:\n");
+            hexDump(shared.messagebulk->ptr, sizeof(shared.messagebulk->ptr));
+            
             addReplyBulk(c,channel);
+	    printf("channel is:\n");
+            hexDump(channel->ptr, sizeof(channel->ptr));
+            
             addReplyBulk(c,message);
+	    printf("message is:\n");
+            hexDump(message->ptr, sizeof(message->ptr));
+            
             receivers++;
         }
     }
@@ -289,10 +311,25 @@ int pubsubPublishMessage(robj *channel, robj *message) {
                                 (char*)channel->ptr,
                                 sdslen(channel->ptr),0)) {
                 addReply(pat->client,shared.mbulkhdr[4]);
+		printf("shared.mbulkhdr[4]->ptr is:\n");
+            	hexDump(shared.mbulkhdr[4]->ptr, sizeof(shared.mbulkhdr[4]->ptr));
+
                 addReply(pat->client,shared.pmessagebulk);
+		printf("shared.pmessagebulk is:\n");
+            	hexDump(shared.pmessagebulk->ptr, sizeof(shared.pmessagebulk->ptr));
+
                 addReplyBulk(pat->client,pat->pattern);
+		printf("pat->pattern is:\n");
+            	hexDump(pat->pattern->ptr, sizeof(pat->pattern->ptr));
+
                 addReplyBulk(pat->client,channel);
+		printf("channel is:\n");
+            	hexDump(channel->ptr, sizeof(channel->ptr));
+
                 addReplyBulk(pat->client,message);
+		printf("message is:\n");
+            	hexDump(message->ptr, sizeof(message->ptr));
+
                 receivers++;
             }
         }

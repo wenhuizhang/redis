@@ -25,91 +25,49 @@
 
 #include "../ringbuf.h"
 
-
-#define	MAXBUF	10000000
-#define	NUM_THREADS (2*get_nprocs())
-
-
-
-struct consumer_args{
-	struct ring* ring_buffer;
-	int start_location;
-	int get_size;
-};
-
-
-struct producer_args{
-	struct ring* ring_buffer;
-};
-
-
-
-
-void *producer(void *arg)
-{
-	struct producer_args* args = (struct producer_args*) arg;
-	int data_size = 8;
-	void* data[data_size];
-	for(int j = 0; j < data_size; j++){
-		data[j] = malloc(sizeof(int));
-	}
-	int i = 0;
-	while(1){
-
-		int count = ring_push(args->ring_buffer, &data[i%data_size]);
-		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
-		i++;
-	}
-	return NULL;	
-}
-
-void *consumer(void *arg)
-{
-	struct consumer_args* args = (struct consumer_args*)arg;
-	struct consumer *cons = init_consumer( args->start_location );
-	void* get_data;
-	get_data = ring_get(args->ring_buffer, cons);
-	printf("get data %d = %p\n", cons->location, get_data);
-	while(get_data != NULL){
-		get_data = ring_get(args->ring_buffer, cons);
-		printf("get data %d = %p\n", cons->location, get_data);
-	}
-	destroy_consumer(cons);
-	return NULL;
-}
-
-
+#define NUM_CONSUMER 1
 
 
 int main() {
-    
-	pthread_t tid[NUM_THREADS];
+/*****************TODO************************/
+// args_c.consumer_id%numThreads
+// one thread for write
+// other threads are for read
+// one thread for one read
+// if there are more consumer than threads left
+// use mode value for thread assign
 
-	const int buffer_size = 100000;
+	int numThreads;
+
+	if(NUM_CONSUMER <= (MAX_THREADS-1)){
+		numThreads = NUM_CONSUMER;
+	}else{
+		numThreads = MAX_THREADS-1 ;
+	}
+
+	pthread_t tid[numThreads+1];
+
+	const int buffer_size = 1000000;
 	const int start_location = 0;
 
-	int get_size_1 = 2;
-	int get_size_2 = 12;
+	int get_size = 12000;
+	int err;
 	
 	struct producer_args args_p;
 	args_p.ring_buffer = init_ring( buffer_size );
 
-	// printf("Configured processor %d\n", get_nprocs_conf());
-	// printf("Available processor %d\n", get_nprocs());
-		
-	int err = pthread_create(&(tid[NUM_THREADS-1]), NULL, &producer, (void*)&args_p);
-
 	struct consumer_args args_c;
 	args_c.ring_buffer = args_p.ring_buffer;
 	args_c.start_location = start_location;
-	args_c.get_size = get_size_1;
+	args_c.get_size = get_size;
 
-	for(int i = 0; i < NUM_THREADS-1; i++){
+	err = pthread_create(&(tid[numThreads]), NULL, &producer, (void*)&args_p);
+
+	for(int i = 0; i < numThreads; i++){
 		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)&args_c);
 	}
 
-
-	for(int i = 0; i<NUM_THREADS; i++){
+	for(int i = 0; i<MAX_THREADS; i++){
 		pthread_join(tid[i], NULL);
 	}
 
