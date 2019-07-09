@@ -175,6 +175,7 @@ void thpool_wait(thpool_* thpool_p){
 /* Destroy the threadpool */
 void thpool_destroy(thpool_* thpool_p){
 	/* No need to destory if it's NULL */
+	printf("%s thpool_p=%p\n", __func__, thpool_p);
 	if (thpool_p == NULL) return ;
 
 	volatile int threads_total = thpool_p->num_threads_alive;
@@ -204,6 +205,7 @@ void thpool_destroy(thpool_* thpool_p){
 	/* Deallocs */
 	int n;
 	for (n=0; n < threads_total; n++){
+		pthread_join(thpool_p->threads[n]->pthread, NULL);
 		thread_destroy(thpool_p->threads[n]);
 	}
 	free(thpool_p->threads);
@@ -279,6 +281,7 @@ static void* thread_do(struct thread* thread_p){
 	char thread_name[128] = {0};
 	sprintf(thread_name, "thread-pool-%d", thread_p->id);
 
+	printf("I am here\n");
 	/* Assure all threads have been created before starting serving */
 	thpool_* thpool_p = thread_p->thpool_p;
 
@@ -294,6 +297,7 @@ static void* thread_do(struct thread* thread_p){
 	/* Mark thread as alive (initialized) */
 	pthread_mutex_lock(&thpool_p->thcount_lock);
 	thpool_p->num_threads_alive += 1;
+	printf("%s: thpool_p->num_threads_alive=%d\n", __func__, thpool_p->num_threads_alive);
 	pthread_mutex_unlock(&thpool_p->thcount_lock);
 
 	while(threads_keepalive){

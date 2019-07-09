@@ -25,7 +25,8 @@ int main() {
 
 	/* Thread Pool handling*/
 
-	threadpool thpool = thpool_init(MAX_THREADS);
+	// threadpool thpool = thpool_init(MAX_THREADS);
+	threadpool thpool = thpool_init(4);
 
 	const int buffer_size = 1000000;
 	const int start_location = 0;

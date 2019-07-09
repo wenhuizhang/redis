@@ -150,10 +150,10 @@ void *producer(void *arg)
                 data[j] = malloc(sizeof(int));
         }
         int i = 0;
-        while(1){
+        while(i < 20){
 
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
-                printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
+		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
         return NULL;
