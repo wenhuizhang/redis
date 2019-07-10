@@ -246,6 +246,7 @@ static void* thread_do(struct thread* thread_p){
 			void (*func_buff)(void*);
 			void*  arg_buff;
 			job* job_p = jobqueue_pull(&thpool_p->jobqueue);
+			printf("[mid]%s: job_p=%p\n", __func__, job_p);
 			if (job_p) {
 				func_buff = job_p->function;
 				arg_buff  = job_p->arg;

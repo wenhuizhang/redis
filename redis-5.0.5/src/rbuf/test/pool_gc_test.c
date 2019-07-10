@@ -27,7 +27,7 @@ int main(void) {
 	/* init thread pool for this channel*/
 	threadpool thpool = thpool_init(NUM_THREAD);
 
-	int buffer_size = 1000000;
+	int buffer_size = 100000000;
 
 	int get_size = buffer_size;
 
@@ -44,14 +44,12 @@ int main(void) {
     	struct consumer_args *node, *node2, *node3;
     	struct consumer_args *head, *tail;
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
 	list = con_init();
-    	node = con_create_node(ring_buffer, 10, buffer_size);
-    	node2 = con_create_node(ring_buffer, 1, buffer_size);
-    	node3 = con_create_node(ring_buffer, 100, buffer_size);
+    	node = con_create_node(ring_buffer, 0, buffer_size);
+    	node2 = con_create_node(ring_buffer, 0, buffer_size);
+    	node3 = con_create_node(ring_buffer, 0, buffer_size);
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
     	con_append(list, node);
     	con_append(list, node2);
@@ -59,23 +57,20 @@ int main(void) {
     	head = con_first(list);
     	tail = con_last(list);
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
 	/* add producer to job tank */
 	thpool_add_work(thpool, (void*)producer, &args_p);
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
-	sleep(5000);	
 	/* add consumers to job tank */
 	struct consumer_args *args_c;
 	args_c = con_first(list);
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
 	while(args_c != NULL) {
-		thpool_add_work(thpool, (void*)consumer, &args_c);
+		thpool_add_work(thpool, (void*)consumer, args_c);
 		args_c = con_first(list);
+		printf("in while %s: LINE=%d\n", __func__, __LINE__);
 	}
 
 	for (int j=0; j < NUM_THREAD; j++){
