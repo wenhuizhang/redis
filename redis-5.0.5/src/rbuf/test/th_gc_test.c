@@ -61,7 +61,8 @@ int main(void) {
 
 	/* assign consumers to threads */
         struct consumer_args *args_c;
-        args_c = con_first(list);
+        args_c = con_first_peek(list);
+	printf("get location=%d\n", args_c->start_location);
 	int i = 1;
 	while(args_c != NULL){
 		if(i >= (NUM_THREADS - 1)){
@@ -70,6 +71,7 @@ int main(void) {
 		}
 		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)args_c);
         	args_c = con_first(list);
+	        printf("get location=%d\n", args_c->start_location);
 		i++;
 	}
 	
