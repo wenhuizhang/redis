@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <pthread.h>
 #include <sys/sysinfo.h>
@@ -64,7 +65,8 @@ int main(void) {
 	thpool_add_work(thpool, (void*)producer, &args_p);
 
 	printf("%s: LINE=%d\n", __func__, __LINE__);
-	
+
+	sleep(5000);	
 	/* add consumers to job tank */
 	struct consumer_args *args_c;
 	args_c = con_first(list);
