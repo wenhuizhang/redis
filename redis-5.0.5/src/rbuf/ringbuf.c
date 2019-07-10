@@ -75,11 +75,6 @@ void* ring_get(struct ring *rb, struct consumer *con)
 {
 
 //	printf("%s: con=%p, rb=%p\n", __func__, con, rb);
-
-	if((rb->count - con->location) > rb->size){
-		printf("buffer size %d, too small\n", rb->size);
-		con->location = rb->count - rb->size + (rb->size / 2);
-	}
 	
 	if ( rb->count < 0 ){
 		return NULL;
@@ -87,6 +82,12 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	
 	if ( con->location < 0 ){
 		return NULL;
+	}
+	
+
+	if((rb->count - con->location) > rb->size){
+		printf("buffer size %d, too small\n", rb->size);
+		con->location = rb->count - rb->size + (rb->size / 2);
 	}
 	
 	if( con->location >= rb->count){
