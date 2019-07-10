@@ -91,7 +91,9 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	
 	if( con->location >= rb->count){
 		// printf("overread\n");
-		return NULL;
+		// sleep(1);
+		// return NULL;
+		con->location = rb->count;
 	}
 	
 	void* temp;
@@ -101,9 +103,6 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	con->location = con->location + 1;
 	return  temp;
 }
-
-
-
 
 
 
@@ -155,8 +154,20 @@ void *producer(void *arg)
         for(int j = 0; j < data_size; j++){
                 data[j] = malloc(sizeof(int));
         }
+
+	/* feed in data */
+	/*
 	int i = 0;
         while(1){
+                int count = ring_push(args->ring_buffer, &data[i%data_size]);
+		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
+                i++;
+        }
+	*/
+
+	/* feed in data test */
+	int i = 0;
+        while(i<20){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;

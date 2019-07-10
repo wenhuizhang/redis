@@ -53,15 +53,15 @@ int main(void) {
         con_append(list, node);
         con_append(list, node2);
         con_append(list, node3);
-        head = con_first(list);
-        tail = con_last(list);
+        //head = con_first(list);
+        //tail = con_last(list);
 
 	/* assign producer to a thread*/
 	int err = pthread_create(&(tid[0]), NULL, &producer, (void*)&args_p);
 
 	/* assign consumers to threads */
         struct consumer_args *args_c;
-        args_c = con_first_peek(list);
+        args_c = con_first(list);
 	printf("get location=%d\n", args_c->start_location);
 	int i = 1;
 	while(args_c != NULL){

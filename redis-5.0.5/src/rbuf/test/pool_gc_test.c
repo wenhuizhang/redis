@@ -54,8 +54,8 @@ int main(void) {
     	con_append(list, node);
     	con_append(list, node2);
     	con_append(list, node3);
-    	head = con_first(list);
-    	tail = con_last(list);
+//    	head = con_first(list);
+//    	tail = con_last(list);
 
 
 	/* add producer to job tank */
