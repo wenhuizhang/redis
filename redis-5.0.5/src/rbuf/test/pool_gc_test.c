@@ -20,7 +20,7 @@
 
 #include "../ringbuf.h"
 
-#define NUM_THREAD 17
+#define NUM_THREAD 4
 
 int main(void) {
 
