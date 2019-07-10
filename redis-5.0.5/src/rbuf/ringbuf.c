@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <pthread.h>
 #include <sys/sysinfo.h>
@@ -94,7 +95,7 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	if( con->location >= rb->count){
 		// printf("overread\n");
 		con->location = rb->count;
-		sleep(1);
+		usleep(1); // sleep in microsecond
 		// return NULL;
 		// con->location = con->location/2;
 		return ring_get(rb, con); 
