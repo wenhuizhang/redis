@@ -11,11 +11,12 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# include "./ringbuf.h"
+# include <assert.h>
+# include "ringbuf.h"
 
 
 struct list_consumers*
-con_init()
+con_init(void)
 {
         struct list_consumers *list = malloc(sizeof(struct list_consumers));
 
@@ -76,11 +77,18 @@ con_prepend(struct list_consumers *list, struct consumer_args *node)
 struct consumer_args*
 con_first(struct list_consumers *list)
 {
-        struct consumer_args *node = list->head;
+        struct consumer_args *node;
+	
+	assert(list != NULL);
+
+	node = list->head;
 
         if (node){
                 list->head = node->next;
-                list->head->last = NULL;
+		printf("list->head=%p\n", list->head);
+		if(list->head){
+                	list->head->last = NULL;
+		}	
                 list->size--;
         }
 

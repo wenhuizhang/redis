@@ -258,7 +258,7 @@ int thpool_num_threads_working(threadpool);
 
 
 
-struct list_consumers* con_init();
+struct list_consumers* con_init(void);
 
 struct consumer_args* con_create_node(struct ring* ringbuf, int location, int size);
 
