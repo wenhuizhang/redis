@@ -19,5 +19,5 @@ ringbuf:
 tests:
 	cd test && make
 clean:
-	rm -f *.o
+	rm -f *.o *.txt
 	cd test && make clean

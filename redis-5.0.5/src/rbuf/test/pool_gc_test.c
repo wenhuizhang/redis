@@ -20,7 +20,7 @@
 
 #include "../ringbuf.h"
 
-#define NUM_THREAD 4
+#define NUM_THREAD 17
 
 int main(void) {
 
@@ -46,9 +46,9 @@ int main(void) {
 
 
 	list = con_init();
-    	node = con_create_node(ring_buffer, 0, buffer_size);
-    	node2 = con_create_node(ring_buffer, 0, buffer_size);
-    	node3 = con_create_node(ring_buffer, 0, buffer_size);
+    	node = con_create_node(ring_buffer, 1, buffer_size);
+    	node2 = con_create_node(ring_buffer, 10, buffer_size);
+    	node3 = con_create_node(ring_buffer, 100, buffer_size);
 
 
     	con_append(list, node);
@@ -77,13 +77,11 @@ int main(void) {
 		pthread_join(thpool->threads[j]->pthread, NULL);
 	}
 	
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 
 	thpool_destroy(thpool);
 	con_free(list, NULL);
 	destroy_ring(ring_buffer);
 
-	printf("%s: LINE=%d\n", __func__, __LINE__);
 	return 0;
 
 }
