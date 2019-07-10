@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <pthread.h>
 #include <sys/sysinfo.h>
@@ -92,9 +93,12 @@ void* ring_get(struct ring *rb, struct consumer *con)
 	
 	if( con->location >= rb->count){
 		// printf("overread\n");
-		// sleep(1);
-		// return NULL;
 		con->location = rb->count;
+		sleep(1);
+		// return NULL;
+		// con->location = con->location/2;
+		return ring_get(rb, con); 
+			
 	}
 	
 	void* temp;
@@ -157,22 +161,25 @@ void *producer(void *arg)
         }
 
 	/* feed in data */
-	/*
+	
 	int i = 0;
         while(1){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
-	*/
+
 
 	/* feed in data test */
+/*
 	int i = 0;
         while(i<20){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
+*/
+
         return NULL;
 }
 
