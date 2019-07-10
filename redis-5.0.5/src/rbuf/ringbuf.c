@@ -159,26 +159,30 @@ void *producer(void *arg)
         for(int j = 0; j < data_size; j++){
                 data[j] = malloc(sizeof(int));
         }
-
+	
+	/* before writing, send signal as producer is active*/ 	
+	args->status = 0;
 	/* feed in data */
 	
+/*
 	int i = 0;
         while(1){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
-
+*/
 
 	/* feed in data test */
-/*
 	int i = 0;
         while(i<20){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
-*/
+
+	/* after finish writing, send signal as not active*/ 
+	args->status = 1;
 
         return NULL;
 }
@@ -188,12 +192,21 @@ void *consumer(void *arg)
         struct consumer_args* args = (struct consumer_args*)arg;
         struct consumer *cons = init_consumer( args->start_location );
         void* get_data;
-        get_data = ring_get(args->ring_buffer, cons);
+	
+	/* before reading, send signal as producer is active*/ 	
+	args->status = 0;
+        
+	get_data = ring_get(args->ring_buffer, cons);
         printf("get data %d = %p\n", cons->location, get_data);
         while(get_data != NULL){
                 get_data = ring_get(args->ring_buffer, cons);
                 printf("get data %d = %p\n", cons->location, get_data);
         }
+
+
+	/* after finish reading, send signal as not active*/ 
+	args->status = 1;
+
         destroy_consumer(cons);
         return NULL;
 }

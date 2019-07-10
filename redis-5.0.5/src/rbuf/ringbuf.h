@@ -27,6 +27,7 @@ struct consumer_args{
         int get_size;
         int consumer_id;
         int channel_id;
+	int status;  // 0 is active, 1 is not active
 	struct consumer_args *next;
 	struct consumer_args *last;
 };
@@ -41,6 +42,7 @@ struct producer_args{
         struct ring* ring_buffer;
         int producer_id;
         int channel_id;
+	int status;  // 0 is active, 1 is not active
 	struct producer_args *next;
 	struct producer_args *last;
 };
