@@ -73,7 +73,9 @@ int main(void) {
 		printf("in while %s: LINE=%d\n", __func__, __LINE__);
 	}
 
+	printf("joining\n");
 	for (int j=0; j < NUM_THREAD; j++){
+		printf("joining thread %d\n", j);
 		pthread_join(thpool->threads[j]->pthread, NULL);
 	}
 	
