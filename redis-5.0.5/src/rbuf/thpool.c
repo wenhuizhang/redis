@@ -129,7 +129,7 @@ void thpool_destroy(thpool_* thpool_p){
 	/* Poll remaining threads */
 	while (thpool_p->num_threads_alive){
 		bsem_post_all(thpool_p->jobqueue.has_jobs);
-		sleep(1);
+		usleep(1);
 	}
 
 	/* Job queue cleanup */
@@ -197,7 +197,7 @@ static void thread_hold(int sig_id) {
     (void)sig_id;
 	threads_on_hold = 1;
 	while (threads_on_hold){
-		sleep(1);
+		usleep(1);
 	}
 }
 
@@ -246,6 +246,7 @@ static void* thread_do(struct thread* thread_p){
 			void (*func_buff)(void*);
 			void*  arg_buff;
 			job* job_p = jobqueue_pull(&thpool_p->jobqueue);
+			printf("[mid]%s: job_p=%p\n", __func__, job_p);
 			if (job_p) {
 				func_buff = job_p->function;
 				arg_buff  = job_p->arg;

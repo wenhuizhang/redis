@@ -27,13 +27,30 @@ struct consumer_args{
         int get_size;
         int consumer_id;
         int channel_id;
+	int status;  // 0 is active, 1 is not active
+	struct consumer_args *next;
+	struct consumer_args *last;
 };
 
+struct list_consumers{
+	struct consumer_args *head;
+	struct consumer_args *tail;
+	int size;
+};
 
 struct producer_args{
         struct ring* ring_buffer;
         int producer_id;
         int channel_id;
+	int status;  // 0 is active, 1 is not active
+	struct producer_args *next;
+	struct producer_args *last;
+};
+
+struct list_producer{
+	struct producer_args *head;
+	struct producer_args *tail;
+	int size;
 };
 
 
@@ -230,6 +247,44 @@ void thpool_destroy(threadpool);
  */
 int thpool_num_threads_working(threadpool);
 
+
+
+/***********************************************************/
+/*********************Linkedlist : FIFO*********************/
+/************FIFO for Consumer and Producer ****************/
+/***********************************************************/
+
+/* A linked list for holding consumers 
+* and producers for a specific channel
+*/
+
+
+
+struct list_consumers* con_init(void);
+
+struct consumer_args* con_create_node(struct ring* ringbuf, int location, int size);
+
+int con_get_size(struct list_consumers *list);
+
+void con_append(struct list_consumers *list, struct consumer_args *node);
+
+void con_prepend(struct list_consumers *list, struct consumer_args *node);
+
+struct consumer_args* con_first(struct list_consumers *list);
+
+struct consumer_args* con_first_peek(struct list_consumers *list);
+
+struct consumer_args* con_last(struct list_consumers *list);
+
+struct consumer_args* con_last_peek(struct list_consumers *list);
+
+void con_print(struct list_consumers *list, void(*print_node)(struct consumer_args*));
+
+void con_remove(struct list_consumers *list, struct consumer_args *node);
+
+void con_clear(struct list_consumers *list, void(*free_node)(struct consumer_args*));
+
+void con_free(struct list_consumers *list, void(*free_node)(struct consumer_args*));
 
 
 #endif 
