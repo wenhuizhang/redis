@@ -77,7 +77,7 @@ JEMALLOC_LDFLAGS= $(LDFLAGS)
 
 jemalloc: .make-prerequisites
 	@printf '%b %b\n' $(MAKECOLOR)MAKE$(ENDCOLOR) $(BINCOLOR)$@$(ENDCOLOR)
-	cd jemalloc && ./configure --with-version=5.2.0-0-gb0b3e49a54ec29e32636f4577d9d5a896d67fd20 --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS="$(JEMALLOC_CFLAGS)" LDFLAGS="$(JEMALLOC_LDFLAGS)"
+	cd jemalloc && ./configure --with-version=0.0.0-0-g0000000000000000000000000000000000000000 --with-lg-quantum=3 --with-jemalloc-prefix=je_ --enable-cc-silence CFLAGS="$(JEMALLOC_CFLAGS)" LDFLAGS="$(JEMALLOC_LDFLAGS)"
 	cd jemalloc && $(MAKE) CFLAGS="$(JEMALLOC_CFLAGS)" LDFLAGS="$(JEMALLOC_LDFLAGS)" lib/libjemalloc.a
 
 .PHONY: jemalloc
