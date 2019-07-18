@@ -67,7 +67,7 @@ int main() {
 		err = pthread_create(&(tid[i]), NULL, &consumer, (void*)&args_c);
 	}
 
-	for(int i = 0; i<MAX_THREADS; i++){
+	for(int i = 0; i<(numThreads+1); i++){
 		pthread_join(tid[i], NULL);
 	}
 

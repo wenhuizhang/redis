@@ -165,22 +165,21 @@ void *producer(void *arg)
 	args->status = 0;
 	/* feed in data */
 	
-/*
 	int i = 0;
         while(1){
                 int count = ring_push(args->ring_buffer, &data[i%data_size]);
 		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
                 i++;
         }
-*/
+
 
 	/* feed in data test */
-	int i = 0;
-        while(i<20){
-                int count = ring_push(args->ring_buffer, &data[i%data_size]);
-		printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
-                i++;
-        }
+//	int i = 0;
+//      while(i<20){
+//                int count = ring_push(args->ring_buffer, &data[i%data_size]);
+//		  printf("i = %d, push data %d = %p \n", i, count, &data[i%data_size]);
+//                i++;
+//        }
 
 	/* after finish writing, send signal as not active*/ 
 	args->status = 1;

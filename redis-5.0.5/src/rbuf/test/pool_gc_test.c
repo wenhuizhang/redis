@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
+
 
 #include <pthread.h>
 #include <sys/sysinfo.h>
@@ -72,13 +74,14 @@ int main(void) {
 		args_c = con_first(list);
 		printf("in while %s: LINE=%d\n", __func__, __LINE__);
 	}
-
+/*
 	printf("joining\n");
 	for (int j=0; j < NUM_THREAD; j++){
 		printf("joining thread %d\n", j);
 		pthread_join(thpool->threads[j]->pthread, NULL);
 	}
-	
+*/	
+	usleep(1000);
 	printf("finished\n");
 	int signal = 1;
 	thpool_destroy(thpool);
