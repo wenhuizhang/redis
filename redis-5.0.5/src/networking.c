@@ -307,11 +307,11 @@ void addReply(client *c, robj *obj) {
     }
 
     if (sdsEncodedObject(obj)) {
-	 printf("pubsub: obj->encoding is SDS\n");
+	 //printf("pubsub: obj->encoding is SDS\n");
         if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK){
-	    printf("pubsub: add reply to buffer\n");
+	   // printf("pubsub: add reply to buffer\n");
             _addReplyStringToList(c,obj->ptr,sdslen(obj->ptr));
-	    printf("pubsub: add reply string to list\n");
+	    //printf("pubsub: add reply string to list\n");
 	}
     } else if (obj->encoding == OBJ_ENCODING_INT) {
 	 // printf("pubsub: obj->encoding is INT\n");
