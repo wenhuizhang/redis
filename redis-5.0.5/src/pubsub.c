@@ -321,6 +321,10 @@ int pubsubPublishMessage(robj *channel, robj *message) {
             //pubOneSub(my_arg); 
             receivers++;
         }
+
+	for(int i = 0; i<(receivers+1); i++){
+		pthread_join(tid[i], NULL);
+	}
     }
  //   /* Send to clients listening to matching channels */
     if (listLength(server.pubsub_patterns)) {
