@@ -322,7 +322,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
             receivers++;
         }
 
-	for(int i = 0; i<(receivers+1); i++){
+	for(int i = 0; i<receivers; i++){
 		pthread_join(tid[i], NULL);
 	}
     }
