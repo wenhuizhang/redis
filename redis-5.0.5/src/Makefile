@@ -43,8 +43,7 @@ endif
 endif
 endif
 
-MALLOC=libc
-
+MALLOC=jemalloc
 
 # To get ARM stack traces if Redis crashes we need a special C flag.
 ifneq (,$(filter aarch64 armv,$(uname_M)))

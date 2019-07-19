@@ -5,7 +5,7 @@ set -m
 
 rm -rf ./jemalloc
 VER=5.2
-git clone https://github.com/wenhuizhang/jemalloc.git
+git clone https://github.com/jemalloc/jemalloc.git
 cd jemalloc 
 git checkout 5.2.0
 
