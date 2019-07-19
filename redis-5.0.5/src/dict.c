@@ -518,13 +518,13 @@ dictEntry *dictFind(dict *d, const void *key)
         while(he) {
 	    i ++;
             if (key==he->key || dictCompareKeys(d, key, he->key)){
-		printf("how many keys, %d\n", i);
-		printf("key is %p\n", key);
-                hexDump(key, 3);
+		//printf("how many keys, %d\n", i);
+		//printf("key is %p\n", key);
+                //hexDump(key, 3);
                 return he;
 	    }
 
-            hexDump(key, 3);
+            //hexDump(key, 3);
             he = he->next;
         }
         if (!dictIsRehashing(d)) return NULL;
