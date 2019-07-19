@@ -1,0 +1,59 @@
+18899:C 19 Jul 2019 00:23:43.652 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+18899:C 19 Jul 2019 00:23:43.652 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=18899, just started
+18899:C 19 Jul 2019 00:23:43.652 # Configuration loaded
+18899:M 19 Jul 2019 00:23:43.653 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21242
+ |    `-._   `._    /     _.-'    |     PID: 18899
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+18899:M 19 Jul 2019 00:23:43.654 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+18899:M 19 Jul 2019 00:23:43.654 # Server initialized
+18899:M 19 Jul 2019 00:23:43.654 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+18899:M 19 Jul 2019 00:23:43.654 * Ready to accept connections
+18899:M 19 Jul 2019 00:23:43.655 - 0 clients connected (0 replicas), 861344 bytes in use
+18899:M 19 Jul 2019 00:23:43.657 - Accepted 127.0.0.1:44517
+18899:M 19 Jul 2019 00:23:43.657 - Client closed connection
+18899:M 19 Jul 2019 00:23:43.767 - Accepted 127.0.0.1:43553
+18899:M 19 Jul 2019 00:23:43.770 - Accepted 127.0.0.1:42261
+18899:M 19 Jul 2019 00:23:43.811 - Accepted 127.0.0.1:39791
+18899:M 19 Jul 2019 00:23:43.852 - Accepted 127.0.0.1:39621
+18899:M 19 Jul 2019 00:23:43.852 - Protocol error (invalid mbulk count) from client: id=7 addr=127.0.0.1:39621 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=11 qbuf-free=32757 obl=47 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: '*20000000..'
+18899:M 19 Jul 2019 00:23:43.853 - Accepted 127.0.0.1:46089
+18899:M 19 Jul 2019 00:23:43.853 - Protocol error (expected $ but got something else) from client: id=8 addr=127.0.0.1:46089 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=26 qbuf-free=32742 obl=44 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: 'fooz..'
+18899:M 19 Jul 2019 00:23:43.854 - Accepted 127.0.0.1:33417
+18899:M 19 Jul 2019 00:23:43.854 - Protocol error (invalid bulk length) from client: id=9 addr=127.0.0.1:33417 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=26 qbuf-free=32742 obl=42 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: '$-10..'
+18899:M 19 Jul 2019 00:23:43.854 - Accepted 127.0.0.1:36547
+18899:M 19 Jul 2019 00:23:43.855 - Protocol error (invalid bulk length) from client: id=10 addr=127.0.0.1:36547 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=33 qbuf-free=32735 obl=42 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: '$2000000000..'
+18899:M 19 Jul 2019 00:23:43.855 - Accepted 127.0.0.1:37933
+18899:M 19 Jul 2019 00:23:43.855 - Protocol error (invalid bulk length) from client: id=11 addr=127.0.0.1:37933 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=29 qbuf-free=32739 obl=42 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: '$blabla..'
+18899:M 19 Jul 2019 00:23:43.856 - Accepted 127.0.0.1:37143
+18899:M 19 Jul 2019 00:23:43.856 - Protocol error (expected $ but got something else) from client: id=12 addr=127.0.0.1:37143 fd=10 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=9 qbuf-free=32759 obl=44 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: 'foo..'
+18899:M 19 Jul 2019 00:23:43.856 - Accepted 127.0.0.1:37611
+18899:M 19 Jul 2019 00:23:43.857 - Accepted 127.0.0.1:42889
+18899:M 19 Jul 2019 00:23:43.857 - Protocol error (unbalanced quotes in inline request) from client: id=14 addr=127.0.0.1:42889 fd=11 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=37 qbuf-free=32731 obl=51 oll=0 omem=0 events=r cmd=select. Query buffer during protocol error: 'set """test-key""" test-value..ping..'
+18899:M 19 Jul 2019 00:23:43.857 - Accepted 127.0.0.1:41935
+18899:M 19 Jul 2019 00:23:43.961 - Protocol error (too big inline request) from client: id=15 addr=127.0.0.1:41935 fd=11 name= age=0 idle=0 flags=N db=0 sub=0 psub=0 multi=-1 qbuf=65542 qbuf-free=65592 obl=45 oll=0 omem=0 events=r cmd=NULL. Query buffer during protocol error: '' (... more 65414 bytes ...) 'dpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayload'
+18899:M 19 Jul 2019 00:23:43.961 - Accepted 127.0.0.1:37479
+18899:M 19 Jul 2019 00:23:44.028 - Protocol error (too big mbulk count string) from client: id=16 addr=127.0.0.1:37479 fd=11 name= age=0 idle=0 flags=N db=0 sub=0 psub=0 multi=-1 qbuf=65543 qbuf-free=65551 obl=49 oll=0 omem=0 events=r cmd=NULL. Query buffer during protocol error: '*' (... more 65415 bytes ...) 'dpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayload'
+18899:M 19 Jul 2019 00:23:44.028 - Accepted 127.0.0.1:46073
+18899:M 19 Jul 2019 00:23:44.085 - Protocol error (too big inline request) from client: id=17 addr=127.0.0.1:46073 fd=11 name= age=1 idle=0 flags=N db=0 sub=0 psub=0 multi=-1 qbuf=65564 qbuf-free=65642 obl=45 oll=0 omem=0 events=r cmd=NULL. Query buffer during protocol error: '$' (... more 65436 bytes ...) 'dpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayload'
+18899:signal-handler (1563510224) Received SIGTERM scheduling shutdown...
+18899:M 19 Jul 2019 00:23:44.156 # User requested shutdown...
+18899:M 19 Jul 2019 00:23:44.156 * Saving the final RDB snapshot before exiting.
+18899:M 19 Jul 2019 00:23:44.156 * DB saved on disk
+18899:M 19 Jul 2019 00:23:44.156 * Removing the pid file.
+18899:M 19 Jul 2019 00:23:44.156 # Redis is now ready to exit, bye bye...

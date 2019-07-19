@@ -1,0 +1,57 @@
+19160:C 19 Jul 2019 00:23:45.241 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19160:C 19 Jul 2019 00:23:45.241 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19160, just started
+19160:C 19 Jul 2019 00:23:45.241 # Configuration loaded
+19160:M 19 Jul 2019 00:23:45.242 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21254
+ |    `-._   `._    /     _.-'    |     PID: 19160
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19160:M 19 Jul 2019 00:23:45.242 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19160:M 19 Jul 2019 00:23:45.242 # Server initialized
+19160:M 19 Jul 2019 00:23:45.242 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19160:M 19 Jul 2019 00:23:45.242 * Ready to accept connections
+19160:M 19 Jul 2019 00:23:45.243 - 0 clients connected (0 replicas), 861344 bytes in use
+19160:M 19 Jul 2019 00:23:45.250 - Accepted 127.0.0.1:33369
+19160:M 19 Jul 2019 00:23:45.250 - Client closed connection
+19160:M 19 Jul 2019 00:23:45.355 - Accepted 127.0.0.1:43075
+19160:M 19 Jul 2019 00:23:45.356 * Background append only file rewriting started by pid 19168
+19160:M 19 Jul 2019 00:23:45.377 * AOF rewrite child asks to stop sending diffs.
+19168:C 19 Jul 2019 00:23:45.377 * Parent agreed to stop sending diffs. Finalizing AOF...
+19168:C 19 Jul 2019 00:23:45.377 * Concatenating 0.00 MB of AOF diff received from parent.
+19168:C 19 Jul 2019 00:23:45.378 * SYNC append only file rewrite performed
+19168:C 19 Jul 2019 00:23:45.378 * AOF rewrite: 0 MB of memory used by copy-on-write
+19160:M 19 Jul 2019 00:23:45.444 * Background AOF rewrite terminated with success
+19160:M 19 Jul 2019 00:23:45.444 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+19160:M 19 Jul 2019 00:23:45.444 * Background AOF rewrite finished successfully
+19160:M 19 Jul 2019 00:23:45.444 - Background AOF rewrite signal handler took 91us
+19160:M 19 Jul 2019 00:23:46.362 - Accepted 127.0.0.1:34663
+19160:M 19 Jul 2019 00:23:46.364 - Accepted 127.0.0.1:46565
+19160:M 19 Jul 2019 00:23:46.367 - Accepted 127.0.0.1:34197
+19160:M 19 Jul 2019 00:23:46.368 - Accepted 127.0.0.1:40175
+19160:M 19 Jul 2019 00:23:46.380 - Accepted 127.0.0.1:37323
+19160:M 19 Jul 2019 00:23:49.389 * Background append only file rewriting started by pid 19285
+19160:M 19 Jul 2019 00:23:50.394 - DB 9: 831141 keys (0 volatile) in 1048576 slots HT.
+19160:M 19 Jul 2019 00:23:50.394 - 6 clients connected (0 replicas), 85105240 bytes in use
+19160:M 19 Jul 2019 00:23:50.916 * AOF rewrite child asks to stop sending diffs.
+19285:C 19 Jul 2019 00:23:50.916 * Parent agreed to stop sending diffs. Finalizing AOF...
+19285:C 19 Jul 2019 00:23:50.916 * Concatenating 22.50 MB of AOF diff received from parent.
+19285:C 19 Jul 2019 00:23:51.048 * SYNC append only file rewrite performed
+19285:C 19 Jul 2019 00:23:51.052 * AOF rewrite: 94 MB of memory used by copy-on-write
+19160:M 19 Jul 2019 00:23:51.106 * Background AOF rewrite terminated with success
+19160:M 19 Jul 2019 00:23:51.109 * Residual parent diff successfully flushed to the rewritten AOF (2.97 MB)
+19160:M 19 Jul 2019 00:23:51.110 * Background AOF rewrite finished successfully
+19160:M 19 Jul 2019 00:23:51.110 - Background AOF rewrite signal handler took 3635us

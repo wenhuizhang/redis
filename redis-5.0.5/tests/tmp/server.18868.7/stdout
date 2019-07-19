@@ -1,0 +1,45 @@
+19182:C 19 Jul 2019 00:23:46.193 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19182:C 19 Jul 2019 00:23:46.193 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19182, just started
+19182:C 19 Jul 2019 00:23:46.193 # Configuration loaded
+19182:M 19 Jul 2019 00:23:46.194 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21245
+ |    `-._   `._    /     _.-'    |     PID: 19182
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19182:M 19 Jul 2019 00:23:46.195 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19182:M 19 Jul 2019 00:23:46.195 # Server initialized
+19182:M 19 Jul 2019 00:23:46.195 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19182:M 19 Jul 2019 00:23:46.195 * Ready to accept connections
+19182:M 19 Jul 2019 00:23:46.196 - 0 clients connected (0 replicas), 861344 bytes in use
+19182:M 19 Jul 2019 00:23:46.202 - Accepted 127.0.0.1:34731
+19182:M 19 Jul 2019 00:23:46.202 - Client closed connection
+19182:M 19 Jul 2019 00:23:46.307 - Accepted 127.0.0.1:34019
+19182:M 19 Jul 2019 00:23:46.434 - Accepted 127.0.0.1:39877
+19182:M 19 Jul 2019 00:23:46.434 - Accepted 127.0.0.1:34795
+19182:M 19 Jul 2019 00:23:46.435 - Accepted 127.0.0.1:39141
+19182:M 19 Jul 2019 00:23:47.314 - Accepted 127.0.0.1:36327
+19182:M 19 Jul 2019 00:23:47.315 * Replica 127.0.0.1:21246 asks for synchronization
+19182:M 19 Jul 2019 00:23:47.315 * Partial resynchronization not accepted: Replication ID mismatch (Replica asked for '4d3188bca8c060e545401ccef66cf2abd122d519', my replication IDs are 'c424d205836f24d2167a72c40e50fb71ea3cd9dc' and '0000000000000000000000000000000000000000')
+19182:M 19 Jul 2019 00:23:47.315 * Starting BGSAVE for SYNC with target: disk
+19182:M 19 Jul 2019 00:23:47.315 * Background saving started by pid 19226
+19226:C 19 Jul 2019 00:23:47.316 * DB saved on disk
+19226:C 19 Jul 2019 00:23:47.316 * RDB: 0 MB of memory used by copy-on-write
+19182:M 19 Jul 2019 00:23:47.398 * Background saving terminated with success
+19182:M 19 Jul 2019 00:23:47.398 * Synchronization with replica 127.0.0.1:21246 succeeded
+19182:M 19 Jul 2019 00:23:51.204 - DB 9: 6 keys (0 volatile) in 8 slots HT.
+19182:M 19 Jul 2019 00:23:51.204 - 4 clients connected (1 replicas), 2003176 bytes in use
+19182:M 19 Jul 2019 00:23:52.499 - Client closed connection

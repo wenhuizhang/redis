@@ -1,0 +1,79 @@
+19096:C 19 Jul 2019 00:23:44.133 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19096:C 19 Jul 2019 00:23:44.133 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19096, just started
+19096:C 19 Jul 2019 00:23:44.133 # Configuration loaded
+19096:M 19 Jul 2019 00:23:44.133 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21234
+ |    `-._   `._    /     _.-'    |     PID: 19096
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19096:M 19 Jul 2019 00:23:44.134 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19096:M 19 Jul 2019 00:23:44.134 # Server initialized
+19096:M 19 Jul 2019 00:23:44.134 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19096:M 19 Jul 2019 00:23:44.134 * Ready to accept connections
+19096:M 19 Jul 2019 00:23:44.135 - 0 clients connected (0 replicas), 861344 bytes in use
+19096:M 19 Jul 2019 00:23:44.142 - Accepted 127.0.0.1:43585
+19096:M 19 Jul 2019 00:23:44.142 - Client closed connection
+19096:M 19 Jul 2019 00:23:44.247 - Accepted 127.0.0.1:41995
+19096:M 19 Jul 2019 00:23:44.249 * DB saved on disk
+19096:M 19 Jul 2019 00:23:45.735 * DB saved on disk
+19096:M 19 Jul 2019 00:23:45.736 * Background saving started by pid 19170
+19170:C 19 Jul 2019 00:23:45.736 * DB saved on disk
+19170:C 19 Jul 2019 00:23:45.737 * RDB: 0 MB of memory used by copy-on-write
+19096:M 19 Jul 2019 00:23:45.835 * Background saving terminated with success
+19096:M 19 Jul 2019 00:23:46.738 * DB saved on disk
+19096:M 19 Jul 2019 00:23:46.738 # DB reloaded by DEBUG RELOAD
+19096:M 19 Jul 2019 00:23:46.752 * DB saved on disk
+19096:M 19 Jul 2019 00:23:46.753 * DB saved on disk
+19096:M 19 Jul 2019 00:23:46.753 # DB reloaded by DEBUG RELOAD
+19096:M 19 Jul 2019 00:23:46.753 * Background append only file rewriting started by pid 19207
+19096:M 19 Jul 2019 00:23:46.775 * AOF rewrite child asks to stop sending diffs.
+19207:C 19 Jul 2019 00:23:46.775 * Parent agreed to stop sending diffs. Finalizing AOF...
+19207:C 19 Jul 2019 00:23:46.775 * Concatenating 0.00 MB of AOF diff received from parent.
+19207:C 19 Jul 2019 00:23:46.775 * SYNC append only file rewrite performed
+19207:C 19 Jul 2019 00:23:46.776 * AOF rewrite: 0 MB of memory used by copy-on-write
+19096:M 19 Jul 2019 00:23:46.836 * Background AOF rewrite terminated with success
+19096:M 19 Jul 2019 00:23:46.836 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+19096:M 19 Jul 2019 00:23:46.836 * Background AOF rewrite finished successfully
+19096:M 19 Jul 2019 00:23:46.836 - Background AOF rewrite signal handler took 77us
+19096:M 19 Jul 2019 00:23:47.755 * Reading RDB preamble from AOF file...
+19096:M 19 Jul 2019 00:23:47.756 * Reading the remaining AOF tail...
+19096:M 19 Jul 2019 00:23:47.756 # Unable to obtain the AOF file length. stat: Bad file descriptor
+19096:M 19 Jul 2019 00:23:47.756 # Append Only File loaded by DEBUG LOADAOF
+19096:M 19 Jul 2019 00:23:47.757 * Background append only file rewriting started by pid 19239
+19096:M 19 Jul 2019 00:23:47.780 * AOF rewrite child asks to stop sending diffs.
+19239:C 19 Jul 2019 00:23:47.780 * Parent agreed to stop sending diffs. Finalizing AOF...
+19239:C 19 Jul 2019 00:23:47.780 * Concatenating 0.00 MB of AOF diff received from parent.
+19239:C 19 Jul 2019 00:23:47.780 * SYNC append only file rewrite performed
+19239:C 19 Jul 2019 00:23:47.780 * AOF rewrite: 0 MB of memory used by copy-on-write
+19096:M 19 Jul 2019 00:23:47.838 * Background AOF rewrite terminated with success
+19096:M 19 Jul 2019 00:23:47.838 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+19096:M 19 Jul 2019 00:23:47.838 * Background AOF rewrite finished successfully
+19096:M 19 Jul 2019 00:23:47.838 - Background AOF rewrite signal handler took 71us
+19096:M 19 Jul 2019 00:23:49.139 - DB 9: 6 keys (6 volatile) in 4 slots HT.
+19096:M 19 Jul 2019 00:23:49.139 - 1 clients connected (0 replicas), 879592 bytes in use
+19096:M 19 Jul 2019 00:23:50.761 * Reading RDB preamble from AOF file...
+19096:M 19 Jul 2019 00:23:50.761 * Reading the remaining AOF tail...
+19096:M 19 Jul 2019 00:23:50.761 # Append Only File loaded by DEBUG LOADAOF
+19096:M 19 Jul 2019 00:23:50.763 - Accepted 127.0.0.1:42279
+19096:M 19 Jul 2019 00:23:51.695 - Client closed connection
+19096:M 19 Jul 2019 00:23:52.062 * DB saved on disk
+19096:signal-handler (1563510232) Received SIGTERM scheduling shutdown...
+19096:M 19 Jul 2019 00:23:52.161 # User requested shutdown...
+19096:M 19 Jul 2019 00:23:52.161 * Saving the final RDB snapshot before exiting.
+19096:M 19 Jul 2019 00:23:52.162 * DB saved on disk
+19096:M 19 Jul 2019 00:23:52.162 * Removing the pid file.
+19096:M 19 Jul 2019 00:23:52.162 # Redis is now ready to exit, bye bye...

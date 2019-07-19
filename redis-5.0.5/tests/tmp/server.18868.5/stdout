@@ -1,0 +1,81 @@
+19122:C 19 Jul 2019 00:23:44.451 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19122:C 19 Jul 2019 00:23:44.451 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19122, just started
+19122:C 19 Jul 2019 00:23:44.451 # Configuration loaded
+19122:M 19 Jul 2019 00:23:44.452 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21244
+ |    `-._   `._    /     _.-'    |     PID: 19122
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19122:M 19 Jul 2019 00:23:44.452 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19122:M 19 Jul 2019 00:23:44.452 # Server initialized
+19122:M 19 Jul 2019 00:23:44.452 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19122:M 19 Jul 2019 00:23:44.452 * Ready to accept connections
+19122:M 19 Jul 2019 00:23:44.453 - 0 clients connected (0 replicas), 861344 bytes in use
+19122:M 19 Jul 2019 00:23:44.460 - Accepted 127.0.0.1:43861
+19122:M 19 Jul 2019 00:23:44.460 - Client closed connection
+19122:M 19 Jul 2019 00:23:44.565 - Accepted 127.0.0.1:41585
+19122:M 19 Jul 2019 00:23:44.569 - Accepted 127.0.0.1:34845
+19122:M 19 Jul 2019 00:23:44.569 # WARNING: the new maxmemory value set via CONFIG SET is smaller than the current memory usage. This will result in key eviction and/or the inability to accept new write commands depending on the maxmemory-policy.
+19122:M 19 Jul 2019 00:23:44.570 - Client closed connection
+19122:M 19 Jul 2019 00:23:44.576 * DB saved on disk
+19122:M 19 Jul 2019 00:23:44.576 * DB saved on disk
+19122:M 19 Jul 2019 00:23:45.682 - Accepted 127.0.0.1:42355
+19122:M 19 Jul 2019 00:23:45.682 * Replica 127.0.0.1:<unknown-replica-port> asks for synchronization
+19122:M 19 Jul 2019 00:23:45.683 * Starting BGSAVE for SYNC with target: disk
+19122:M 19 Jul 2019 00:23:45.683 * Background saving started by pid 19169
+19169:C 19 Jul 2019 00:23:45.684 * DB saved on disk
+19169:C 19 Jul 2019 00:23:45.684 * RDB: 0 MB of memory used by copy-on-write
+19122:M 19 Jul 2019 00:23:45.755 * Background saving terminated with success
+19122:M 19 Jul 2019 00:23:45.755 * Synchronization with replica 127.0.0.1:<unknown-replica-port> succeeded
+19122:M 19 Jul 2019 00:23:45.756 - Client closed connection
+19122:M 19 Jul 2019 00:23:45.756 # Connection with replica 127.0.0.1:<unknown-replica-port> lost.
+19122:M 19 Jul 2019 00:23:45.756 - Accepted 127.0.0.1:42051
+19122:M 19 Jul 2019 00:23:45.756 * Replica 127.0.0.1:<unknown-replica-port> asks for synchronization
+19122:M 19 Jul 2019 00:23:45.756 * Starting BGSAVE for SYNC with target: disk
+19122:M 19 Jul 2019 00:23:45.757 * Background saving started by pid 19171
+19171:C 19 Jul 2019 00:23:45.757 * DB saved on disk
+19171:C 19 Jul 2019 00:23:45.758 * RDB: 0 MB of memory used by copy-on-write
+19122:M 19 Jul 2019 00:23:45.855 * Background saving terminated with success
+19122:M 19 Jul 2019 00:23:45.855 * Synchronization with replica 127.0.0.1:<unknown-replica-port> succeeded
+19122:M 19 Jul 2019 00:23:45.855 - Client closed connection
+19122:M 19 Jul 2019 00:23:45.855 # Connection with replica 127.0.0.1:<unknown-replica-port> lost.
+19122:M 19 Jul 2019 00:23:45.856 - Accepted 127.0.0.1:37641
+19122:M 19 Jul 2019 00:23:45.856 * Replica 127.0.0.1:<unknown-replica-port> asks for synchronization
+19122:M 19 Jul 2019 00:23:45.856 * Starting BGSAVE for SYNC with target: disk
+19122:M 19 Jul 2019 00:23:45.856 * Background saving started by pid 19173
+19173:C 19 Jul 2019 00:23:45.857 * DB saved on disk
+19173:C 19 Jul 2019 00:23:45.857 * RDB: 0 MB of memory used by copy-on-write
+19122:M 19 Jul 2019 00:23:45.955 * Background saving terminated with success
+19122:M 19 Jul 2019 00:23:45.956 * Synchronization with replica 127.0.0.1:<unknown-replica-port> succeeded
+19122:M 19 Jul 2019 00:23:45.956 - Client closed connection
+19122:M 19 Jul 2019 00:23:45.956 # Connection with replica 127.0.0.1:<unknown-replica-port> lost.
+19122:M 19 Jul 2019 00:23:45.957 - Accepted 127.0.0.1:40565
+19122:M 19 Jul 2019 00:23:45.957 * Replica 127.0.0.1:<unknown-replica-port> asks for synchronization
+19122:M 19 Jul 2019 00:23:45.957 * Starting BGSAVE for SYNC with target: disk
+19122:M 19 Jul 2019 00:23:45.957 * Background saving started by pid 19174
+19174:C 19 Jul 2019 00:23:45.958 * DB saved on disk
+19174:C 19 Jul 2019 00:23:45.958 * RDB: 0 MB of memory used by copy-on-write
+19122:M 19 Jul 2019 00:23:46.055 * Background saving terminated with success
+19122:M 19 Jul 2019 00:23:46.055 * Synchronization with replica 127.0.0.1:<unknown-replica-port> succeeded
+19122:M 19 Jul 2019 00:23:46.056 - Client closed connection
+19122:M 19 Jul 2019 00:23:46.056 # Connection with replica 127.0.0.1:<unknown-replica-port> lost.
+19122:signal-handler (1563510226) Received SIGTERM scheduling shutdown...
+19122:M 19 Jul 2019 00:23:46.155 # User requested shutdown...
+19122:M 19 Jul 2019 00:23:46.155 * Saving the final RDB snapshot before exiting.
+19122:M 19 Jul 2019 00:23:46.156 * DB saved on disk
+19122:M 19 Jul 2019 00:23:46.156 * Removing the pid file.
+19122:M 19 Jul 2019 00:23:46.156 # Redis is now ready to exit, bye bye...

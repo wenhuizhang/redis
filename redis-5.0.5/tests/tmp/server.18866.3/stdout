@@ -1,0 +1,37 @@
+19030:C 19 Jul 2019 00:23:43.780 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19030:C 19 Jul 2019 00:23:43.780 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19030, just started
+19030:C 19 Jul 2019 00:23:43.780 # Configuration loaded
+19030:M 19 Jul 2019 00:23:43.781 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21223
+ |    `-._   `._    /     _.-'    |     PID: 19030
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19030:M 19 Jul 2019 00:23:43.782 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19030:M 19 Jul 2019 00:23:43.782 # Server initialized
+19030:M 19 Jul 2019 00:23:43.782 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19030:M 19 Jul 2019 00:23:43.782 * Ready to accept connections
+19030:M 19 Jul 2019 00:23:43.782 - 0 clients connected (0 replicas), 862376 bytes in use
+19030:M 19 Jul 2019 00:23:43.789 - Accepted 127.0.0.1:36293
+19030:M 19 Jul 2019 00:23:43.789 - Client closed connection
+19030:M 19 Jul 2019 00:23:43.893 - Accepted 127.0.0.1:41063
+19030:M 19 Jul 2019 00:23:43.894 - Accepted 127.0.0.1:59952
+19030:signal-handler (1563510223) Received SIGTERM scheduling shutdown...
+19030:M 19 Jul 2019 00:23:43.982 # User requested shutdown...
+19030:M 19 Jul 2019 00:23:43.982 * Saving the final RDB snapshot before exiting.
+19030:M 19 Jul 2019 00:23:43.983 * DB saved on disk
+19030:M 19 Jul 2019 00:23:43.983 * Removing the pid file.
+19030:M 19 Jul 2019 00:23:43.983 # Redis is now ready to exit, bye bye...

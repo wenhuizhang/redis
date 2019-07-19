@@ -1,0 +1,44 @@
+19294:C 19 Jul 2019 00:23:49.924 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+19294:C 19 Jul 2019 00:23:49.924 # Redis version=5.0.5, bits=64, commit=a237e90b, modified=1, pid=19294, just started
+19294:C 19 Jul 2019 00:23:49.924 # Configuration loaded
+19294:M 19 Jul 2019 00:23:49.924 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 5.0.5 (a237e90b/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 21323
+ |    `-._   `._    /     _.-'    |     PID: 19294
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+19294:M 19 Jul 2019 00:23:49.925 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+19294:M 19 Jul 2019 00:23:49.925 # Server initialized
+19294:M 19 Jul 2019 00:23:49.925 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+19294:M 19 Jul 2019 00:23:49.925 * Ready to accept connections
+19294:M 19 Jul 2019 00:23:49.926 - 0 clients connected (0 replicas), 861344 bytes in use
+19294:M 19 Jul 2019 00:23:49.933 - Accepted 127.0.0.1:35287
+19294:M 19 Jul 2019 00:23:49.933 - Client closed connection
+19294:M 19 Jul 2019 00:23:50.040 - Accepted 127.0.0.1:46721
+19294:S 19 Jul 2019 00:23:50.159 * Before turning into a replica, using my master parameters to synthesize a cached master: I may be able to synchronize with the new master with just a partial transfer.
+19294:S 19 Jul 2019 00:23:50.159 * REPLICAOF 127.0.0.1:21324 enabled (user request from 'id=4 addr=127.0.0.1:46721 fd=7 name= age=0 idle=0 flags=N db=9 sub=0 psub=0 multi=-1 qbuf=43 qbuf-free=32725 obl=0 oll=0 omem=0 events=r cmd=slaveof')
+19294:S 19 Jul 2019 00:23:50.926 * Connecting to MASTER 127.0.0.1:21324
+19294:S 19 Jul 2019 00:23:50.926 * MASTER <-> REPLICA sync started
+19294:S 19 Jul 2019 00:23:50.926 * Non blocking connect for SYNC fired the event.
+19294:S 19 Jul 2019 00:23:50.926 * Master replied to PING, replication can continue...
+19294:S 19 Jul 2019 00:23:50.926 * Trying a partial resynchronization (request 095a114eeeacdfe643e50b063b2332d15b41d5b1:1).
+19294:S 19 Jul 2019 00:23:50.926 * Full resync from master: 4cf029644db6abf8d85cdeacae3f9181f8f4afff:0
+19294:S 19 Jul 2019 00:23:50.926 * Discarding previously cached master state.
+19294:S 19 Jul 2019 00:23:50.947 * MASTER <-> REPLICA sync: receiving 175 bytes from master
+19294:S 19 Jul 2019 00:23:50.947 * MASTER <-> REPLICA sync: Flushing old data
+19294:S 19 Jul 2019 00:23:50.947 * MASTER <-> REPLICA sync: Loading DB in memory
+19294:S 19 Jul 2019 00:23:50.947 * MASTER <-> REPLICA sync: Finished with success
+19294:S 19 Jul 2019 00:23:52.515 - Client closed connection

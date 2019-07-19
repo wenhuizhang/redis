@@ -27,11 +27,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <unistd.h>
-#include <time.h>
-
-#include <pthread.h>
-#include <sys/sysinfo.h>
 
 #include "server.h"
 /*-----------------------------------------------------------------------------
@@ -308,7 +303,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
     /* Send to clients listening for that channel */
     de = dictFind(server.pubsub_channels,channel);
 
-    pthread_t tid[125];
+    pthread_t tid[512];
     
     if (de) {
         list *list = dictGetVal(de);
@@ -322,6 +317,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
 	    my_arg->message = message;
 	    my_arg->ln = ln;
 	    int err = pthread_create(&(tid[receivers]), NULL, &pubOneSub, (void*)my_arg);
+	    assert(err != 0);
             //pubOneSub(my_arg); 
             receivers++;
         }
