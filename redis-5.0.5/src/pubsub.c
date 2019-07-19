@@ -27,8 +27,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "server.h"
+#include <unistd.h>
+#include <time.h>
 
+#include <pthread.h>
+#include <sys/sysinfo.h>
+
+#include "server.h"
 /*-----------------------------------------------------------------------------
  * Pubsub low level API
  *----------------------------------------------------------------------------*/
@@ -251,9 +256,19 @@ static void hexDump(const void* data, size_t size) {
 }
 
 
-void pubOneSub(robj* channel, robj* message, listNode* ln)
+
+struct pubOneSub_arg{
+	robj* channel;
+	robj* message;
+	listNode* ln;
+};
+
+
+void *pubOneSub(void *args)
 { 
-	    client *c = ln->value;
+	    struct pubOneSub_arg *arg = (struct pubOneSub_arg*) args;
+		
+	    client *c = arg->ln->value;
 //          printf("client id is: %d\n", ln->value);
 
 //          printf("message->ptr is:\n");
@@ -273,15 +288,14 @@ void pubOneSub(robj* channel, robj* message, listNode* ln)
 //          printf("shared.messagebulk is:\n");
 //          hexDump(shared.messagebulk->ptr, sizeof(shared.messagebulk->ptr));
 
-            addReplyBulk(c,channel);
+            addReplyBulk(c,arg->channel);
 //          printf("channel is:\n");
 //          hexDump(channel->ptr, sizeof(channel->ptr));
 
-            addReplyBulk(c,message);
+            addReplyBulk(c,arg->message);
 //          printf("message is:\n");
 //          hexDump(message->ptr, sizeof(message->ptr));
 }
-
 
 
 
@@ -294,6 +308,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
     /* Send to clients listening for that channel */
     de = dictFind(server.pubsub_channels,channel);
 
+    pthread_t tid[125];
     
     if (de) {
         list *list = dictGetVal(de);
@@ -302,7 +317,12 @@ int pubsubPublishMessage(robj *channel, robj *message) {
 
         listRewind(list,&li);
         while ((ln = listNext(&li)) != NULL) {
-            pubOneSub(channel, message, ln); 
+	    struct pubOneSub_arg* my_arg;
+	    my_arg->channel = channel;
+	    my_arg->message = message;
+	    my_arg->ln = ln;
+	    int err = pthread_create(&(tid[receivers]), NULL, &pubOneSub, (void*)my_arg);
+            //pubOneSub(my_arg); 
             receivers++;
         }
     }
