@@ -312,11 +312,11 @@ int pubsubPublishMessage(robj *channel, robj *message) {
 
         listRewind(list,&li);
         while ((ln = listNext(&li)) != NULL) {
-	    struct pubOneSub_arg* my_arg;
-	    my_arg->channel = channel;
-	    my_arg->message = message;
-	    my_arg->ln = ln;
-	    int err = pthread_create(&(tid[receivers]), NULL, &pubOneSub, (void*)my_arg);
+	    struct pubOneSub_arg my_arg;
+	    my_arg.channel = channel;
+	    my_arg.message = message;
+	    my_arg.ln = ln;
+	    int err = pthread_create(&(tid[receivers]), NULL, &pubOneSub, (void*)&my_arg);
 	    assert(err != 0);
             //pubOneSub(my_arg); 
             receivers++;
