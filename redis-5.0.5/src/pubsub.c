@@ -317,7 +317,7 @@ int pubsubPublishMessage(robj *channel, robj *message) {
 	    my_arg.message = message;
 	    my_arg.ln = ln;
 	    int err = pthread_create(&(tid[receivers]), NULL, &pubOneSub, (void*)&my_arg);
-	    assert(err != 0);
+	    //assert(err != 0);
             //pubOneSub(my_arg); 
             receivers++;
         }
