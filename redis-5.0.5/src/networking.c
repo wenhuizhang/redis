@@ -235,6 +235,8 @@ int prepareClientToWrite(client *c) {
 /* -----------------------------------------------------------------------------
  * Low level functions to add more data to output buffers.
  * -------------------------------------------------------------------------- */
+// wenhui
+// client get buffer with msg content
 
 int _addReplyToBuffer(client *c, const char *s, size_t len) {
     size_t available = sizeof(c->buf)-c->bufpos;
@@ -248,6 +250,7 @@ int _addReplyToBuffer(client *c, const char *s, size_t len) {
     /* Check that the buffer has enough space available for this string. */
     if (len > available) return C_ERR;
 
+    //each client has a buffer , client *c->buf, we should change this repointing to our ringbuf
     memcpy(c->buf+c->bufpos,s,len);
     c->bufpos+=len;
     return C_OK;

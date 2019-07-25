@@ -773,6 +773,7 @@ typedef struct client {
 
     /* Response buffer */
     int bufpos;
+    // wenhui, need to change this part to pointer
     char buf[PROTO_REPLY_CHUNK_BYTES];
 } client;
 
