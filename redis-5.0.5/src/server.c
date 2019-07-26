@@ -4005,9 +4005,36 @@ int redisIsSupervised(int mode) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// wenhui
+// mode for pubsub sending messages to clients
+// message mode:  mode == 0 
+// control mode:  mode == 1 
+// extern int mode = 1;
+
+// create a shared ringbuf for per channel
+// later we create a virtual client (reading from ringbuf), 
+//  and let all cleints' buffer pointing to this clients' buffer
+// extern const int buffer_size = 10000;
+// extern struct ring* ringbuf; 
+// moved the above part to server.h
+
 int main(int argc, char **argv) {
     struct timeval tv;
     int j;
+    ringbuf = init_ring(buffer_size);
+
 
 #ifdef REDIS_TEST
     if (argc == 3 && !strcasecmp(argv[1], "test")) {

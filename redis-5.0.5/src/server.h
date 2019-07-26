@@ -34,6 +34,7 @@
 #include "config.h"
 #include "solarisfixes.h"
 #include "rio.h"
+#include "./rbuf/ringbuf.h"
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -78,6 +79,54 @@ typedef long long mstime_t; /* millisecond time type. */
 #include "sha1.h"
 #include "endianconv.h"
 #include "crc64.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// wenhui
+// mode for pubsub sending messages to clients
+// message mode:  mode == 0 
+// control mode:  mode == 1 
+extern int mode = 1;
+
+// create a shared ringbuf for per channel
+// later we create a virtual client (reading from ringbuf), 
+//  and let all cleints' buffer pointing to this clients' buffer
+extern const int buffer_size = 10000;
+extern struct ring* ringbuf; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Error codes */
 #define C_OK                    0
@@ -608,6 +657,9 @@ typedef struct RedisModuleDigest {
 #define LRU_CLOCK_RESOLUTION 1000 /* LRU clock resolution in ms */
 
 #define OBJ_SHARED_REFCOUNT INT_MAX
+
+
+
 typedef struct redisObject {
     unsigned type:4;
     unsigned encoding:4;

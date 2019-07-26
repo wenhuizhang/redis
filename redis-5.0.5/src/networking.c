@@ -238,28 +238,45 @@ int prepareClientToWrite(client *c) {
 // wenhui
 // client get buffer with msg content
 
+
 int _addReplyToBuffer(client *c, const char *s, size_t len) {
-    size_t available = sizeof(c->buf)-c->bufpos;
+    if(mode == 1){
+    	size_t available = sizeof(c->buf) - c->bufpos;
+	
+    	if (c->flags & CLIENT_CLOSE_AFTER_REPLY) return C_OK;
+	
+    	/* If there already are entries in the reply list, we cannot
+     	* add anything more to the static buffer. */
+    	if (listLength(c->reply) > 0) return C_ERR;
+	
+    	/* Check that the buffer has enough space available for this string. */
+    	if (len > available) return C_ERR;
+	
+    	//each client has a buffer , client *c->buf, we should change this repointing to our ringbuf
+    	memcpy(c->buf+c->bufpos,s,len);
+    	c->bufpos+=len;
+    	return C_OK;
+    }else{
+    	if (c->flags & CLIENT_CLOSE_AFTER_REPLY) return C_OK;
 
-    if (c->flags & CLIENT_CLOSE_AFTER_REPLY) return C_OK;
-
-    /* If there already are entries in the reply list, we cannot
-     * add anything more to the static buffer. */
-    if (listLength(c->reply) > 0) return C_ERR;
-
-    /* Check that the buffer has enough space available for this string. */
-    if (len > available) return C_ERR;
-
-    //each client has a buffer , client *c->buf, we should change this repointing to our ringbuf
-    memcpy(c->buf+c->bufpos,s,len);
-    c->bufpos+=len;
-    return C_OK;
+    	/* If there already are entries in the reply list, we cannot
+     	* add anything more to the static buffer. */
+    	if (listLength(c->reply) > 0) return C_ERR;
+	
+    	/* Check that the buffer has enough space available for this string. */
+	struct consumer *con = init_consumer(c->bufpos);
+	// let c->buf pointing to a string , which is got from ringbuf
+ 	s = ring_get(ringbuf, con);
+    	memcpy(c->buf+c->bufpos,s,len);
+	return C_OK;	
+    }	
 }
 
 
 // wenhui: 
 // if buffer size if not enough for added obj, then add string to list
-
+// this will only be called during control mode
+// for msg mode , it will over-write former pointer to memory as a ringbuf 
 void _addReplyStringToList(client *c, const char *s, size_t len) {
     if (c->flags & CLIENT_CLOSE_AFTER_REPLY) return;
 
@@ -310,11 +327,20 @@ void addReply(client *c, robj *obj) {
     }
 
     if (sdsEncodedObject(obj)) {
-	 //printf("pubsub: obj->encoding is SDS\n");
-        if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK){
-	   // printf("pubsub: add reply to buffer\n");
-            _addReplyStringToList(c,obj->ptr,sdslen(obj->ptr));
-	    //printf("pubsub: add reply string to list\n");
+
+	if(mode == 1){
+		 //printf("pubsub: obj->encoding is SDS\n");
+        	if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK){
+	   		// printf("pubsub: add reply to buffer\n");
+            		_addReplyStringToList(c,obj->ptr,sdslen(obj->ptr));
+	    		//printf("pubsub: add reply string to list\n");
+		}
+	}else{
+		 //printf("pubsub: obj->encoding is SDS\n");
+        	if (_addReplyToBuffer(c,obj->ptr,sdslen(obj->ptr)) != C_OK){
+	   		printf("pubsub msg mode: add reply to buffer failed\n");
+		}
+		
 	}
     } else if (obj->encoding == OBJ_ENCODING_INT) {
 	 // printf("pubsub: obj->encoding is INT\n");

@@ -29,6 +29,7 @@
 
 
 #include "server.h"
+#include "./rbuf/ringbuf.h"
 /*-----------------------------------------------------------------------------
  * Pubsub low level API
  *----------------------------------------------------------------------------*/
@@ -300,6 +301,20 @@ int pubsubPublishMessage(robj *channel, robj *message) {
     listNode *ln;
     listIter li;
 
+//  wenhui
+//  set it to message transmission mode
+    mode = 0;
+//  create a virtual client (reading from ringbuf), 
+//  and let all cleints' buffer pointing to this clients' buffer
+//    const int buffer_size = 10000;
+//    channel->ring_buffer = init_ring(buffer_size);
+    int count = ring_push(ringbuf, (void*)shared.mbulkhdr[3]);
+    count = ring_push(ringbuf, (void*)shared.messagebulk);
+    count = ring_push(ringbuf, (void*)channel);
+    count = ring_push(ringbuf, (void*)message);
+    
+    
+
     /* Send to clients listening for that channel */
     de = dictFind(server.pubsub_channels,channel);
 
@@ -362,6 +377,10 @@ int pubsubPublishMessage(robj *channel, robj *message) {
         }
         decrRefCount(channel);
     }
+
+// wenhui
+// set it back to control mode
+    mode = 1;
     return receivers;
 }
 
